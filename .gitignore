@@ -1,3 +1,2 @@
-
-./Data_Access_Layer/bin
-./Data_Access_Layer/.vs
+DataAccessLayer/bin
+DataAccessLayer/.vs
