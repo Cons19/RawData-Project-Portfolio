@@ -1,2 +1,5 @@
 DataAccessLayer/bin
 DataAccessLayer/.vs
+WebServiceLayer/bin
+WebServiceLayer/.vs
+.vs
