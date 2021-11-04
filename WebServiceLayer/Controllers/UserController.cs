@@ -31,11 +31,78 @@ namespace WebServiceLayer.Controllers
             return Ok(users.Select(x => GetUserViewModel(x)));
         }
 
+        [HttpGet("{id}", Name = nameof(GetUser))]
+        public IActionResult GetUser(int id)
+        {
+            var user = _dataService.GetUser(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [HttpPost]
+        public IActionResult CreateUser(CreateUpdateUserViewModel model)
+        {
+            var user = new User
+            {
+                Name = model.Name,
+                Email = model.Email,
+                Password = model.Password
+            };
+
+            var newUser = _dataService.CreateUser(user.Name, user.Email, user.Password);
+
+            return Created("", newUser);
+
+        }
+
+        [HttpPut("{id}", Name = nameof(UpdateUser))]
+        public IActionResult UpdateUser(int id, CreateUpdateUserViewModel model)
+        {
+            var user = _dataService.GetUser(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var updatedUser = new User
+            {
+                Id = id,
+                Name = model.Name,
+                Email = model.Email,
+                Password = model.Password
+            };
+
+            _dataService.UpdateUser(id, updatedUser.Name, updatedUser.Email, updatedUser.Password);
+
+            return Ok(updatedUser);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCategory(int id)
+        {
+            var user = _dataService.GetUser(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _dataService.DeleteUser(id);
+
+            return Ok(user);
+        }
+
         private UserViewModel GetUserViewModel(User user)
         {
             return new UserViewModel
             {
-                Url = _linkGenerator.GetUriByName(HttpContext, nameof(GetUsers), new { user.Id }),
+                Url = _linkGenerator.GetUriByName(HttpContext, nameof(GetUser), new { user.Id }),
                 Name = user.Name,
                 Email = user.Email,
                 Password = user.Password
