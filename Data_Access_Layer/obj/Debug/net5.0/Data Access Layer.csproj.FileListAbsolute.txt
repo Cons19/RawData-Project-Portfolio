@@ -29,3 +29,4 @@ C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portf
 C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Npgsql.dll
 C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\obj\Debug\net5.0\Data Access Layer.csproj.CopyComplete
