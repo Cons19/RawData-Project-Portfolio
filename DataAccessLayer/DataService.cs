@@ -64,5 +64,40 @@ namespace DataAccessLayer
             return false;
         }
 
+        public BookmarkTitle CreateBookmarkTitle(int userId, string titleId)
+        {
+            var ctx = new ImdbContext();
+            BookmarkTitle bookmarkTitle = new BookmarkTitle();
+            bookmarkTitle.UserId = userId;
+            bookmarkTitle.TitleId = titleId;
+            ctx.BookmarkTitles.Add(bookmarkTitle);
+            ctx.SaveChanges();
+            return bookmarkTitle;
+        }
+
+        public IList<BookmarkTitle> GetBookmarkTitlesForUser(int userId)
+        {
+            var ctx = new ImdbContext();
+            IList<BookmarkTitle> allBookmarkTitles = ctx.BookmarkTitles.ToList();
+            return allBookmarkTitles.Where(x => x.UserId == userId).ToList();
+        }
+
+        public IList<BookmarkTitle> GetBookmarkTitles()
+        {
+            var ctx = new ImdbContext();
+            return ctx.BookmarkTitles.ToList();
+        }
+
+        public bool DeleteBookmarkTitle(int userId, string titleId)
+        {
+            var ctx = new ImdbContext();
+            var bookmarkTitle = ctx.BookmarkTitles.SingleOrDefault(x => x.UserId == userId && x.TitleId.Trim() == titleId);
+            if (bookmarkTitle != null)
+            {
+                ctx.BookmarkTitles.Remove(bookmarkTitle);
+                return ctx.SaveChanges() > 0;
+            }
+            return false;
+        }
     }
 }

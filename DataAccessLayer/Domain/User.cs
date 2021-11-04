@@ -13,7 +13,8 @@ namespace DataAccessLayer.Domain
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }        
+        public IList<BookmarkTitle> BookmarkTitles { get; set; }
 
         public override string ToString()
         {

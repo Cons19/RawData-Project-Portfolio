@@ -11,13 +11,13 @@ namespace DataAccessLayer
         public static void Main(string[] args)
         {
             DataService dataService = new DataService();
-            dataService.CreateUser("name", "email", "pass");
+            /*
+            dataService.CreateUser("testName", "testEmail", "testPass");
             Console.WriteLine(dataService.GetUsers());
-            Console.WriteLine(dataService.GetUser(7));
-            dataService.UpdateUser(7, "user123", "email@email.com", "pass123");
-            dataService.DeleteUser(7);
-
-
+            Console.WriteLine(dataService.GetUser(15));
+            dataService.UpdateUser(15, "Dragos", "dam@ruc.dk", "rucpass");
+            dataService.DeleteUser(15);
+            */
         }
     }
 }

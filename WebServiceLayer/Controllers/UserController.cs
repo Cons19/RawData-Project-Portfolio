@@ -47,17 +47,9 @@ namespace WebServiceLayer.Controllers
         [HttpPost]
         public IActionResult CreateUser(CreateUpdateUserViewModel model)
         {
-            var user = new User
-            {
-                Name = model.Name,
-                Email = model.Email,
-                Password = model.Password
-            };
-
-            var newUser = _dataService.CreateUser(user.Name, user.Email, user.Password);
+            var newUser = _dataService.CreateUser(model.Name, model.Email, model.Password);
 
             return Created("", newUser);
-
         }
 
         [HttpPut("{id}", Name = nameof(UpdateUser))]
