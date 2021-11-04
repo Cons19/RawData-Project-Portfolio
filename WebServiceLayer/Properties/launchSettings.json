@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Web_Service_Layer": {
+    "WebServiceLayer": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

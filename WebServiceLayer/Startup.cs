@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer;
 
-namespace Web_Service_Layer
+namespace WebServiceLayer
 {
     public class Startup
     {
