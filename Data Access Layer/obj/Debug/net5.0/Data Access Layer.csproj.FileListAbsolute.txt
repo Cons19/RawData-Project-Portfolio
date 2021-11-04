@@ -1,0 +1,31 @@
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Data Access Layer.exe
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Data Access Layer.deps.json
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Data Access Layer.runtimeconfig.json
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Data Access Layer.runtimeconfig.dev.json
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Data Access Layer.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\ref\Data Access Layer.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Data Access Layer.pdb
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\obj\Debug\net5.0\Data Access Layer.csproj.AssemblyReference.cache
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\obj\Debug\net5.0\Data Access Layer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\obj\Debug\net5.0\Data Access Layer.AssemblyInfoInputs.cache
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\obj\Debug\net5.0\Data Access Layer.AssemblyInfo.cs
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\obj\Debug\net5.0\Data Access Layer.csproj.CoreCompileInputs.cache
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\obj\Debug\net5.0\Data Access Layer.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\obj\Debug\net5.0\ref\Data Access Layer.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\obj\Debug\net5.0\Data Access Layer.pdb
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\obj\Debug\net5.0\Data Access Layer.genruntimeconfig.cache
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.Extensions.Logging.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Npgsql.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\razva\Documents\University\RUC\Sem1\Mandatory Core Topics\Project Portfolio\P2\Backend\RawData-Project-Portfolio\Data Access Layer\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
