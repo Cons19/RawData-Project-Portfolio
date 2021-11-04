@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "icsmA5wl8KtvZXAYJC+d0ycvZgpclps9Lp2AInnj4MO8B1xeT5UBjNDhPlQ/Ek05OHgVsd0cTE4LXBa7052vFA==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\RawData-Project-Portfolio\\Web_Service_Layer\\Web_Service_Layer\\Web_Service_Layer.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\RawData-Project-Portfolio\\Web_Service_Layer\\DataAccessLayer\\DataAccessLayer.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\RawData-Project-Portfolio\\Web_Service_Layer\\DataAccessLayer\\DataAccessLayer.csproj",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
+}
