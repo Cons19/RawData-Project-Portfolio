@@ -1,7 +1,7 @@
-﻿using Data_Access_Layer.Domain;
+﻿using DataAccessLayer.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Data_Access_Layer
+namespace DataAccessLayer
 {
     class ImdbContext : DbContext
     {

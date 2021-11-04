@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data_Access_Layer
+namespace DataAccessLayer
 {
     class Program
     {
@@ -14,7 +14,7 @@ namespace Data_Access_Layer
             dataService.CreateUser("name", "email", "pass");
             Console.WriteLine(dataService.GetUsers());
             Console.WriteLine(dataService.GetUser(7));
-            dataService.UpdateUser(7,"user123", "email@email.com", "pass123");
+            dataService.UpdateUser(7, "user123", "email@email.com", "pass123");
             dataService.DeleteUser(7);
 
 
