@@ -18,8 +18,9 @@ namespace DataAccessLayer
         
         // BookmarkTitle
         IList<BookmarkTitle> GetBookmarkTitlesForUser(int userId);
+        BookmarkTitle GetBookmarkTitle(int id);
         IList<BookmarkTitle> GetBookmarkTitles();
         BookmarkTitle CreateBookmarkTitle(int userId, string titleId);
-        bool DeleteBookmarkTitle(int userId, string titleId);
+        bool DeleteBookmarkTitle(int id);
     }
 }

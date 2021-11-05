@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Domain;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DataAccessLayer
 {
@@ -51,7 +52,7 @@ namespace DataAccessLayer
             
             // BookmarkTitle mapping
             modelBuilder.Entity<BookmarkTitle>().ToTable("bookmark_title");
-            modelBuilder.Entity<BookmarkTitle>().HasKey(x => new { x.UserId, x.TitleId });
+            modelBuilder.Entity<BookmarkTitle>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<BookmarkTitle>().Property(x => x.UserId).HasColumnName("user_id");
             modelBuilder.Entity<BookmarkTitle>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<BookmarkTitle>().HasOne(x => x.User).WithMany(x => x.BookmarkTitles).HasForeignKey(x => x.UserId);

@@ -82,16 +82,22 @@ namespace DataAccessLayer
             return allBookmarkTitles.Where(x => x.UserId == userId).ToList();
         }
 
+        public BookmarkTitle GetBookmarkTitle(int id)
+        {
+            var ctx = new ImdbContext();
+            return ctx.BookmarkTitles.Find(id);
+        }
+
         public IList<BookmarkTitle> GetBookmarkTitles()
         {
             var ctx = new ImdbContext();
             return ctx.BookmarkTitles.ToList();
         }
 
-        public bool DeleteBookmarkTitle(int userId, string titleId)
+        public bool DeleteBookmarkTitle(int id)
         {
             var ctx = new ImdbContext();
-            var bookmarkTitle = ctx.BookmarkTitles.SingleOrDefault(x => x.UserId == userId && x.TitleId.Trim() == titleId);
+            var bookmarkTitle = ctx.BookmarkTitles.SingleOrDefault(x => x.Id == id);
             if (bookmarkTitle != null)
             {
                 ctx.BookmarkTitles.Remove(bookmarkTitle);

@@ -32,10 +32,10 @@ namespace WebServiceLayer.Controllers
             return Ok(bookmarkTitles.Select(x => GetBookmarkTitleViewModel(x)));
         }
 
-        [HttpGet("{id}", Name = nameof(GetBookmarkTitleForUser))]
-        public IActionResult GetBookmarkTitleForUser(int id)
+        [HttpGet("user/{userId}")]
+        public IActionResult GetBookmarkTitleForUser(int userId)
         {
-            var bookmarkTitles = _dataService.GetBookmarkTitlesForUser(id);
+            var bookmarkTitles = _dataService.GetBookmarkTitlesForUser(userId);
 
             if (bookmarkTitles.Count == 0)
             {
@@ -45,32 +45,67 @@ namespace WebServiceLayer.Controllers
             return Ok(bookmarkTitles.Select(x => GetBookmarkTitleViewModel(x)));
         }
 
+
+        [HttpGet("{id}", Name = nameof(GetBookmarkTitle))]
+        public IActionResult GetBookmarkTitle(int id)
+        {
+            var bookmarkTitle = _dataService.GetBookmarkTitle(id);
+
+            if (bookmarkTitle == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(GetBookmarkTitleViewModel(bookmarkTitle));
+        }
+
         [HttpPost]
         public IActionResult CreateBookmarkTitle(BookmarkTitle bookmarkTitle)
         {
-            BookmarkTitleViewModel newBookmarkTitle = new BookmarkTitleViewModel();
-            var createdBookmarkTitle = _dataService.CreateBookmarkTitle(bookmarkTitle.UserId, bookmarkTitle.TitleId);
-            newBookmarkTitle.UserId = createdBookmarkTitle.UserId;
-            newBookmarkTitle.TitleId = createdBookmarkTitle.TitleId;
-            return Created("", newBookmarkTitle);
-        }
-
-        [HttpDelete("{userId}/{titleId}")]
-        public IActionResult DeleteBookmarkTitle(int userId, string titleId)
-        {
-            var bookmarkTitleByUser = _dataService.GetBookmarkTitlesForUser(userId);
-            BookmarkTitleViewModel newBookmarkTitle = new BookmarkTitleViewModel();
-            foreach (BookmarkTitle t in bookmarkTitleByUser)
+            // check if user with the given id exists
+            var userId = bookmarkTitle.UserId;
+            var titleId = bookmarkTitle.TitleId;
+            if (_dataService.GetUser(userId) == null)
             {
-                if (t.TitleId.Trim() == titleId)
+                return NotFound(userId);
+            }
+
+            // check if the title with the given id exists
+            /*
+            if (_dataService.GetTitle(titleId) == null)
+            {
+                return NotFound(_dataService.GetTitle(titleId));
+            }*/
+
+            // check if the bookmark already exists
+            var checkedBookmarkTitles = _dataService.GetBookmarkTitlesForUser(userId);
+            
+            foreach (BookmarkTitle t in checkedBookmarkTitles)
+            {
+                if (t.TitleId == titleId)
                 {
-                    _dataService.DeleteBookmarkTitle(userId, titleId);
-                    newBookmarkTitle.UserId = userId;
-                    newBookmarkTitle.TitleId = titleId;
-                    return Ok(newBookmarkTitle);
+                    return Conflict();
                 }
             }
-            return NotFound();
+            
+            var createdBookmarkTitle = _dataService.CreateBookmarkTitle(bookmarkTitle.UserId, bookmarkTitle.TitleId);
+
+            return Created("", GetBookmarkTitleViewModel(createdBookmarkTitle)); 
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBookmarkTitle(int id)
+        {
+            var bookmarkTitle = _dataService.GetBookmarkTitle(id);
+
+            if (bookmarkTitle == null)
+            {
+                return NotFound();
+            }
+
+            _dataService.DeleteBookmarkTitle(id);
+
+            return Ok(GetBookmarkTitleViewModel(bookmarkTitle));
         }
 
         private BookmarkTitleViewModel GetBookmarkTitleViewModel(BookmarkTitle bookmarkTitle)
@@ -79,6 +114,7 @@ namespace WebServiceLayer.Controllers
             {
                 //UserUrl = _linkGenerator.GetUriByName(HttpContext, nameof(GetUser(bookmarkTitle.UserId)), new { bookmarkTitle.UserId }),
                 //TitleUrl = _linkGenerator.GetUriByName(HttpContext, nameof(GetUser(bookmarkTitle.Title)), new { bookmarkTitle.TitleId }),
+                Url = _linkGenerator.GetUriByName(HttpContext, nameof(GetBookmarkTitle), new { bookmarkTitle.Id }),
                 UserId = bookmarkTitle.UserId,
                 TitleId = bookmarkTitle.TitleId
             };

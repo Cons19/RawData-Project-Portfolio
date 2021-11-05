@@ -9,6 +9,7 @@ namespace DataAccessLayer.Domain
 {
     public class BookmarkTitle
     {
+        public int Id { get; set; }
         public int UserId { get; set; }
         public string TitleId { get; set; }
         public User User { get; set; }
