@@ -105,5 +105,11 @@ namespace DataAccessLayer
             }
             return false;
         }
+
+        public Title GetTitle(string id)
+        {
+            var ctx = new ImdbContext();
+            return ctx.Titles.Find(id);
+        }
     }
 }

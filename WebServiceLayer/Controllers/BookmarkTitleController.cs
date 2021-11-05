@@ -65,24 +65,25 @@ namespace WebServiceLayer.Controllers
             // check if user with the given id exists
             var userId = bookmarkTitle.UserId;
             var titleId = bookmarkTitle.TitleId;
+
             if (_dataService.GetUser(userId) == null)
             {
                 return NotFound(userId);
             }
 
             // check if the title with the given id exists
-            /*
+            
             if (_dataService.GetTitle(titleId) == null)
             {
-                return NotFound(_dataService.GetTitle(titleId));
-            }*/
+                return NotFound(titleId);
+            }
 
             // check if the bookmark already exists
             var checkedBookmarkTitles = _dataService.GetBookmarkTitlesForUser(userId);
             
             foreach (BookmarkTitle t in checkedBookmarkTitles)
             {
-                if (t.TitleId == titleId)
+                if (t.TitleId.Trim() == titleId)
                 {
                     return Conflict();
                 }
