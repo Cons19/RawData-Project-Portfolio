@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer;
 using DataAccessLayer.Domain;
+using DataAccessLayer.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -14,19 +15,20 @@ namespace WebServiceLayer.Controllers
     [Route("api/users")]
     public class UserController : Controller
     {
-        IDataService _dataService;
+        IUserRepository _userRepository;
         LinkGenerator _linkGenerator;
 
-        public UserController(IDataService dataService, LinkGenerator linkGenerator)
+        public UserController(IUserRepository userRepository, LinkGenerator linkGenerator)
         {
-            _dataService = dataService;
+            _userRepository = userRepository;
             _linkGenerator = linkGenerator;
         }
 
         [HttpGet]
         public IActionResult GetUsers()
         {
-            var users = _dataService.GetUsers();
+            // return Ok("Hello");
+            var users = _userRepository.GetUsers();
 
             return Ok(users.Select(x => GetUserViewModel(x)));
         }
@@ -34,7 +36,8 @@ namespace WebServiceLayer.Controllers
         [HttpGet("{id}", Name = nameof(GetUser))]
         public IActionResult GetUser(int id)
         {
-            var user = _dataService.GetUser(id);
+            Console.WriteLine(id);
+            var user = _userRepository.GetUser(id);
 
             if (user == null)
             {
@@ -49,53 +52,47 @@ namespace WebServiceLayer.Controllers
         {
             var user = new User
             {
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 Name = model.Name,
                 Email = model.Email,
                 Password = model.Password
             };
 
-            var newUser = _dataService.CreateUser(user.Name, user.Email, user.Password);
+            _userRepository.CreateUser(user);
+            _userRepository.Save();
 
-            return Created("", newUser);
+            return Created("", user);
 
         }
 
         [HttpPut("{id}", Name = nameof(UpdateUser))]
         public IActionResult UpdateUser(int id, CreateUpdateUserViewModel model)
         {
-            var user = _dataService.GetUser(id);
+            var user = _userRepository.GetUser(id);
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            var updatedUser = new User
-            {
-                Id = id,
-                Name = model.Name,
-                Email = model.Email,
-                Password = model.Password
-            };
+            user.Name = model.Name;
+            user.Email = model.Email;
+            user.Password = model.Password;
 
-            _dataService.UpdateUser(id, updatedUser.Name, updatedUser.Email, updatedUser.Password);
-
-            return Ok(updatedUser);
+            _userRepository.UpdateUser(user);
+            _userRepository.Save();
+            return Ok(user);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCategory(int id)
+        public IActionResult DeleteUser(int id)
         {
-            var user = _dataService.GetUser(id);
+            var isDeleted = _userRepository.DeleteUser(id);
+            _userRepository.Save();
 
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _dataService.DeleteUser(id);
-
-            return Ok(user);
+            if (isDeleted) return Ok("Success");
+            return NotFound();
         }
 
         private UserViewModel GetUserViewModel(User user)
@@ -107,6 +104,12 @@ namespace WebServiceLayer.Controllers
                 Email = user.Email,
                 Password = user.Password
             };
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _userRepository.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

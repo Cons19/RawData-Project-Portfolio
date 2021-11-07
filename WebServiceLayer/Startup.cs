@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer;
+using DataAccessLayer.Repository;
 
 namespace WebServiceLayer
 {
@@ -18,8 +19,11 @@ namespace WebServiceLayer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            services.AddSingleton<IDataService, DataService>();
+            services.AddDbContext<ImdbContext>()
+                    .AddScoped<IUserRepository, UserRepository>()
+                    .AddScoped<ITitleRepository, TitleRepository>()
+                    .AddScoped<IBookmarkTitleRepository, BookmarkTitleRepository>()
+                    .AddScoped<ISearchHistoryRepository, SearchHistoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
