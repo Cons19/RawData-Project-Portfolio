@@ -25,6 +25,15 @@ namespace WebServiceLayer.Controllers
             _linkGenerator = linkGenerator;
         }
 
+        [HttpGet]
+        public IActionResult GetTiles()
+        {
+            // return Ok("Hello");
+            var users = _titleRepository.GetTitles();
+
+            return Ok(users.Select(x => GetTitleViewModel(x)));
+        }
+
         [HttpGet("{id}", Name = nameof(GetTitle))]
         public IActionResult GetTitle(string id)
         {
@@ -41,7 +50,7 @@ namespace WebServiceLayer.Controllers
         {
             return new TitleViewModel
             {
-                Url = _linkGenerator.GetUriByName(HttpContext, nameof(GetTitle), new { title.Id }),
+                Url = (_linkGenerator.GetUriByName(HttpContext, nameof(GetTitle), new { title.Id })).Replace("%20", ""),
                 TitleType = title.TitleType,
                 PrimaryTitle = title.PrimaryTitle,
                 OriginalTitle = title.OriginalTitle,

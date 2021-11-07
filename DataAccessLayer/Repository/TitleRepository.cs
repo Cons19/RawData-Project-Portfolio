@@ -14,6 +14,12 @@ namespace DataAccessLayer.Repository
         {
             this.context = context;
         }
+
+        public IEnumerable<Title> GetTitles()
+        {
+            return context.Titles.ToList();
+        }
+
         public Title GetTitle(string id)
         {
             return context.Titles.Find(id);
