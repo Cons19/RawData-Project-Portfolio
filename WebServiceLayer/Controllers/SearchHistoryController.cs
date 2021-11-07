@@ -35,7 +35,7 @@ namespace WebServiceLayer.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateSearchHistory(CreateSearchHistoryViewModel model)
+        public IActionResult CreateSearchHistory(SearchHistoryViewModel model)
         {
             var searchHistory = new SearchHistory
             {
