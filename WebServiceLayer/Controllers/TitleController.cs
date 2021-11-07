@@ -28,7 +28,6 @@ namespace WebServiceLayer.Controllers
         [HttpGet]
         public IActionResult GetTiles()
         {
-            // return Ok("Hello");
             var users = _titleRepository.GetTitles();
 
             return Ok(users.Select(x => GetTitleViewModel(x)));

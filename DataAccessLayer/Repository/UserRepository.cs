@@ -8,7 +8,6 @@ namespace DataAccessLayer.Repository
 {
     public class UserRepository : IUserRepository, IDisposable
     {
-
         private ImdbContext context;
 
         public UserRepository(ImdbContext context)

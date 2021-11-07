@@ -27,7 +27,6 @@ namespace WebServiceLayer.Controllers
         [HttpGet]
         public IActionResult GetUsers()
         {
-            // return Ok("Hello");
             var users = _userRepository.GetUsers();
 
             return Ok(users.Select(x => GetUserViewModel(x)));
@@ -63,7 +62,6 @@ namespace WebServiceLayer.Controllers
             _userRepository.Save();
 
             return Created("", user);
-
         }
 
         [HttpPut("{id}", Name = nameof(UpdateUser))]

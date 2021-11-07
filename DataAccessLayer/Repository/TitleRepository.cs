@@ -25,7 +25,6 @@ namespace DataAccessLayer.Repository
             return context.Titles.Find(id);
         }
 
-
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)

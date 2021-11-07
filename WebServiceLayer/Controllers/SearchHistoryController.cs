@@ -49,7 +49,6 @@ namespace WebServiceLayer.Controllers
             _searchHistoryRepository.Save();
 
             return Created("", searchHistory);
-
         }
 
         [HttpDelete("{userId}")]

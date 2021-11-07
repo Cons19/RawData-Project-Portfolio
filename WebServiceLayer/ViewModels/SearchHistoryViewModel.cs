@@ -8,7 +8,6 @@ namespace WebServiceLayer.ViewModels
     public class SearchHistoryViewModel
     {
         public int UserId { get; set; }
-
         public string SearchText { get; set; }
     }
 }

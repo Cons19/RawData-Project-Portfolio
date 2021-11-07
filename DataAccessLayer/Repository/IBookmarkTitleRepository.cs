@@ -12,7 +12,6 @@ namespace DataAccessLayer.Repository
         IEnumerable<BookmarkTitle> GetBookmarkTitles();
         void CreateBookmarkTitle(BookmarkTitle bookmarkTitle);
         bool DeleteBookmarkTitle(int id);
-
         void Save();
     }
 }

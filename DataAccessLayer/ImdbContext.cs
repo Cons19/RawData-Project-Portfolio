@@ -15,7 +15,6 @@ namespace DataAccessLayer
         public DbSet<BookmarkTitle> BookmarkTitles { get; set; }
         public DbSet<Title> Titles { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -37,7 +36,7 @@ namespace DataAccessLayer
             modelBuilder.Entity<User>().Property(x => x.CreatedAt).HasColumnName("created_at");
             modelBuilder.Entity<User>().Property(x => x.UpdatedAt).HasColumnName("updated_at");
 
-            // search history mapping
+            // Search history mapping
             modelBuilder.Entity<SearchHistory>().ToTable("search_history");
             modelBuilder.Entity<SearchHistory>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<SearchHistory>().Property(x => x.CreatedAt).HasColumnName("created_at");
