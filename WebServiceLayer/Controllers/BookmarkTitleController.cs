@@ -70,22 +70,16 @@ namespace WebServiceLayer.Controllers
             // check if user with the given id exists
             var userId = bookmarkTitle.UserId;
             var titleId = bookmarkTitle.TitleId;
-            Console.WriteLine(userId);
-            Console.WriteLine(titleId);
 
-            if (_userRepository.GetUser(userId) == null)
+            if (_dataService.GetUser(userId) == null)
             {
-                Console.WriteLine("User not found");
-
                 return NotFound(userId);
             }
 
             // check if the title with the given id exists
 
-            if (_titleRepository.GetTitle(titleId) == null)
+            if (_dataService.GetTitle(titleId) == null)
             {
-                Console.WriteLine("Title not found");
-
                 return NotFound(titleId);
             }
 
