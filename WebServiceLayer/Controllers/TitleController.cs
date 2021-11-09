@@ -45,6 +45,17 @@ namespace WebServiceLayer.Controllers
 
             return Ok(GetTitleViewModel(title));
         }
+
+        [HttpGet("search/{searchText}/user/{id}")]
+        public IActionResult SearchText(int id, string searchText)
+        {
+            var titles = _titleRepository.SearchText(id, searchText);
+            if (titles == null)
+            {
+                return NotFound();
+            }
+            return Ok(titles.Select(x => GetTitleViewModel(x)));
+        }
         private TitleViewModel GetTitleViewModel(Title title)
         {
             return new TitleViewModel
