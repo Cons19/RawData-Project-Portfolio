@@ -9,5 +9,6 @@ namespace DataAccessLayer.Repository
     {
         IEnumerable<Title> GetTitles();
         Title GetTitle(string id);
+        public IEnumerable<Title> SearchText(int id, string searchText);
     }
 }

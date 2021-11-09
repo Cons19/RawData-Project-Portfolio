@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data;
+using Microsoft.EntityFrameworkCore;
 using DataAccessLayer.Domain;
 
 namespace DataAccessLayer.Repository
@@ -23,6 +23,11 @@ namespace DataAccessLayer.Repository
         public Title GetTitle(string id)
         {
             return context.Titles.Find(id);
+        }
+
+        public IEnumerable<Title> SearchText(int id, string searchText)
+        {
+            return context.Titles.FromSqlInterpolated($"select * from search_string({id},{searchText})").ToList();
         }
 
         private bool disposed = false;
