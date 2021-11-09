@@ -12,7 +12,7 @@ namespace DataAccessLayer.Domain
         public string Name { get; set; }
         public string BirthYear { get; set; }
         public string DeathYear { get; set; }
-        public string Rating { get; set; }
+        public double Rating { get; set; }
         public IList<BookmarkPerson> BookmarkPersons { get; set; }
 
         public override string ToString()
