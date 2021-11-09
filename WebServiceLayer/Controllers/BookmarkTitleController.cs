@@ -120,8 +120,6 @@ namespace WebServiceLayer.Controllers
         {
             return new BookmarkTitleViewModel
             {
-                //UserUrl = _linkGenerator.GetUriByName(HttpContext, nameof(GetUser(bookmarkTitle.UserId)), new { bookmarkTitle.UserId }),
-                //TitleUrl = _linkGenerator.GetUriByName(HttpContext, nameof(GetUser(bookmarkTitle.Title)), new { bookmarkTitle.TitleId }),
                 Url = _linkGenerator.GetUriByName(HttpContext, nameof(GetBookmarkTitle), new { bookmarkTitle.Id }),
                 UserId = bookmarkTitle.UserId,
                 TitleId = bookmarkTitle.TitleId

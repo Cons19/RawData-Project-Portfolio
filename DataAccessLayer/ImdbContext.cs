@@ -12,6 +12,8 @@ namespace DataAccessLayer
         private const string password = "UXyNO(IR";
         public DbSet<User> User { get; set; }
         public DbSet<BookmarkTitle> BookmarkTitles { get; set; }
+        public DbSet<BookmarkPerson> BookmarkPersons { get; set; }
+        public DbSet<Person> Persons { get; set; }
         public DbSet<Title> Titles { get; set; }
         public DbSet<SearchHistory> SearchHistory { get; set; }
         public DbSet<RatingHistory> RatingHistory { get; set; }
@@ -60,6 +62,23 @@ namespace DataAccessLayer
             modelBuilder.Entity<BookmarkTitle>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<BookmarkTitle>().HasOne(x => x.User).WithMany(x => x.BookmarkTitles).HasForeignKey(x => x.UserId);
             modelBuilder.Entity<BookmarkTitle>().HasOne(x => x.Title).WithMany(x => x.BookmarkTitles).HasForeignKey(x => x.TitleId);
+
+
+            // BookmarkPerson mapping
+            modelBuilder.Entity<BookmarkPerson>().ToTable("bookmark_person");
+            modelBuilder.Entity<BookmarkPerson>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<BookmarkPerson>().Property(x => x.UserId).HasColumnName("user_id");
+            modelBuilder.Entity<BookmarkPerson>().Property(x => x.PersonId).HasColumnName("person_id");
+            modelBuilder.Entity<BookmarkPerson>().HasOne(x => x.User).WithMany(x => x.BookmarkPersons).HasForeignKey(x => x.UserId);
+            modelBuilder.Entity<BookmarkPerson>().HasOne(x => x.Person).WithMany(x => x.BookmarkPersons).HasForeignKey(x => x.PersonId);
+
+            // Person mapping
+            modelBuilder.Entity<Person>().ToTable("persons");
+            modelBuilder.Entity<Person>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<Person>().Property(x => x.Name).HasColumnName("name");
+            modelBuilder.Entity<Person>().Property(x => x.BirthYear).HasColumnName("birth_year");
+            modelBuilder.Entity<Person>().Property(x => x.DeathYear).HasColumnName("death_year");
+            modelBuilder.Entity<Person>().Property(x => x.Rating).HasColumnName("rating");
 
             // Search history mapping
             modelBuilder.Entity<SearchHistory>().ToTable("search_history");

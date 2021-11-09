@@ -22,7 +22,9 @@ namespace WebServiceLayer
             services.AddDbContext<ImdbContext>()
                     .AddScoped<IUserRepository, UserRepository>()
                     .AddScoped<ITitleRepository, TitleRepository>()
+                    .AddScoped<IPersonRepository, PersonRepository>()
                     .AddScoped<IBookmarkTitleRepository, BookmarkTitleRepository>()
+                    .AddScoped<IBookmarkPersonRepository, BookmarkPersonRepository>()
                     .AddScoped<ISearchHistoryRepository, SearchHistoryRepository>()
                     .AddScoped<IRatingHistoryRepository, RatingHistoryRepository>();
         }

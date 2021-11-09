@@ -16,6 +16,7 @@ namespace DataAccessLayer.Domain
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public IList<BookmarkTitle> BookmarkTitles { get; set; }
+        public IList<BookmarkPerson> BookmarkPersons { get; set; }
         public IList<RatingHistory> RatingHistories { get; set; }
 
         public override string ToString()
