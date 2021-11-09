@@ -13,7 +13,7 @@ using WebServiceLayer.Controllers;
 namespace WebServiceLayer.Controllers
 {
     [ApiController]
-    [Route("api/bookmarktitles")]
+    [Route("api/bookmark-titles")]
     public class BookmarkTitleController : Controller
     {
         IBookmarkTitleRepository _bookmarkTitleRepository;
@@ -73,14 +73,14 @@ namespace WebServiceLayer.Controllers
 
             if (_userRepository.GetUser(userId) == null)
             {
-                return NotFound(userId);
+                return NotFound("User Id does not exists!");
             }
 
             // check if the title with the given id exists
 
             if (_titleRepository.GetTitle(titleId) == null)
             {
-                return NotFound(titleId);
+                return NotFound("Title Id does not exists!");
             }
 
             // check if the bookmark already exists
@@ -90,7 +90,7 @@ namespace WebServiceLayer.Controllers
             {
                 if (t.TitleId.Trim() == titleId)
                 {
-                    return Conflict();
+                    return Conflict("Bookmark already exists!");
                 }
             }
 
@@ -113,7 +113,7 @@ namespace WebServiceLayer.Controllers
             _bookmarkTitleRepository.DeleteBookmarkTitle(id);
             _bookmarkTitleRepository.Save();
 
-            return Ok(GetBookmarkTitleViewModel(bookmarkTitle));
+            return NoContent();
         }
 
         private BookmarkTitleViewModel GetBookmarkTitleViewModel(BookmarkTitle bookmarkTitle)

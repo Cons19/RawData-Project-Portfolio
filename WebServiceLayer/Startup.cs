@@ -23,7 +23,8 @@ namespace WebServiceLayer
                     .AddScoped<IUserRepository, UserRepository>()
                     .AddScoped<ITitleRepository, TitleRepository>()
                     .AddScoped<IBookmarkTitleRepository, BookmarkTitleRepository>()
-                    .AddScoped<ISearchHistoryRepository, SearchHistoryRepository>();
+                    .AddScoped<ISearchHistoryRepository, SearchHistoryRepository>()
+                    .AddScoped<IRatingHistoryRepository, RatingHistoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

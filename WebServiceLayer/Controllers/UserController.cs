@@ -43,7 +43,9 @@ namespace WebServiceLayer.Controllers
                 return NotFound();
             }
 
-            return Ok(user);
+            UserViewModel viewModelUser = GetUserViewModel(user);
+
+            return Ok(viewModelUser);
         }
 
         [HttpPost]
@@ -89,8 +91,26 @@ namespace WebServiceLayer.Controllers
             var isDeleted = _userRepository.DeleteUser(id);
             _userRepository.Save();
 
-            if (isDeleted) return Ok("Success");
+            if (isDeleted) return NoContent();
             return NotFound();
+        }
+
+        [HttpPost("login")]
+        public IActionResult LoginUser(LoginUserViewModel model)
+        {
+            var user = new User
+            {
+                Email = model.Email,
+                Password = model.Password
+            };
+
+            var loggedInUser = _userRepository.LoginUser(model.Email, model.Password);
+
+            if (loggedInUser == null)
+            {
+                return NotFound();
+            }
+            return Ok(loggedInUser);
         }
 
         private UserViewModel GetUserViewModel(User user)

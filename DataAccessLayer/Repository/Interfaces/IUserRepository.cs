@@ -12,6 +12,7 @@ namespace DataAccessLayer.Repository
         User GetUser(int id);
         IEnumerable<User> GetUsers();
         void CreateUser(User user);
+        User LoginUser(string email, string password);
         void UpdateUser(User user);
         bool DeleteUser(int id);
         void Save();

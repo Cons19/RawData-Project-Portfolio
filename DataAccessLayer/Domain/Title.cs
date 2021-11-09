@@ -20,6 +20,7 @@ namespace DataAccessLayer.Domain
         public string? Awards { get; set; }
         public string? Plot { get; set; }
         public IList<BookmarkTitle> BookmarkTitles { get; set; }
+        public IList<RatingHistory> RatingHistories { get; set; }
 
         public override string ToString()
         {

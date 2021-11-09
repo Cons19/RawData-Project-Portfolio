@@ -11,9 +11,10 @@ namespace DataAccessLayer
         private const string uid = "raw4";
         private const string password = "UXyNO(IR";
         public DbSet<User> User { get; set; }
-        public DbSet<SearchHistory> SearchHistory { get; set; }
         public DbSet<BookmarkTitle> BookmarkTitles { get; set; }
         public DbSet<Title> Titles { get; set; }
+        public DbSet<SearchHistory> SearchHistory { get; set; }
+        public DbSet<RatingHistory> RatingHistory { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,16 +34,9 @@ namespace DataAccessLayer
             modelBuilder.Entity<User>().Property(x => x.Name).HasColumnName("name");
             modelBuilder.Entity<User>().Property(x => x.Email).HasColumnName("email");
             modelBuilder.Entity<User>().Property(x => x.Password).HasColumnName("password");
+            modelBuilder.Entity<User>().Property(x => x.Salt).HasColumnName("salt");
             modelBuilder.Entity<User>().Property(x => x.CreatedAt).HasColumnName("created_at");
             modelBuilder.Entity<User>().Property(x => x.UpdatedAt).HasColumnName("updated_at");
-
-            // Search history mapping
-            modelBuilder.Entity<SearchHistory>().ToTable("search_history");
-            modelBuilder.Entity<SearchHistory>().Property(x => x.Id).HasColumnName("id");
-            modelBuilder.Entity<SearchHistory>().Property(x => x.CreatedAt).HasColumnName("created_at");
-            modelBuilder.Entity<SearchHistory>().Property(x => x.UpdatedAt).HasColumnName("updated_at");
-            modelBuilder.Entity<SearchHistory>().Property(x => x.UserId).HasColumnName("user_id");
-            modelBuilder.Entity<SearchHistory>().Property(x => x.SearchText).HasColumnName("search_text");
 
             // Title mapping
             modelBuilder.Entity<Title>().ToTable("titles");
@@ -65,6 +59,25 @@ namespace DataAccessLayer
             modelBuilder.Entity<BookmarkTitle>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<BookmarkTitle>().HasOne(x => x.User).WithMany(x => x.BookmarkTitles).HasForeignKey(x => x.UserId);
             modelBuilder.Entity<BookmarkTitle>().HasOne(x => x.Title).WithMany(x => x.BookmarkTitles).HasForeignKey(x => x.TitleId);
+
+            // Search history mapping
+            modelBuilder.Entity<SearchHistory>().ToTable("search_history");
+            modelBuilder.Entity<SearchHistory>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<SearchHistory>().Property(x => x.CreatedAt).HasColumnName("created_at");
+            modelBuilder.Entity<SearchHistory>().Property(x => x.UpdatedAt).HasColumnName("updated_at");
+            modelBuilder.Entity<SearchHistory>().Property(x => x.UserId).HasColumnName("user_id");
+            modelBuilder.Entity<SearchHistory>().Property(x => x.SearchText).HasColumnName("search_text");
+
+            // Rating history mapping
+            modelBuilder.Entity<RatingHistory>().ToTable("rating_history");
+            modelBuilder.Entity<RatingHistory>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<RatingHistory>().Property(x => x.UserId).HasColumnName("user_id");
+            modelBuilder.Entity<RatingHistory>().Property(x => x.TitleId).HasColumnName("title_id");
+            modelBuilder.Entity<RatingHistory>().Property(x => x.CreatedAt).HasColumnName("created_at");
+            modelBuilder.Entity<RatingHistory>().Property(x => x.UpdatedAt).HasColumnName("updated_at");
+            modelBuilder.Entity<RatingHistory>().Property(x => x.Rate).HasColumnName("rate");
+            modelBuilder.Entity<RatingHistory>().HasOne(x => x.User).WithMany(x => x.RatingHistories).HasForeignKey(x => x.UserId);
+            modelBuilder.Entity<RatingHistory>().HasOne(x => x.Title).WithMany(x => x.RatingHistories).HasForeignKey(x => x.TitleId);
         }
     }
 }

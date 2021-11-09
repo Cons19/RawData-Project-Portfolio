@@ -12,7 +12,7 @@ using WebServiceLayer.ViewModels;
 namespace WebServiceLayer.Controllers
 {
     [ApiController]
-    [Route("api/searchHistory")]
+    [Route("api/search-history")]
     public class SearchHistoryController : Controller
     {
         ISearchHistoryRepository _searchHistoryRepository;
@@ -22,11 +22,11 @@ namespace WebServiceLayer.Controllers
             _searchHistoryRepository = searchHistoryRepository;
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet("user/{userId}")]
         public IActionResult GetSearchHistoryByUserId(int userId)
         {
             var searchHistory = _searchHistoryRepository.GetSearchHistoryByUserId(userId);
-            if (searchHistory == null)
+            if (searchHistory.Count() == 0)
             {
                 return NotFound();
             }
@@ -51,13 +51,13 @@ namespace WebServiceLayer.Controllers
             return Created("", searchHistory);
         }
 
-        [HttpDelete("{userId}")]
+        [HttpDelete("user/{userId}")]
         public IActionResult DeleteSearchHistory(int userId)
         {
             var isDeleted = _searchHistoryRepository.DeleteSearchHistory(userId);
             _searchHistoryRepository.Save();
 
-            if (isDeleted) return Ok("Success");
+            if (isDeleted) return NoContent();
             return NotFound();
         }
 
