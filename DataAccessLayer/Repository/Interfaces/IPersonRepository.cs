@@ -9,5 +9,6 @@ namespace DataAccessLayer.Repository
     {
         IEnumerable<Person> GetPersons();
         Person GetPerson(string id);
+        public IEnumerable<FindPersonByProfession> FindPersonByProfession(string profession);
     }
 }

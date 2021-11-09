@@ -17,12 +17,17 @@ namespace DataAccessLayer.Repository
 
         public IEnumerable<Person> GetPersons()
         {
-            return context.Persons.ToList();
+            return context.Persons.ToList().Take(50);
         }
 
         public Person GetPerson(string id)
         {
             return context.Persons.Find(id);
+        }
+
+        public IEnumerable<FindPersonByProfession> FindPersonByProfession(string profession)
+        {
+            return context.FindPersonByProfession.FromSqlInterpolated($"SELECT * FROM find_persons_by_profession({profession}) LIMIT 50").ToList();
         }
 
         private bool disposed = false;
