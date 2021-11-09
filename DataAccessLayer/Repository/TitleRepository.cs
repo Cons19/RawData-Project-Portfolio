@@ -25,9 +25,9 @@ namespace DataAccessLayer.Repository
             return context.Titles.Find(id);
         }
 
-        public IEnumerable<Title> SearchText(int id, string searchText)
+        public IEnumerable<SearchTitle> SearchText(int id, string searchText)
         {
-            return context.Titles.FromSqlInterpolated($"select * from search_string({id},{searchText})").ToList();
+            return context.SearchTitle.FromSqlInterpolated($"select * from search_string({id},{searchText})").ToList();
         }
 
         private bool disposed = false;

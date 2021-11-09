@@ -15,6 +15,7 @@ namespace DataAccessLayer
         public DbSet<Title> Titles { get; set; }
         public DbSet<SearchHistory> SearchHistory { get; set; }
         public DbSet<RatingHistory> RatingHistory { get; set; }
+        public DbSet<SearchTitle> SearchTitle { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -78,6 +79,11 @@ namespace DataAccessLayer
             modelBuilder.Entity<RatingHistory>().Property(x => x.Rate).HasColumnName("rate");
             modelBuilder.Entity<RatingHistory>().HasOne(x => x.User).WithMany(x => x.RatingHistories).HasForeignKey(x => x.UserId);
             modelBuilder.Entity<RatingHistory>().HasOne(x => x.Title).WithMany(x => x.RatingHistories).HasForeignKey(x => x.TitleId);
+
+            // Search Title
+            modelBuilder.Entity<SearchTitle>().HasNoKey();
+            modelBuilder.Entity<SearchTitle>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<SearchTitle>().Property(x => x.PrimaryTitle).HasColumnName("primary_title");
         }
     }
 }

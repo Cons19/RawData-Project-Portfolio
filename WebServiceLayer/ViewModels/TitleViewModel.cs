@@ -19,4 +19,12 @@ namespace WebServiceLayer.ViewModels
         public string? Awards { get; set; }
         public string? Plot { get; set; }
     }
+
+    public class SearchTitleViewModel
+    {
+        public string Id { get; set; }
+
+        public string PrimaryTitle { get; set; }
+     
+    }
 }

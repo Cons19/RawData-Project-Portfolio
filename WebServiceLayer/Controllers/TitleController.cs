@@ -18,11 +18,13 @@ namespace WebServiceLayer.Controllers
     {
         ITitleRepository _titleRepository;
         LinkGenerator _linkGenerator;
+        IUserRepository _userRepository;
 
-        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator)
+        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository)
         {
             _titleRepository = titleRepository;
             _linkGenerator = linkGenerator;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -49,12 +51,20 @@ namespace WebServiceLayer.Controllers
         [HttpGet("search/{searchText}/user/{id}")]
         public IActionResult SearchText(int id, string searchText)
         {
+            // check if user with the given id exists
+            if (_userRepository.GetUser(id) == null)
+            {
+                return NotFound("User Id does not exists!");
+            }
+
             var titles = _titleRepository.SearchText(id, searchText);
-            if (titles == null)
+
+            if (titles.Count() == 0)
             {
                 return NotFound();
             }
-            return Ok(titles.Select(x => GetTitleViewModel(x)));
+
+            return Ok(titles);
         }
         private TitleViewModel GetTitleViewModel(Title title)
         {
@@ -72,6 +82,15 @@ namespace WebServiceLayer.Controllers
                 Poster = title.Poster,
                 Awards = title.Awards,
                 Plot = title.Plot
+            };
+        }
+
+        private SearchTitleViewModel GetSearchTitleViewModel(SearchTitle title)
+        {
+            return new SearchTitleViewModel
+            {
+                Id = title.Id,
+                PrimaryTitle = title.PrimaryTitle
             };
         }
     }
