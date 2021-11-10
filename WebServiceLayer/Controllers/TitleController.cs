@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebServiceLayer.ViewModels;
 using WebServiceLayer.Controllers;
+using DataAccessLayer.Domain.Functions;
 
 namespace WebServiceLayer.Controllers
 {
@@ -69,10 +70,10 @@ namespace WebServiceLayer.Controllers
 
         // Query is string-based. So an example would be api/titles/structured-search?plot=see&personName=Mads+miKkelsen&userId=1
         // The space is encoded as a +
-        // If a filter in the request is mispelled or not written at all, it will be ignored and defaulted to null
+        // If a filter in the request is mispelled or not written at all, it will be ignored
+        // All parameters excepted the userId are defaulted to null
         // The userId is the only mandatory parameter, the rest are optional
-        [HttpGet("structured-search/")]
-
+        [HttpGet("structured-search")]
         public IActionResult StructuredStringSearch(int userId, string? title = null, string? plot = null, string? inputCharacter = null, string? personName = null)
         {
             // check if user with the given id exists
@@ -82,6 +83,23 @@ namespace WebServiceLayer.Controllers
             }
 
             var titles = _titleRepository.StructuredStringSearch(userId, title, plot, inputCharacter, personName);
+
+            if (titles.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(titles);
+        }
+
+        // Query is string-based. So an example would be api/titles/exact-match?word1=apple&word2=mads&word3=mikkelsen
+        // If a filter in the request is mispelled or not written at all, it will be ignored
+        // Category is defaulted to empty string
+        // The 3 words are mandatory parameters, the category is optional
+        [HttpGet("exact-match")]
+        public IActionResult ExactMatch(string word1, string word2, string word3, string? category = "")
+        {
+            var titles = _titleRepository.ExactMatch(word1, word2, word3, category);
 
             if (titles.Count() == 0)
             {
@@ -126,6 +144,15 @@ namespace WebServiceLayer.Controllers
                 Id = text.Id,
                 PrimaryTitle = text.PrimaryTitle,
                 Description = text.PrimaryTitle
+            };
+        }
+
+        private ExactMatchViewModel GetExactMatchViewModel(ExactMatch text)
+        {
+            return new ExactMatchViewModel
+            {
+                Id = text.Id,
+                Title = text.Title
             };
         }
     }

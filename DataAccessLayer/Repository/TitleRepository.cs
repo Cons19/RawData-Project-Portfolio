@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using DataAccessLayer.Domain;
+using DataAccessLayer.Domain.Functions;
 
 namespace DataAccessLayer.Repository
 {
@@ -32,7 +33,12 @@ namespace DataAccessLayer.Repository
 
         public IEnumerable<StructuredStringSearch> StructuredStringSearch(int userId, string? title, string? plot, string? inputCharacter, string? personName)
         {
-            return context.StructuredStringSearch.FromSqlInterpolated($"select * from structured_string_search({title},{plot},{inputCharacter}, {personName},{userId})").ToList();
+            return context.StructuredStringSearch.FromSqlInterpolated($"select * from structured_string_search({title},{plot},{inputCharacter},{personName},{userId})").ToList();
+        }
+
+        public IEnumerable<ExactMatch> ExactMatch(string word1, string word2, string word3, string? category)
+        {   
+            return context.ExactMatch.FromSqlInterpolated($"select * from exact_match({word1},{word2},{word3},{category})").ToList();           
         }
 
         private bool disposed = false;

@@ -1,7 +1,7 @@
-
 using System;
 using System.Collections.Generic;
 using DataAccessLayer.Domain;
+using DataAccessLayer.Domain.Functions;
 
 namespace DataAccessLayer.Repository
 {
@@ -11,5 +11,6 @@ namespace DataAccessLayer.Repository
         Title GetTitle(string id);
         public IEnumerable<SearchTitle> SearchText(int id, string searchText);
         public IEnumerable<StructuredStringSearch> StructuredStringSearch(int userId, string? title, string? plot, string? inputCharacter, string? personName);
+        public IEnumerable<ExactMatch> ExactMatch(string word1, string word2, string word3, string? category);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Domain;
+using DataAccessLayer.Domain.Functions;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -20,6 +21,7 @@ namespace DataAccessLayer
         public DbSet<SearchTitle> SearchTitle { get; set; }
         public DbSet<FindPersonByProfession> FindPersonByProfession { get; set; }
         public DbSet<StructuredStringSearch> StructuredStringSearch { get; set; }
+        public DbSet<ExactMatch> ExactMatch { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -115,6 +117,11 @@ namespace DataAccessLayer
             modelBuilder.Entity<StructuredStringSearch>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<StructuredStringSearch>().Property(x => x.PrimaryTitle).HasColumnName("primary_title");
             modelBuilder.Entity<StructuredStringSearch>().Property(x => x.Description).HasColumnName("description");
+
+            // Exact Match
+            modelBuilder.Entity<ExactMatch>().HasNoKey();
+            modelBuilder.Entity<ExactMatch>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<ExactMatch>().Property(x => x.Title).HasColumnName("title");
         }
     }
 }

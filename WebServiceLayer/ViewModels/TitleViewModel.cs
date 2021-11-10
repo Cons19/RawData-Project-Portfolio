@@ -34,4 +34,10 @@ namespace WebServiceLayer.ViewModels
         public string PrimaryTitle { get; set; }
         public string Description { get; set; }
     }
+
+    public class ExactMatchViewModel
+    {
+        public string Id { get; set; }
+        public string Title { get; set; }
+    }
 }
