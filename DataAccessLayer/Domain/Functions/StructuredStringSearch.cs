@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Domain
 {
-
-    // For function structured_string_search
     public class StructuredStringSearch
     {
         public string Id { get; set; }

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Domain
 {
-    // For function find_person_by_profession
     public class FindPersonByProfession
     {
         public string Name { get; set; }

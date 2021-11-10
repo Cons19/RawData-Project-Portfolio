@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Domain
 {
-    // For function search_string
     public class SearchTitle
     {
         public string Id { get; set; }
