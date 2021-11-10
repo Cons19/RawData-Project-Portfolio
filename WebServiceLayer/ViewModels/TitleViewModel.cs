@@ -27,4 +27,11 @@ namespace WebServiceLayer.ViewModels
         public string PrimaryTitle { get; set; }
      
     }
+
+    public class StructuredStringSearchViewModel
+    {
+        public string Id { get; set; }
+        public string PrimaryTitle { get; set; }
+        public string Description { get; set; }
+    }
 }

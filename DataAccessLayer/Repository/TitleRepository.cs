@@ -30,6 +30,11 @@ namespace DataAccessLayer.Repository
             return context.SearchTitle.FromSqlInterpolated($"select * from search_string({id},{searchText})").ToList();
         }
 
+        public IEnumerable<StructuredStringSearch> StructuredStringSearch(int userId, string? title, string? plot, string? inputCharacter, string? personName)
+        {
+            return context.StructuredStringSearch.FromSqlInterpolated($"select * from structured_string_search({title},{plot},{inputCharacter}, {personName},{userId})").ToList();
+        }
+
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)

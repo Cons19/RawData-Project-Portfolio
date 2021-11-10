@@ -66,6 +66,31 @@ namespace WebServiceLayer.Controllers
 
             return Ok(titles);
         }
+
+        // Query is string-based. So an example would be api/titles/structured-search?plot=see&personName=Mads+miKkelsen&userId=1
+        // The space is encoded as a +
+        // If a filter in the request is mispelled or not written at all, it will be ignored and defaulted to null
+        // The userId is the only mandatory parameter, the rest are optional
+        [HttpGet("structured-search/")]
+
+        public IActionResult StructuredStringSearch(int userId, string? title = null, string? plot = null, string? inputCharacter = null, string? personName = null)
+        {
+            // check if user with the given id exists
+            if (_userRepository.GetUser(userId) == null)
+            {
+                return NotFound("User Id does not exists!");
+            }
+
+            var titles = _titleRepository.StructuredStringSearch(userId, title, plot, inputCharacter, personName);
+
+            if (titles.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(titles);
+        }
+
         private TitleViewModel GetTitleViewModel(Title title)
         {
             return new TitleViewModel
@@ -91,6 +116,16 @@ namespace WebServiceLayer.Controllers
             {
                 Id = title.Id,
                 PrimaryTitle = title.PrimaryTitle
+            };
+        }
+
+        private StructuredStringSearchViewModel GetStructuredStringSearchViewModel (StructuredStringSearch text)
+        {
+            return new StructuredStringSearchViewModel
+            {
+                Id = text.Id,
+                PrimaryTitle = text.PrimaryTitle,
+                Description = text.PrimaryTitle
             };
         }
     }

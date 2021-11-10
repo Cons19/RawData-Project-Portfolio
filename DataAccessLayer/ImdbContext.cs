@@ -19,6 +19,7 @@ namespace DataAccessLayer
         public DbSet<RatingHistory> RatingHistory { get; set; }
         public DbSet<SearchTitle> SearchTitle { get; set; }
         public DbSet<FindPersonByProfession> FindPersonByProfession { get; set; }
+        public DbSet<StructuredStringSearch> StructuredStringSearch { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -105,10 +106,15 @@ namespace DataAccessLayer
             modelBuilder.Entity<SearchTitle>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<SearchTitle>().Property(x => x.PrimaryTitle).HasColumnName("primary_title");
 
-
             // Find Person By Profession
             modelBuilder.Entity<FindPersonByProfession>().HasNoKey();
             modelBuilder.Entity<FindPersonByProfession>().Property(x => x.Name).HasColumnName("name");
+
+            // Structured String Search
+            modelBuilder.Entity<StructuredStringSearch>().HasNoKey();
+            modelBuilder.Entity<StructuredStringSearch>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<StructuredStringSearch>().Property(x => x.PrimaryTitle).HasColumnName("primary_title");
+            modelBuilder.Entity<StructuredStringSearch>().Property(x => x.Description).HasColumnName("description");
         }
     }
 }
