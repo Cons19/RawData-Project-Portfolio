@@ -24,8 +24,11 @@ namespace DataAccessLayer
         public DbSet<ExactMatch> ExactMatch { get; set; }
         public DbSet<PopularActors> PopularActors { get; set; }
         public DbSet<BestMatch> BestMatch { get; set; }
+        public DbSet<SimilarTitle> SimilarTitle { get; set; }
         public DbSet<UpdatePersonsRating> UpdatePersonsRating { get; set; }
+        public DbSet<CoActor> CoActor { get; set; }
         public DbSet<WordToWord> WordToWord { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -138,8 +141,21 @@ namespace DataAccessLayer
             modelBuilder.Entity<BestMatch>().Property(x => x.Rank).HasColumnName("rank");
             modelBuilder.Entity<BestMatch>().Property(x => x.Title).HasColumnName("title");
 
+            // Similar Title Mapping
+            modelBuilder.Entity<SimilarTitle>().HasNoKey();
+            modelBuilder.Entity<SimilarTitle>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<SimilarTitle>().Property(x => x.Name).HasColumnName("name");
+            modelBuilder.Entity<SimilarTitle>().Property(x => x.StartYear).HasColumnName("start_year");
+            modelBuilder.Entity<SimilarTitle>().Property(x => x.Genre).HasColumnName("genre");
+
             // Update Persons Rating Match mapping
             modelBuilder.Entity<UpdatePersonsRating>().HasNoKey();
+
+            // Co Actor Mapping
+            modelBuilder.Entity<CoActor>().HasNoKey();
+            modelBuilder.Entity<CoActor>().Property(x => x.PersonId).HasColumnName("person_id");
+            modelBuilder.Entity<CoActor>().Property(x => x.Name).HasColumnName("person_name");
+            modelBuilder.Entity<CoActor>().Property(x => x.Frequency).HasColumnName("frequency");
 
             // Word To Word mapping
             modelBuilder.Entity<WordToWord>().HasNoKey();

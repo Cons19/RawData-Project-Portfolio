@@ -16,9 +16,15 @@ namespace DataAccessLayer.Repository
             this.context = context;
         }
 
-        public IEnumerable<Title> GetTitles()
+        public IEnumerable<Title> GetTitles(QueryString queryString)
         {
-            return context.Titles.ToList().Take(50);
+            var result = context.Titles.AsEnumerable();
+
+            result = result
+                .Skip(queryString.Page * queryString.PageSize)
+                .Take(queryString.PageSize);
+
+            return result.ToList();
         }
 
         public Title GetTitle(string id)
@@ -58,6 +64,16 @@ namespace DataAccessLayer.Repository
         public IEnumerable<BestMatch> BestMatch(string? word1, string? word2, string? word3)
         {
             return context.BestMatch.FromSqlInterpolated($"SELECT * FROM bestmatch({word1},{word2},{word3}) LIMIT 50").ToList();
+        }
+
+        public IEnumerable<SimilarTitle> SimilarTitle(string title_id)
+        {
+            return context.SimilarTitle.FromSqlInterpolated($"SELECT * FROM similar_movies({title_id})");
+        }
+
+         public int NumberOfTitles()
+        {
+            return context.Titles.Count();
         }
 
         private bool disposed = false;
