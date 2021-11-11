@@ -25,7 +25,7 @@ namespace DataAccessLayer
         public DbSet<PopularActors> PopularActors { get; set; }
         public DbSet<BestMatch> BestMatch { get; set; }
         public DbSet<SimilarTitle> SimilarTitle { get; set; }
-
+        public DbSet<UpdatePersonsRating> UpdatePersonsRating { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -107,43 +107,46 @@ namespace DataAccessLayer
             modelBuilder.Entity<RatingHistory>().HasOne(x => x.User).WithMany(x => x.RatingHistories).HasForeignKey(x => x.UserId);
             modelBuilder.Entity<RatingHistory>().HasOne(x => x.Title).WithMany(x => x.RatingHistories).HasForeignKey(x => x.TitleId);
 
-            // Search Title
+            // Search Title mapping
             modelBuilder.Entity<SearchTitle>().HasNoKey();
             modelBuilder.Entity<SearchTitle>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<SearchTitle>().Property(x => x.PrimaryTitle).HasColumnName("primary_title");
 
-            // Find Person By Profession
+            // Find Person By Profession mapping
             modelBuilder.Entity<FindPersonByProfession>().HasNoKey();
             modelBuilder.Entity<FindPersonByProfession>().Property(x => x.Name).HasColumnName("name");
 
-            // Structured String Search
+            // Structured String Search mapping
             modelBuilder.Entity<StructuredStringSearch>().HasNoKey();
             modelBuilder.Entity<StructuredStringSearch>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<StructuredStringSearch>().Property(x => x.PrimaryTitle).HasColumnName("primary_title");
             modelBuilder.Entity<StructuredStringSearch>().Property(x => x.Description).HasColumnName("description");
 
-            // Exact Match
+            // Exact Match mapping
             modelBuilder.Entity<ExactMatch>().HasNoKey();
             modelBuilder.Entity<ExactMatch>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<ExactMatch>().Property(x => x.Title).HasColumnName("title");
 
-            // Popular Actors
+            // Popular Actors mapping
             modelBuilder.Entity<PopularActors>().HasNoKey();
             modelBuilder.Entity<PopularActors>().Property(x => x.Name).HasColumnName("name");
             modelBuilder.Entity<PopularActors>().Property(x => x.Rating).HasColumnName("rating");
 
-            // Best Match
+            // Best Match mapping
             modelBuilder.Entity<BestMatch>().HasNoKey();
             modelBuilder.Entity<BestMatch>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<BestMatch>().Property(x => x.Rank).HasColumnName("rank");
             modelBuilder.Entity<BestMatch>().Property(x => x.Title).HasColumnName("title");
 
-            // Similar Title
+            // Similar Title Mapping
             modelBuilder.Entity<SimilarTitle>().HasNoKey();
             modelBuilder.Entity<SimilarTitle>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<SimilarTitle>().Property(x => x.Name).HasColumnName("name");
             modelBuilder.Entity<SimilarTitle>().Property(x => x.StartYear).HasColumnName("start_year");
             modelBuilder.Entity<SimilarTitle>().Property(x => x.Genre).HasColumnName("genre");
+
+            // Update Persons Rating Match mapping
+            modelBuilder.Entity<UpdatePersonsRating>().HasNoKey();
         }
     }
 }

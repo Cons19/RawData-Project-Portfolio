@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using WebServiceLayer.ViewModels;
 using WebServiceLayer.Controllers;
 using DataAccessLayer.Domain.Functions;
+using DataAccessLayer.Repository.Interfaces;
 
 namespace WebServiceLayer.Controllers
 {
@@ -20,12 +21,14 @@ namespace WebServiceLayer.Controllers
         ITitleRepository _titleRepository;
         LinkGenerator _linkGenerator;
         IUserRepository _userRepository;
+        IUpdatePersonsRatingRepository _updatePersonsRatingRepository;
 
-        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository)
+        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository, IUpdatePersonsRatingRepository updatePersonsRatingRepository)
         {
             _titleRepository = titleRepository;
             _linkGenerator = linkGenerator;
             _userRepository = userRepository;
+            _updatePersonsRatingRepository = updatePersonsRatingRepository;
         }
 
         [HttpGet]
@@ -126,7 +129,10 @@ namespace WebServiceLayer.Controllers
                 return NotFound("Title Id does not exists!");
             }
 
+            _updatePersonsRatingRepository.UpdatePersonsRating();
+
             var result = _titleRepository.RateTitle(model.UserId, model.TitleId, model.Rating);
+
             return Ok(result);
         }
 
