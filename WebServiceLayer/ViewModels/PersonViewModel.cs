@@ -13,9 +13,4 @@ namespace WebServiceLayer.ViewModels
         public string DeathYear { get; set; }
         public double? Rating { get; set; }
     }
-
-    public class FindPersonByProfessionViewModel
-    {
-        public string Name { get; set; }
-    }
 }

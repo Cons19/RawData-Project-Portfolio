@@ -142,33 +142,5 @@ namespace WebServiceLayer.Controllers
                 Plot = title.Plot
             };
         }
-
-        private SearchTitleViewModel GetSearchTitleViewModel(SearchTitle title)
-        {
-            return new SearchTitleViewModel
-            {
-                Id = title.Id,
-                PrimaryTitle = title.PrimaryTitle
-            };
-        }
-
-        private StructuredStringSearchViewModel GetStructuredStringSearchViewModel (StructuredStringSearch text)
-        {
-            return new StructuredStringSearchViewModel
-            {
-                Id = text.Id,
-                PrimaryTitle = text.PrimaryTitle,
-                Description = text.PrimaryTitle
-            };
-        }
-
-        private ExactMatchViewModel GetExactMatchViewModel(ExactMatch text)
-        {
-            return new ExactMatchViewModel
-            {
-                Id = text.Id,
-                Title = text.Title
-            };
-        }
     }
 }
