@@ -11,6 +11,7 @@ namespace DataAccessLayer.Repository
         Person GetPerson(string id);
         IEnumerable<FindPersonByProfession> FindPersonByProfession(string profession);
         IEnumerable<PopularActors> PopularActors(string title);
+        public IEnumerable<CoActor> CoActor(string personId);
         int NumberOfPersons();
     }
 }
