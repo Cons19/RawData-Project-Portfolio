@@ -25,6 +25,7 @@ namespace DataAccessLayer
         public DbSet<PopularActors> PopularActors { get; set; }
         public DbSet<BestMatch> BestMatch { get; set; }
         public DbSet<UpdatePersonsRating> UpdatePersonsRating { get; set; }
+        public DbSet<WordToWord> WordToWord { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -139,6 +140,11 @@ namespace DataAccessLayer
 
             // Update Persons Rating Match mapping
             modelBuilder.Entity<UpdatePersonsRating>().HasNoKey();
+
+            // Word To Word mapping
+            modelBuilder.Entity<WordToWord>().HasNoKey();
+            modelBuilder.Entity<WordToWord>().Property(x => x.Counter).HasColumnName("counter");
+            modelBuilder.Entity<WordToWord>().Property(x => x.Word).HasColumnName("word");
         }
     }
 }
