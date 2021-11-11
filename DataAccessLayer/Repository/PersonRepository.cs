@@ -35,6 +35,14 @@ namespace DataAccessLayer.Repository
             return context.PopularActors.FromSqlInterpolated($"SELECT * FROM top_actors_by_movie({title}) LIMIT 50").ToList();
         }
 
+
+        public IEnumerable<CoActor> CoActor(string personId)
+        {
+            return context.CoActor.FromSqlInterpolated($"SELECT * FROM find_actors({personId}) LIMIT 50;").ToList();
+        }
+
+
+
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)

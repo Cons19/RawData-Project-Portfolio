@@ -26,6 +26,8 @@ namespace DataAccessLayer
         public DbSet<BestMatch> BestMatch { get; set; }
         public DbSet<SimilarTitle> SimilarTitle { get; set; }
         public DbSet<UpdatePersonsRating> UpdatePersonsRating { get; set; }
+        public DbSet<CoActor> CoActor { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -147,6 +149,12 @@ namespace DataAccessLayer
 
             // Update Persons Rating Match mapping
             modelBuilder.Entity<UpdatePersonsRating>().HasNoKey();
+
+            // Co Actor Mapping
+            modelBuilder.Entity<CoActor>().HasNoKey();
+            modelBuilder.Entity<CoActor>().Property(x => x.PersonId).HasColumnName("person_id");
+            modelBuilder.Entity<CoActor>().Property(x => x.Name).HasColumnName("person_name");
+            modelBuilder.Entity<CoActor>().Property(x => x.Frequency).HasColumnName("frequency");
         }
     }
 }
