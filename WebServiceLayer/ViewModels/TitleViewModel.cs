@@ -19,32 +19,4 @@ namespace WebServiceLayer.ViewModels
         public string? Awards { get; set; }
         public string? Plot { get; set; }
     }
-
-    public class SearchTitleViewModel
-    {
-        public string Id { get; set; }
-
-        public string PrimaryTitle { get; set; }
-
-    }
-
-    public class StructuredStringSearchViewModel
-    {
-        public string Id { get; set; }
-        public string PrimaryTitle { get; set; }
-        public string Description { get; set; }
-    }
-
-    public class RateTitleViewModel
-    {
-        public int UserId { get; set; }
-        public string TitleId { get; set; }
-        public int Rating { get; set; }
-    }
-
-    public class ExactMatchViewModel
-    {
-        public string Id { get; set; }
-        public string Title { get; set; }
-    }
 }

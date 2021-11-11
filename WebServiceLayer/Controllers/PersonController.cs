@@ -99,13 +99,5 @@ namespace WebServiceLayer.Controllers
                 Rating = person.Rating,
             };
         }
-
-        private FindPersonByProfessionViewModel GetFindPersonByProfessionViewModel(FindPersonByProfession person)
-        {
-            return new FindPersonByProfessionViewModel
-            {
-                Name = person.Name
-            };
-        }
     }
 }

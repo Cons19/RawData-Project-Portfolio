@@ -61,15 +61,6 @@ namespace WebServiceLayer.Controllers
             return NotFound();
         }
 
-        private SearchHistoryViewModel GetSearchHistoryViewModel(SearchHistory searchHistory)
-        {
-            return new SearchHistoryViewModel
-            {
-                SearchText = searchHistory.SearchText,
-                UserId = searchHistory.UserId,
-            };
-        }
-
         protected override void Dispose(bool disposing)
         {
             _searchHistoryRepository.Dispose();

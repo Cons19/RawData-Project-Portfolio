@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using WebServiceLayer.ViewModels;
 using WebServiceLayer.Controllers;
 using DataAccessLayer.Domain.Functions;
-using DataAccessLayer.Repository.Interfaces;
 
 namespace WebServiceLayer.Controllers
 {
@@ -21,14 +20,12 @@ namespace WebServiceLayer.Controllers
         ITitleRepository _titleRepository;
         LinkGenerator _linkGenerator;
         IUserRepository _userRepository;
-        IUpdatePersonsRatingRepository _updatePersonsRatingRepository;
 
-        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository, IUpdatePersonsRatingRepository updatePersonsRatingRepository)
+        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository)
         {
             _titleRepository = titleRepository;
             _linkGenerator = linkGenerator;
             _userRepository = userRepository;
-            _updatePersonsRatingRepository = updatePersonsRatingRepository;
         }
 
         [HttpGet]
@@ -112,30 +109,6 @@ namespace WebServiceLayer.Controllers
             return Ok(titles);
         }
 
-        [HttpPost("rate-title")]
-        public IActionResult RateTitle(RateTitleViewModel model)
-        {
-            var userId = model.UserId;
-            var titleId = model.TitleId;
-
-            if (_userRepository.GetUser(userId) == null)
-            {
-                return NotFound("User Id does not exists!");
-            }
-
-            // check if the person with the given id exists
-            if (_titleRepository.GetTitle(titleId) == null)
-            {
-                return NotFound("Title Id does not exists!");
-            }
-
-            _updatePersonsRatingRepository.UpdatePersonsRating();
-
-            var result = _titleRepository.RateTitle(model.UserId, model.TitleId, model.Rating);
-
-            return Ok(result);
-        }
-
         // Query is string-based. So an example would be api/titles/best-match?word1=apple&word2=mads&word3=mikkelsen
         // If a filter in the request is mispelled or not written at all, it will be ignored
         [HttpGet("best-match")]
@@ -151,17 +124,6 @@ namespace WebServiceLayer.Controllers
             return Ok(titles);
         }
 
-        [HttpGet("similar-title/{titleId}")]
-        public IActionResult SimilarTitle(string titleId)
-        {
-            var titles = _titleRepository.SimilarTitle(titleId);
-            if (titles.Count() == 0)
-            {
-                return NotFound();
-            }
-
-            return Ok(titles);
-        }
         private TitleViewModel GetTitleViewModel(Title title)
         {
             return new TitleViewModel
@@ -178,34 +140,6 @@ namespace WebServiceLayer.Controllers
                 Poster = title.Poster,
                 Awards = title.Awards,
                 Plot = title.Plot
-            };
-        }
-
-        private SearchTitleViewModel GetSearchTitleViewModel(SearchTitle title)
-        {
-            return new SearchTitleViewModel
-            {
-                Id = title.Id,
-                PrimaryTitle = title.PrimaryTitle
-            };
-        }
-
-        private StructuredStringSearchViewModel GetStructuredStringSearchViewModel(StructuredStringSearch text)
-        {
-            return new StructuredStringSearchViewModel
-            {
-                Id = text.Id,
-                PrimaryTitle = text.PrimaryTitle,
-                Description = text.PrimaryTitle
-            };
-        }
-
-        private ExactMatchViewModel GetExactMatchViewModel(ExactMatch text)
-        {
-            return new ExactMatchViewModel
-            {
-                Id = text.Id,
-                Title = text.Title
             };
         }
     }
