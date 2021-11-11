@@ -30,6 +30,11 @@ namespace DataAccessLayer.Repository
             return context.FindPersonByProfession.FromSqlInterpolated($"SELECT * FROM find_persons_by_profession({profession}) LIMIT 50").ToList();
         }
 
+        public IEnumerable<PopularActors> PopularActors(string title)
+        {
+            return context.PopularActors.FromSqlInterpolated($"SELECT * FROM top_actors_by_movie({title}) LIMIT 50").ToList();
+        }
+
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)

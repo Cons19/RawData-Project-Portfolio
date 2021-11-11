@@ -18,7 +18,7 @@ namespace DataAccessLayer.Repository
 
         public IEnumerable<Title> GetTitles()
         {
-            return context.Titles.ToList();
+            return context.Titles.ToList().Take(50);
         }
 
         public Title GetTitle(string id)
@@ -28,12 +28,12 @@ namespace DataAccessLayer.Repository
 
         public IEnumerable<SearchTitle> SearchText(int id, string searchText)
         {
-            return context.SearchTitle.FromSqlInterpolated($"select * from search_string({id},{searchText})").ToList();
+            return context.SearchTitle.FromSqlInterpolated($"SELECT * FROM search_string({id},{searchText})").ToList();
         }
 
         public IEnumerable<StructuredStringSearch> StructuredStringSearch(int userId, string? title, string? plot, string? inputCharacter, string? personName)
         {
-            return context.StructuredStringSearch.FromSqlInterpolated($"select * from structured_string_search({title},{plot},{inputCharacter},{personName},{userId})").ToList();
+            return context.StructuredStringSearch.FromSqlInterpolated($"SELECT * FROM structured_string_search({title},{plot},{inputCharacter},{personName},{userId})").ToList();
         }
 
         public IEnumerable<ExactMatch> ExactMatch(string word1, string word2, string word3, string? category)
@@ -53,6 +53,11 @@ namespace DataAccessLayer.Repository
             }
 
             return null;
+        }
+
+        public IEnumerable<BestMatch> BestMatch(string? word1, string? word2, string? word3)
+        {
+            return context.BestMatch.FromSqlInterpolated($"SELECT * FROM bestmatch({word1},{word2},{word3}) LIMIT 50").ToList();
         }
 
         private bool disposed = false;

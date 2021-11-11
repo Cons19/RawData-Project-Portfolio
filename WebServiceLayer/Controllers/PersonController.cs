@@ -60,6 +60,20 @@ namespace WebServiceLayer.Controllers
 
             return Ok(persons);
         }
+
+        [HttpGet("popular-actors/{title}")]
+        public IActionResult PopularActors(string title)
+        {
+            var persons = _personRepository.PopularActors(title);
+
+            if (persons.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(persons);
+        }
+
         private PersonViewModel GetPersonViewModel(Person person)
         {
             return new PersonViewModel
