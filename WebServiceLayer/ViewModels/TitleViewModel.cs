@@ -25,7 +25,7 @@ namespace WebServiceLayer.ViewModels
         public string Id { get; set; }
 
         public string PrimaryTitle { get; set; }
-     
+
     }
 
     public class StructuredStringSearchViewModel
@@ -33,6 +33,13 @@ namespace WebServiceLayer.ViewModels
         public string Id { get; set; }
         public string PrimaryTitle { get; set; }
         public string Description { get; set; }
+    }
+
+    public class RateTitleViewModel
+    {
+        public int UserId { get; set; }
+        public string TitleId { get; set; }
+        public int Rating { get; set; }
     }
 
     public class ExactMatchViewModel
