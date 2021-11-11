@@ -109,6 +109,26 @@ namespace WebServiceLayer.Controllers
             return Ok(titles);
         }
 
+        [HttpPost("rate-title")]
+        public IActionResult RateTitle(RateTitleViewModel model)
+        {
+            var userId = model.UserId;
+            var titleId = model.TitleId;
+
+            if (_userRepository.GetUser(userId) == null)
+            {
+                return NotFound("User Id does not exists!");
+            }
+
+            // check if the person with the given id exists
+            if (_titleRepository.GetTitle(titleId) == null)
+            {
+                return NotFound("Title Id does not exists!");
+            }
+
+            var result = _titleRepository.RateTitle(model.UserId, model.TitleId, model.Rating);
+            return Ok(result);
+        }
         private TitleViewModel GetTitleViewModel(Title title)
         {
             return new TitleViewModel
@@ -137,7 +157,7 @@ namespace WebServiceLayer.Controllers
             };
         }
 
-        private StructuredStringSearchViewModel GetStructuredStringSearchViewModel (StructuredStringSearch text)
+        private StructuredStringSearchViewModel GetStructuredStringSearchViewModel(StructuredStringSearch text)
         {
             return new StructuredStringSearchViewModel
             {
