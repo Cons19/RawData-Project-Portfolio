@@ -28,12 +28,16 @@ namespace WebServiceLayer.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpGet]
-        public IActionResult GetPersons()
+        [HttpGet(Name = nameof(GetPersons))]
+        public IActionResult GetPersons([FromQuery] QueryString queryString)
         {
-            var persons = _personRepository.GetPersons();
+            var persons = _personRepository.GetPersons(queryString);
 
-            return Ok(persons.Select(x => GetPersonViewModel(x)));
+            var items = persons.Select(GetPersonViewModel);
+            
+            var result = CreateResultModel(queryString, _personRepository.NumberOfPersons(), items);
+            
+            return Ok(result);
         }
 
         [HttpGet("{id}", Name = nameof(GetPerson))]
@@ -85,6 +89,48 @@ namespace WebServiceLayer.Controllers
                 DeathYear = person.DeathYear,
                 Rating = person.Rating,
             };
+        }
+
+        private object CreateResultModel(QueryString queryString, int total, IEnumerable<PersonViewModel> model)
+        {
+            return new
+            {
+                total,
+                prev = CreateNextPageLink(queryString),
+                cur = CreateCurrentPageLink(queryString),
+                next = CreateNextPageLink(queryString, total),
+                items = model
+            };
+        }
+
+        private string CreateNextPageLink(QueryString queryString, int total)
+        {
+            var lastPage = GetLastPage(queryString.PageSize, total);
+            return queryString.Page >= lastPage ? null : GetPersonsUrl(queryString.Page + 1, queryString.PageSize);
+        }
+
+        
+        private string CreateCurrentPageLink(QueryString queryString)
+        {
+            return GetPersonsUrl(queryString.Page, queryString.PageSize);
+        }
+
+        private string CreateNextPageLink(QueryString queryString)
+        {
+            return queryString.Page <= 0 ? null : GetPersonsUrl(queryString.Page - 1, queryString.PageSize);
+        }
+
+        private string GetPersonsUrl(int page, int pageSize)
+        {
+            return _linkGenerator.GetUriByName(
+                HttpContext,
+                nameof(GetPersons),
+                new { page, pageSize });
+        }
+
+        private static int GetLastPage(int pageSize, int total)
+        {
+            return (int)Math.Ceiling(total / (double)pageSize) - 1;
         }
     }
 }

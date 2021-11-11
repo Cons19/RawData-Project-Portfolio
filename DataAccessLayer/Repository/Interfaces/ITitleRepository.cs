@@ -7,7 +7,7 @@ namespace DataAccessLayer.Repository
 {
     public interface ITitleRepository : IDisposable
     {
-        IEnumerable<Title> GetTitles();
+        IEnumerable<Title> GetTitles(QueryString queryString);
         Title GetTitle(string id);
         public IEnumerable<SearchTitle> SearchText(int id, string searchText);
         public IEnumerable<StructuredStringSearch> StructuredStringSearch(int userId, string? title, string? plot, string? inputCharacter, string? personName);
@@ -15,6 +15,6 @@ namespace DataAccessLayer.Repository
         public Exception RateTitle(int userId, string titleId, int rate);
         public IEnumerable<BestMatch> BestMatch(string word1, string word2, string word3);
         public IEnumerable<SimilarTitle> SimilarTitle(string title_id);
-
+        int NumberOfTitles();
     }
 }

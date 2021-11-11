@@ -7,10 +7,10 @@ namespace DataAccessLayer.Repository
 {
     public interface IPersonRepository : IDisposable
     {
-        IEnumerable<Person> GetPersons();
+        IEnumerable<Person> GetPersons(QueryString queryString);
         Person GetPerson(string id);
         IEnumerable<FindPersonByProfession> FindPersonByProfession(string profession);
         IEnumerable<PopularActors> PopularActors(string title);
-
+        int NumberOfPersons();
     }
 }
