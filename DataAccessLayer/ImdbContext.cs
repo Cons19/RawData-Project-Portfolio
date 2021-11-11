@@ -22,6 +22,7 @@ namespace DataAccessLayer
         public DbSet<FindPersonByProfession> FindPersonByProfession { get; set; }
         public DbSet<StructuredStringSearch> StructuredStringSearch { get; set; }
         public DbSet<ExactMatch> ExactMatch { get; set; }
+        public DbSet<PopularActors> PopularActors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -122,6 +123,11 @@ namespace DataAccessLayer
             modelBuilder.Entity<ExactMatch>().HasNoKey();
             modelBuilder.Entity<ExactMatch>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<ExactMatch>().Property(x => x.Title).HasColumnName("title");
+            
+            // Popular Actors
+            modelBuilder.Entity<PopularActors>().HasNoKey();
+            modelBuilder.Entity<PopularActors>().Property(x => x.Name).HasColumnName("name");
+            modelBuilder.Entity<PopularActors>().Property(x => x.Rating).HasColumnName("rating");
         }
     }
 }
