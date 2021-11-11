@@ -109,6 +109,21 @@ namespace WebServiceLayer.Controllers
             return Ok(titles);
         }
 
+        // Query is string-based. So an example would be api/titles/best-match?word1=apple&word2=mads&word3=mikkelsen
+        // If a filter in the request is mispelled or not written at all, it will be ignored
+        [HttpGet("best-match")]
+        public IActionResult BestMatch(string? word1 = "", string? word2 = "", string? word3 = "")
+        {
+            var titles = _titleRepository.BestMatch(word1, word2, word3);
+
+            if (titles.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(titles);
+        }
+
         private TitleViewModel GetTitleViewModel(Title title)
         {
             return new TitleViewModel

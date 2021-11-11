@@ -23,6 +23,7 @@ namespace DataAccessLayer
         public DbSet<StructuredStringSearch> StructuredStringSearch { get; set; }
         public DbSet<ExactMatch> ExactMatch { get; set; }
         public DbSet<PopularActors> PopularActors { get; set; }
+        public DbSet<BestMatch> BestMatch { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -128,6 +129,12 @@ namespace DataAccessLayer
             modelBuilder.Entity<PopularActors>().HasNoKey();
             modelBuilder.Entity<PopularActors>().Property(x => x.Name).HasColumnName("name");
             modelBuilder.Entity<PopularActors>().Property(x => x.Rating).HasColumnName("rating");
+
+            // Best Match
+            modelBuilder.Entity<BestMatch>().HasNoKey();
+            modelBuilder.Entity<BestMatch>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<BestMatch>().Property(x => x.Rank).HasColumnName("rank");
+            modelBuilder.Entity<BestMatch>().Property(x => x.Title).HasColumnName("title");
         }
     }
 }
