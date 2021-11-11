@@ -75,6 +75,19 @@ namespace WebServiceLayer.Controllers
             return Ok(persons);
         }
 
+        [HttpGet("co-actor/{personName}")]
+        public IActionResult CoACtor(string personName)
+        {
+            var persons = _personRepository.CoActor(personName);
+
+            if (persons.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(persons);
+        }
+
         private PersonViewModel GetPersonViewModel(Person person)
         {
             return new PersonViewModel
