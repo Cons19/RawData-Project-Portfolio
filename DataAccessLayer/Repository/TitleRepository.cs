@@ -60,6 +60,11 @@ namespace DataAccessLayer.Repository
             return context.BestMatch.FromSqlInterpolated($"SELECT * FROM bestmatch({word1},{word2},{word3}) LIMIT 50").ToList();
         }
 
+        public IEnumerable<SimilarTitle> SimilarTitle(string title_id)
+        {
+            return context.SimilarTitle.FromSqlInterpolated($"SELECT * FROM similar_movies({title_id})");
+        }
+
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)

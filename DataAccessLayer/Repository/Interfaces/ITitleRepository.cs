@@ -14,5 +14,7 @@ namespace DataAccessLayer.Repository
         public IEnumerable<ExactMatch> ExactMatch(string word1, string word2, string word3, string? category);
         public Exception RateTitle(int userId, string titleId, int rate);
         public IEnumerable<BestMatch> BestMatch(string word1, string word2, string word3);
+        public IEnumerable<SimilarTitle> SimilarTitle(string title_id);
+
     }
 }

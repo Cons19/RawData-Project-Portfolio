@@ -24,6 +24,8 @@ namespace DataAccessLayer
         public DbSet<ExactMatch> ExactMatch { get; set; }
         public DbSet<PopularActors> PopularActors { get; set; }
         public DbSet<BestMatch> BestMatch { get; set; }
+        public DbSet<SimilarTitle> SimilarTitle { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -124,7 +126,7 @@ namespace DataAccessLayer
             modelBuilder.Entity<ExactMatch>().HasNoKey();
             modelBuilder.Entity<ExactMatch>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<ExactMatch>().Property(x => x.Title).HasColumnName("title");
-            
+
             // Popular Actors
             modelBuilder.Entity<PopularActors>().HasNoKey();
             modelBuilder.Entity<PopularActors>().Property(x => x.Name).HasColumnName("name");
@@ -135,6 +137,13 @@ namespace DataAccessLayer
             modelBuilder.Entity<BestMatch>().Property(x => x.Id).HasColumnName("id");
             modelBuilder.Entity<BestMatch>().Property(x => x.Rank).HasColumnName("rank");
             modelBuilder.Entity<BestMatch>().Property(x => x.Title).HasColumnName("title");
+
+            // Similar Title
+            modelBuilder.Entity<SimilarTitle>().HasNoKey();
+            modelBuilder.Entity<SimilarTitle>().Property(x => x.Id).HasColumnName("id");
+            modelBuilder.Entity<SimilarTitle>().Property(x => x.Name).HasColumnName("name");
+            modelBuilder.Entity<SimilarTitle>().Property(x => x.StartYear).HasColumnName("start_year");
+            modelBuilder.Entity<SimilarTitle>().Property(x => x.Genre).HasColumnName("genre");
         }
     }
 }
