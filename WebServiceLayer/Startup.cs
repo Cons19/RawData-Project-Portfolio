@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using DataAccessLayer.Repository;
+using DataAccessLayer.Repository.Interfaces;
 
 namespace WebServiceLayer
 {
@@ -26,7 +27,8 @@ namespace WebServiceLayer
                     .AddScoped<IBookmarkTitleRepository, BookmarkTitleRepository>()
                     .AddScoped<IBookmarkPersonRepository, BookmarkPersonRepository>()
                     .AddScoped<ISearchHistoryRepository, SearchHistoryRepository>()
-                    .AddScoped<IRatingHistoryRepository, RatingHistoryRepository>();
+                    .AddScoped<IRatingHistoryRepository, RatingHistoryRepository>()
+                    .AddScoped<IUpdatePersonsRatingRepository, UpdatePersonsRatingRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

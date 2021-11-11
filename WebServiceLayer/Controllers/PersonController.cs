@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebServiceLayer.ViewModels;
 using WebServiceLayer.Controllers;
+using DataAccessLayer.Repository.Interfaces;
 
 namespace WebServiceLayer.Controllers
 {
