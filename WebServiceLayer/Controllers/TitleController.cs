@@ -145,6 +145,17 @@ namespace WebServiceLayer.Controllers
             return Ok(titles);
         }
 
+        [HttpGet("similar-title/{titleId}")]
+        public IActionResult SimilarTitle(string titleId)
+        {
+            var titles = _titleRepository.SimilarTitle(titleId);
+            if (titles.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(titles);
+        }
         private TitleViewModel GetTitleViewModel(Title title)
         {
             return new TitleViewModel
