@@ -122,7 +122,5 @@ namespace DataAccessLayer.Repository
                 return BitConverter.ToString(bytes).Replace("-", "").ToLower();
             }
         }
-
-        
     }
 }

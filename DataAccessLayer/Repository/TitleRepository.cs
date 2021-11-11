@@ -37,8 +37,22 @@ namespace DataAccessLayer.Repository
         }
 
         public IEnumerable<ExactMatch> ExactMatch(string word1, string word2, string word3, string? category)
-        {   
-            return context.ExactMatch.FromSqlInterpolated($"select * from exact_match({word1},{word2},{word3},{category})").ToList();           
+        {
+            return context.ExactMatch.FromSqlInterpolated($"select * from exact_match({word1},{word2},{word3},{category})").ToList();
+        }
+
+        public Exception RateTitle(int userId, string titleId, int rating)
+        {
+            try
+            {
+                context.Database.ExecuteSqlRaw("select rate({0},{1},{2})", userId, titleId, rating);
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+
+            return null;
         }
 
         private bool disposed = false;
