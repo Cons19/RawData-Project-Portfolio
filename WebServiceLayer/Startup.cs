@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using DataAccessLayer;
 using DataAccessLayer.Repository;
 using DataAccessLayer.Repository.Interfaces;
+using WebServiceLayer.Middleware;
 
 namespace WebServiceLayer
 {
@@ -21,6 +22,7 @@ namespace WebServiceLayer
         {
             services.AddMvc();
             services.AddDbContext<ImdbContext>()
+                    .AddAuthorization()
                     .AddScoped<IUserRepository, UserRepository>()
                     .AddScoped<ITitleRepository, TitleRepository>()
                     .AddScoped<IPersonRepository, PersonRepository>()
@@ -38,8 +40,9 @@ namespace WebServiceLayer
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseRouting();
+
+            app.UseJwtAuth();
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
 
