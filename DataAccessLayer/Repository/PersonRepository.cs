@@ -15,9 +15,15 @@ namespace DataAccessLayer.Repository
             this.context = context;
         }
 
-        public IEnumerable<Person> GetPersons()
+        public IEnumerable<Person> GetPersons(QueryString queryString)
         {
-            return context.Persons.ToList().Take(50);
+            var result = context.Persons.AsEnumerable();
+
+            result = result
+                .Skip(queryString.Page * queryString.PageSize)
+                .Take(queryString.PageSize);
+
+            return result.ToList();
         }
 
         public Person GetPerson(string id)
@@ -41,7 +47,10 @@ namespace DataAccessLayer.Repository
             return context.CoActor.FromSqlInterpolated($"SELECT * FROM find_actors({personId}) LIMIT 50;").ToList();
         }
 
-
+        public int NumberOfPersons()
+        {
+            return context.Persons.Count();
+        }
 
         private bool disposed = false;
 

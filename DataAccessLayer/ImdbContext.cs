@@ -27,6 +27,7 @@ namespace DataAccessLayer
         public DbSet<SimilarTitle> SimilarTitle { get; set; }
         public DbSet<UpdatePersonsRating> UpdatePersonsRating { get; set; }
         public DbSet<CoActor> CoActor { get; set; }
+        public DbSet<WordToWord> WordToWord { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -155,6 +156,11 @@ namespace DataAccessLayer
             modelBuilder.Entity<CoActor>().Property(x => x.PersonId).HasColumnName("person_id");
             modelBuilder.Entity<CoActor>().Property(x => x.Name).HasColumnName("person_name");
             modelBuilder.Entity<CoActor>().Property(x => x.Frequency).HasColumnName("frequency");
+
+            // Word To Word mapping
+            modelBuilder.Entity<WordToWord>().HasNoKey();
+            modelBuilder.Entity<WordToWord>().Property(x => x.Counter).HasColumnName("counter");
+            modelBuilder.Entity<WordToWord>().Property(x => x.Word).HasColumnName("word");
         }
     }
 }

@@ -28,12 +28,16 @@ namespace WebServiceLayer.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpGet]
-        public IActionResult GetTiles()
+        [HttpGet(Name = nameof(GetTitles))]
+        public IActionResult GetTitles([FromQuery] QueryString queryString)
         {
-            var users = _titleRepository.GetTitles();
+            var titles = _titleRepository.GetTitles(queryString);
 
-            return Ok(users.Select(x => GetTitleViewModel(x)));
+            var items = titles.Select(GetTitleViewModel);
+            
+            var result = CreateResultModel(queryString, _titleRepository.NumberOfTitles(), items);
+            
+            return Ok(result);
         }
 
         [HttpGet("{id}", Name = nameof(GetTitle))]
@@ -141,6 +145,48 @@ namespace WebServiceLayer.Controllers
                 Awards = title.Awards,
                 Plot = title.Plot
             };
+        }
+
+        private object CreateResultModel(QueryString queryString, int total, IEnumerable<TitleViewModel> model)
+        {
+            return new
+            {
+                total,
+                prev = CreateNextPageLink(queryString),
+                cur = CreateCurrentPageLink(queryString),
+                next = CreateNextPageLink(queryString, total),
+                items = model
+            };
+        }
+
+        private string CreateNextPageLink(QueryString queryString, int total)
+        {
+            var lastPage = GetLastPage(queryString.PageSize, total);
+            return queryString.Page >= lastPage ? null : GetTitlesUrl(queryString.Page + 1, queryString.PageSize);
+        }
+
+        
+        private string CreateCurrentPageLink(QueryString queryString)
+        {
+            return GetTitlesUrl(queryString.Page, queryString.PageSize);
+        }
+
+        private string CreateNextPageLink(QueryString queryString)
+        {
+            return queryString.Page <= 0 ? null : GetTitlesUrl(queryString.Page - 1, queryString.PageSize);
+        }
+
+        private string GetTitlesUrl(int page, int pageSize)
+        {
+            return _linkGenerator.GetUriByName(
+                HttpContext,
+                nameof(GetTitles),
+                new { page, pageSize });
+        }
+
+        private static int GetLastPage(int pageSize, int total)
+        {
+            return (int)Math.Ceiling(total / (double)pageSize) - 1;
         }
     }
 }
