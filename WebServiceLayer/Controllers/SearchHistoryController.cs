@@ -18,10 +18,12 @@ namespace WebServiceLayer.Controllers
     public class SearchHistoryController : Controller
     {
         ISearchHistoryRepository _searchHistoryRepository;
+        IUserRepository _userRepository;
 
-        public SearchHistoryController(ISearchHistoryRepository searchHistoryRepository)
+        public SearchHistoryController(ISearchHistoryRepository searchHistoryRepository, IUserRepository userRepository)
         {
             _searchHistoryRepository = searchHistoryRepository;
+            _userRepository = userRepository;
         }
 
         [HttpGet("user/{userId}")]
@@ -46,6 +48,14 @@ namespace WebServiceLayer.Controllers
                 UserId = model.UserId,
                 SearchText = model.SearchText,
             };
+
+            // check if user with the given id exists
+            var userId = searchHistory.UserId;
+
+            if (_userRepository.GetUser(userId) == null)
+            {
+                return NotFound("User Id does not exists!");
+            }
 
             _searchHistoryRepository.CreateSearchHistory(searchHistory);
             _searchHistoryRepository.Save();

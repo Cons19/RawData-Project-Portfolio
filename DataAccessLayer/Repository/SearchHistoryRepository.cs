@@ -29,7 +29,7 @@ namespace DataAccessLayer.Repository
         public bool DeleteSearchHistory(int userId)
         {
             IEnumerable<SearchHistory> searchHistory = context.SearchHistory.ToArray().Where(x => x.UserId == userId);
-            if (searchHistory == null)
+            if (!searchHistory.Any())
             {
                 return false;
             }

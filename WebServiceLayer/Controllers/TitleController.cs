@@ -11,7 +11,7 @@ using DataAccessLayer;
 using DataAccessLayer.Domain;
 using DataAccessLayer.Domain.Functions;
 using DataAccessLayer.Repository;
-
+using DataAccessLayer.Repository.Interfaces;
 
 namespace WebServiceLayer.Controllers
 {
@@ -23,12 +23,14 @@ namespace WebServiceLayer.Controllers
         ITitleRepository _titleRepository;
         LinkGenerator _linkGenerator;
         IUserRepository _userRepository;
+        IUpdatePersonsRatingRepository _updatePersonsRatingRepository;
 
-        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository)
+        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository, IUpdatePersonsRatingRepository updatePersonsRatingRepository)
         {
             _titleRepository = titleRepository;
             _linkGenerator = linkGenerator;
             _userRepository = userRepository;
+            _updatePersonsRatingRepository = updatePersonsRatingRepository;
         }
 
         [HttpGet(Name = nameof(GetTitles))]
@@ -124,6 +126,42 @@ namespace WebServiceLayer.Controllers
             var titles = _titleRepository.BestMatch(word1, word2, word3);
 
             if (titles.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(titles);
+        }
+
+        [HttpPost("rate-title")]
+        public IActionResult RateTitle(RateTitleViewModel model)
+        {
+            var userId = model.UserId;
+            var titleId = model.TitleId;
+
+            if (_userRepository.GetUser(userId) == null)
+            {
+                return NotFound("User Id does not exists!");
+            }
+
+            // check if the person with the given id exists
+            if (_titleRepository.GetTitle(titleId) == null)
+            {
+                return NotFound("Title Id does not exists!");
+            }
+
+            _updatePersonsRatingRepository.UpdatePersonsRating();
+
+            var result = _titleRepository.RateTitle(model.UserId, model.TitleId, model.Rating);
+            Console.WriteLine(result);
+            return Ok(result);
+        }
+
+        [HttpGet("similar-title/{titleId}")]
+        public IActionResult SimilarTitle(string titleId)
+        {
+            var titles = _titleRepository.SimilarTitle(titleId);
+            if (!titles.Any())
             {
                 return NotFound();
             }

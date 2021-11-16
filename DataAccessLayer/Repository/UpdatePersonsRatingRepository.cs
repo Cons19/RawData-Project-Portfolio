@@ -19,9 +19,7 @@ namespace DataAccessLayer.Repository
 
         public void UpdatePersonsRating()
         {
-            //context.UpdatePersonsRating.FromSqlInterpolated("SELECT * FROM update_persons_rating()");
             context.Database.ExecuteSqlRaw("SELECT * FROM update_persons_rating()");
-
         }
 
         public void Save()

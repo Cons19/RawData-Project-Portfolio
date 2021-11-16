@@ -7432,6 +7432,7 @@
       "DataAccessLayer >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.9.4",
       "Moq >= 4.16.1",
+      "System.Linq >= 4.3.0",
       "WebServiceLayer >= 1.0.0",
       "coverlet.collector >= 3.0.2",
       "xunit >= 2.4.1",
@@ -7500,6 +7501,10 @@
           "Moq": {
             "target": "Package",
             "version": "[4.16.1, )"
+          },
+          "System.Linq": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           },
           "coverlet.collector": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
