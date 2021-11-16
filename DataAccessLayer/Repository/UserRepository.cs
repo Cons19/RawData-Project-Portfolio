@@ -36,11 +36,6 @@ namespace DataAccessLayer.Repository
             return context.User.Where(x => x.Email == email).FirstOrDefault();
         }
 
-        public IEnumerable<User> GetUsers()
-        {
-            return context.User.ToList();
-        }
-
         public void UpdateUser(User user)
         {
             string salt = getSalt();

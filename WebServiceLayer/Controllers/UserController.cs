@@ -16,7 +16,6 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-//using AutoMapper;
 
 namespace WebServiceLayer.Controllers
 {
@@ -27,25 +26,13 @@ namespace WebServiceLayer.Controllers
         IUserRepository _userRepository;
         LinkGenerator _linkGenerator;
         IConfiguration _configuration;
-        //IMapper _mapper;
-
 
         public UserController(IUserRepository userRepository, LinkGenerator linkGenerator, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _linkGenerator = linkGenerator;
             _configuration = configuration;
-            //_mapper = mapper;
         } 
-
-        [Authorization]
-        [HttpGet]
-        public IActionResult GetUsers()
-        {
-            var users = _userRepository.GetUsers();
-
-            return Ok(users.Select(x => GetUserViewModel(x)));
-        }
 
         [Authorization]
         [HttpGet("{id}", Name = nameof(GetUser))]
