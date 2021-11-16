@@ -140,23 +140,6 @@ namespace Testing
 
             _userRepositoryMock.Verify(x => x.UpdateUser(It.IsAny<User>()), Times.Once);
         }
-        /*
-        [Fact]
-        public void UpdateUser_InvalidId_DataServiceUpdateUserMustNeverBeCalled()
-        {
-            _userRepositoryMock.Setup(x => x.GetUser(It.IsAny<int>())).Returns(new User());
-
-            var ctrl = new UserController(_userRepositoryMock.Object, _linkGeneratorMock.Object, _configurationMock.Object);
-
-            ctrl.ControllerContext = new ControllerContext();
-
-            ctrl.ControllerContext.HttpContext = new DefaultHttpContext();
-
-            var result = ctrl.UpdateUser(-1, new CreateUpdateUserViewModel { Name = "Dragos", Email = "something@ruc.dk", Password = "pass" });
-
-            _userRepositoryMock.Verify(x => x.UpdateUser(It.IsAny<User>()), Times.Never);
-        }
-        */
 
         [Fact]
         public void DeleteUser_ValidId_DataServiceDeleteUserMustReturnNoContentStatus()
@@ -219,7 +202,6 @@ namespace Testing
 
 
         // Functions
-        // No. 5
         [Fact]
         public void SearchText_ValidUserIdValidString_TitleRepositorySearchTextMustReturnListOfSearchTitle()
         {
@@ -236,8 +218,6 @@ namespace Testing
             Assert.Empty(result);
         }
 
-
-        // No. 6
         [Fact]
         public void RateTitle_ValidUserIdValidTitleIdValidRating_TitleRepositoryRateTitleMustReturnNull()
         {
@@ -254,7 +234,6 @@ namespace Testing
             Assert.IsType<PostgresException>(result);
         }
 
-
         [Fact]
         public void RateTitle_ValidUserIdInvalidTitleIdValidRating_TitleRepositoryRateTitleMustReturnException()
         {
@@ -263,7 +242,6 @@ namespace Testing
             Assert.IsType<PostgresException>(result);
         }
         
-        // No. 7
         [Fact]
         public void StructuredStringSearch_ValidIdValidPlotValidCharacter_TitleRepositoryStructuredStringSearchMustReturnListOfStructuredStringSearch()
         {
@@ -280,7 +258,6 @@ namespace Testing
             Assert.Empty(result);
         }
 
-        // No. 8
         [Fact]
         public void FindPersonByProfession_ValidProfession_PersonRepositoryFindPersonByProfessionMustReturnListOfFindPersonByProfession()
         {
@@ -297,7 +274,6 @@ namespace Testing
             Assert.Empty(result);
         }
 
-        // No. 9
         [Fact]
         public void CoActor_ValidPersonId_PersonRepositoryCoActorMustReturnListOfCoActor()
         {
@@ -314,9 +290,8 @@ namespace Testing
             Assert.Empty(result);
         }
 
-        // Name rating Test
         [Fact]
-        public void UpdatePersonsRatingFunctionality()
+        public void UpdatePersonsRating_ValidPersonId_PersonRepositoryGetPersonMustReturnNotNull()
         {
             // check if a person that is supposed to have a rating, has one
             _updatePersonsRatingRepository.UpdatePersonsRating();
@@ -327,7 +302,7 @@ namespace Testing
 
         // Popular Actors Test
         [Fact]
-        public void PopularActorsFunctionality()
+        public void PopularActors_ValidTitle_PersonRepositoryPopularActorsMustReturnNotNullPopularActorsTypeAndTwoActorNames()
         {
             var response = _personRepository.PopularActors("Casino Royale");
 
@@ -342,7 +317,7 @@ namespace Testing
 
         // Similar Movies Test
         [Fact]
-        public void SimilarMoviesFunctionality()
+        public void SimilarTitles_ValidTitle_TitleRepositorySimilarTitlesMustReturnNotNullSimilarTitleTypeIdNameStartYearAndGenre()
         {
             var response = _titleRepository.SimilarTitle("tt0052520");
 
@@ -359,7 +334,7 @@ namespace Testing
 
         // Exact Match Test
         [Fact]
-        public void ExactMatchFunctionality()
+        public void ExactMatch_ValidThreeWordsEmptyCategory_TitleRepositoryExactMatchMustReturnNotNullExactMatchTypeIdAndTitle()
         {
             var response = _titleRepository.ExactMatch("apple", "mads", "mikkelsen", "");
 
@@ -374,7 +349,7 @@ namespace Testing
 
         // Best Match Test
         [Fact]
-        public void BestMatchFunctionality()
+        public void BestMatch_ValidThreeWords_TitleRepositoryBestMatchMustReturnNotNullBestMatchTypeIdRankAndTitle()
         {
             var response = _titleRepository.BestMatch("apple", "mads", "mikkelsen");
 
@@ -390,7 +365,7 @@ namespace Testing
 
         // Words to Words Test
         [Fact]
-        public void WordsToWordsFunctionality()
+        public void WordsToWords_ValidThreeWords_WordToWordRepositoryWordsToWordsMustReturnNotNullWordToWordTypeCounterAndWord()
         {
             string[] words = { "village", "fisherman", "sicily" };
             var response = _wordToWordRepository.GetWordToWord(words);
