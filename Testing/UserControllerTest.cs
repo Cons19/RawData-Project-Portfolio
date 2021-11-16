@@ -9,10 +9,12 @@ using DataAccessLayer.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using WebServiceLayer.Controllers;
 using WebServiceLayer.ViewModels;
 using Xunit;
+using AutoMapper;
 
 namespace Testing
 {
@@ -20,11 +22,19 @@ namespace Testing
     {
         private readonly Mock<IUserRepository> _userRepositoryMock;
         private readonly Mock<LinkGenerator> _linkGeneratorMock;
+        private readonly Mock<IConfiguration> _configurationMock;
+        private readonly Mock<IMapper> _mapperMock;
+        private readonly ImdbContext _imdbContext;
+        private readonly UserRepository _userRepository;
 
         public UserControllerTest()
         {
             _userRepositoryMock = new Mock<IUserRepository>();
             _linkGeneratorMock = new Mock<LinkGenerator>();
+            _configurationMock = new Mock<IConfiguration>();
+            _mapperMock = new Mock<IMapper>();
+            _imdbContext = new ImdbContext();
+            _userRepository = new UserRepository(_imdbContext);
         }
 
         [Fact]
@@ -33,10 +43,12 @@ namespace Testing
             Assert.True(true);
         }
 
+
+        //Integration Tests
         [Fact]
         public void CreateUser()
         {
-            var ctrl = new UserController(_userRepositoryMock.Object, _linkGeneratorMock.Object);
+            var ctrl = new UserController(_userRepositoryMock.Object, _linkGeneratorMock.Object, _configurationMock.Object);
             ctrl.ControllerContext = new ControllerContext();
             ctrl.ControllerContext.HttpContext = new DefaultHttpContext();
 
@@ -56,17 +68,29 @@ namespace Testing
             var result = ctrl.GetUser(1);
 
             Assert.IsType<OkObjectResult>(result);
+
         }
 
 
         [Fact]
         public void GetUser_InvalidUserId_ReturnsNotFoundStatus()
         {
-            var ctrl = new UserController(_userRepositoryMock.Object, null);
+            var ctrl = new UserController(_userRepositoryMock.Object, null, null);
 
             var result = ctrl.GetUser(-1);
 
             Assert.IsType<NotFoundResult>(result);
+        }
+
+
+        //Unit Tests
+        [Fact]
+        public void GetUser()
+        {
+            var response = _userRepository.GetUser(1);
+
+            Assert.IsType<User>(response);
+            Assert.Equal(1, response.Id);
         }
 
         /*
@@ -77,7 +101,7 @@ namespace Testing
 
         private UserController CreateUserController()
         {
-            var ctrl = new UserController(_userRepositoryMock.Object, _linkGeneratorMock.Object);
+            var ctrl = new UserController(_userRepositoryMock.Object, _linkGeneratorMock.Object, _configurationMock.Object);
             ctrl.ControllerContext = new ControllerContext();
             ctrl.ControllerContext.HttpContext = new DefaultHttpContext();
             return ctrl;

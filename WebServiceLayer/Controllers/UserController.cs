@@ -16,7 +16,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-
+//using AutoMapper;
 
 namespace WebServiceLayer.Controllers
 {
@@ -27,6 +27,7 @@ namespace WebServiceLayer.Controllers
         IUserRepository _userRepository;
         LinkGenerator _linkGenerator;
         IConfiguration _configuration;
+        //IMapper _mapper;
 
 
         public UserController(IUserRepository userRepository, LinkGenerator linkGenerator, IConfiguration configuration)
@@ -34,7 +35,8 @@ namespace WebServiceLayer.Controllers
             _userRepository = userRepository;
             _linkGenerator = linkGenerator;
             _configuration = configuration;
-        }
+            //_mapper = mapper;
+        } 
 
         [Authorization]
         [HttpGet]
