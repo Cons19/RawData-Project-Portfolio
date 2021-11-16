@@ -67,6 +67,21 @@
           "lib/net45/System.Web.Http.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.5.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.CodeCoverage/16.9.4": {
         "type": "package",
         "compile": {
@@ -265,6 +280,33 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {}
+        }
+      },
+      "Microsoft.IdentityModel.Protocols/5.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Logging": "5.5.0",
+          "Microsoft.IdentityModel.Tokens": "5.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {}
+        }
+      },
+      "Microsoft.IdentityModel.Protocols.OpenIdConnect/5.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols": "5.5.0",
+          "Newtonsoft.Json": "10.0.1",
+          "System.IdentityModel.Tokens.Jwt": "5.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {}
         }
       },
       "Microsoft.IdentityModel.Tokens/6.14.1": {
@@ -2137,6 +2179,7 @@
         "dependencies": {
           "DataAccessLayer": "1.0.0",
           "Microsoft.AspNet.WebApi.Core": "5.2.7",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.9",
           "Microsoft.IdentityModel.Tokens": "6.14.1",
           "System.IdentityModel.Tokens.Jwt": "6.14.1"
         },
@@ -2274,6 +2317,21 @@
         "lib/net45/System.Web.Http.xml",
         "microsoft.aspnet.webapi.core.5.2.7.nupkg.sha512",
         "microsoft.aspnet.webapi.core.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.9": {
+      "sha512": "6f61m1Rj5qne88CsfuyzRIE9dih7K0e3J3I3A4d9nyPcWhjz+0UUCYGocLHhYihVahxDIifK6Jn2m1LWD8/XEg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/3.1.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
     "Microsoft.CodeCoverage/16.9.4": {
@@ -2695,6 +2753,48 @@
         "lib/netstandard2.0/Microsoft.IdentityModel.Logging.xml",
         "microsoft.identitymodel.logging.6.14.1.nupkg.sha512",
         "microsoft.identitymodel.logging.nuspec"
+      ]
+    },
+    "Microsoft.IdentityModel.Protocols/5.5.0": {
+      "sha512": "m1gwAQwZjUxzRBC+4H40vYSo9Cms9yUbMdW492rQoXHU77G/ItiKxpk2+W9bWYcdsKUDKudye7im3T3MlVxEkg==",
+      "type": "package",
+      "path": "microsoft.identitymodel.protocols/5.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Microsoft.IdentityModel.Protocols.dll",
+        "lib/net45/Microsoft.IdentityModel.Protocols.xml",
+        "lib/net451/Microsoft.IdentityModel.Protocols.dll",
+        "lib/net451/Microsoft.IdentityModel.Protocols.xml",
+        "lib/net461/Microsoft.IdentityModel.Protocols.dll",
+        "lib/net461/Microsoft.IdentityModel.Protocols.xml",
+        "lib/netstandard1.4/Microsoft.IdentityModel.Protocols.dll",
+        "lib/netstandard1.4/Microsoft.IdentityModel.Protocols.xml",
+        "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll",
+        "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.xml",
+        "microsoft.identitymodel.protocols.5.5.0.nupkg.sha512",
+        "microsoft.identitymodel.protocols.nuspec"
+      ]
+    },
+    "Microsoft.IdentityModel.Protocols.OpenIdConnect/5.5.0": {
+      "sha512": "21F4QlbaD5CXNs2urNRCO6vljbbrhv3gmGT8P18SKGKZ9IYBCn29extoJriHiPfhABd5b8S7RcdKU50XhERkYg==",
+      "type": "package",
+      "path": "microsoft.identitymodel.protocols.openidconnect/5.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll",
+        "lib/net45/Microsoft.IdentityModel.Protocols.OpenIdConnect.xml",
+        "lib/net451/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll",
+        "lib/net451/Microsoft.IdentityModel.Protocols.OpenIdConnect.xml",
+        "lib/net461/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll",
+        "lib/net461/Microsoft.IdentityModel.Protocols.OpenIdConnect.xml",
+        "lib/netstandard1.4/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll",
+        "lib/netstandard1.4/Microsoft.IdentityModel.Protocols.OpenIdConnect.xml",
+        "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll",
+        "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.xml",
+        "microsoft.identitymodel.protocols.openidconnect.5.5.0.nupkg.sha512",
+        "microsoft.identitymodel.protocols.openidconnect.nuspec"
       ]
     },
     "Microsoft.IdentityModel.Tokens/6.14.1": {
@@ -7439,24 +7539,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\razva\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\still\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\Testing.csproj",
+      "projectUniqueName": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\Testing\\Testing.csproj",
       "projectName": "Testing",
-      "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\Testing.csproj",
-      "packagesPath": "C:\\Users\\razva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\obj\\",
+      "projectPath": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\Testing\\Testing.csproj",
+      "packagesPath": "C:\\Users\\still\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\Testing\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\razva\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\still\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7470,11 +7565,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj": {
-              "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj"
+            "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\DataAccessLayer\\DataAccessLayer.csproj"
             },
-            "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\WebServiceLayer\\WebServiceLayer.csproj": {
-              "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\WebServiceLayer\\WebServiceLayer.csproj"
+            "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\WebServiceLayer\\WebServiceLayer.csproj": {
+              "projectPath": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\WebServiceLayer\\WebServiceLayer.csproj"
             }
           }
         }

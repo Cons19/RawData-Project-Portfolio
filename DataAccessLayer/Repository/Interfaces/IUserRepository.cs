@@ -10,6 +10,7 @@ namespace DataAccessLayer.Repository
     public interface IUserRepository : IDisposable
     {
         User GetUser(int id);
+        User GetUserByEmail(string email);
         void CreateUser(User user);
         User LoginUser(string email, string password);
         void UpdateUser(User user);
