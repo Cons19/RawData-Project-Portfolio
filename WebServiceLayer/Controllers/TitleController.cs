@@ -166,20 +166,7 @@ namespace WebServiceLayer.Controllers
             _updatePersonsRatingRepository.UpdatePersonsRating();
 
             var result = _titleRepository.RateTitle(model.UserId, model.TitleId, model.Rating);
-            Console.WriteLine(result);
             return Ok(result);
-        }
-
-        [HttpGet("similar-title/{titleId}")]
-        public IActionResult SimilarTitle(string titleId)
-        {
-            var titles = _titleRepository.SimilarTitle(titleId);
-            if (!titles.Any())
-            {
-                return NotFound();
-            }
-
-            return Ok(titles);
         }
 
         private TitleViewModel GetTitleViewModel(Title title)

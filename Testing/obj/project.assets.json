@@ -2177,6 +2177,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "AutoMapper": "10.1.1",
           "DataAccessLayer": "1.0.0",
           "Microsoft.AspNet.WebApi.Core": "5.2.7",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.9",
@@ -7540,19 +7541,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\still\\.nuget\\packages\\": {}
+    "C:\\Users\\razva\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\Testing\\Testing.csproj",
+      "projectUniqueName": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\Testing.csproj",
       "projectName": "Testing",
-      "projectPath": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\Testing\\Testing.csproj",
-      "packagesPath": "C:\\Users\\still\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\Testing\\obj\\",
+      "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\Testing.csproj",
+      "packagesPath": "C:\\Users\\razva\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\still\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\razva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7566,11 +7572,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\DataAccessLayer\\DataAccessLayer.csproj": {
-              "projectPath": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\DataAccessLayer\\DataAccessLayer.csproj"
+            "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj"
             },
-            "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\WebServiceLayer\\WebServiceLayer.csproj": {
-              "projectPath": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\WebServiceLayer\\WebServiceLayer.csproj"
+            "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\WebServiceLayer\\WebServiceLayer.csproj": {
+              "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\WebServiceLayer\\WebServiceLayer.csproj"
             }
           }
         }
@@ -7638,12 +7644,6 @@
     }
   },
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\Testing\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",

@@ -33,7 +33,7 @@ namespace DataAccessLayer.Repository
 
         public IEnumerable<FindPersonByProfession> FindPersonByProfession(string profession, QueryString queryString)
         {
-            return context.FindPersonByProfession.FromSqlInterpolated($"SELECT * FROM find_persons_by_profession({profession}) LIMIT 50")
+            return context.FindPersonByProfession.FromSqlInterpolated($"SELECT * FROM find_persons_by_profession({profession})")
                     .Skip(queryString.Page * queryString.PageSize)
                     .Take(queryString.PageSize)
                     .ToList();
@@ -41,7 +41,7 @@ namespace DataAccessLayer.Repository
 
         public IEnumerable<PopularActors> PopularActors(string title, QueryString queryString)
         {
-            return context.PopularActors.FromSqlInterpolated($"SELECT * FROM top_actors_by_movie({title}) LIMIT 50")
+            return context.PopularActors.FromSqlInterpolated($"SELECT * FROM top_actors_by_movie({title})")
                     .Skip(queryString.Page * queryString.PageSize)
                     .Take(queryString.PageSize)
                     .ToList();
@@ -50,7 +50,7 @@ namespace DataAccessLayer.Repository
 
         public IEnumerable<CoActor> CoActor(string personId, QueryString queryString)
         {
-            return context.CoActor.FromSqlInterpolated($"SELECT * FROM find_actors({personId}) LIMIT 50;")
+            return context.CoActor.FromSqlInterpolated($"SELECT * FROM find_actors({personId})")
                     .Skip(queryString.Page * queryString.PageSize)
                     .Take(queryString.PageSize)
                     .ToList();

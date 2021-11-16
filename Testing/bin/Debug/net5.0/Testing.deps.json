@@ -1420,6 +1420,7 @@
       },
       "WebServiceLayer/1.0.0": {
         "dependencies": {
+          "AutoMapper": "10.1.1",
           "DataAccessLayer": "1.0.0",
           "Microsoft.AspNet.WebApi.Core": "5.2.7",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.9",

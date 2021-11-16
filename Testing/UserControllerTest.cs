@@ -16,7 +16,6 @@ using WebServiceLayer.ViewModels;
 using Xunit;
 using DataAccessLayer.Repository.Interfaces;
 using DataAccessLayer.Domain.Functions;
-using AutoMapper;
 using Npgsql;
 
 namespace Testing
@@ -28,7 +27,6 @@ namespace Testing
         private readonly Mock<ITitleRepository> _titleRepositoryMock;
         private readonly Mock<LinkGenerator> _linkGeneratorMock;
         private readonly Mock<IConfiguration> _configurationMock;
-        private readonly Mock<IMapper> _mapperMock;
 
         private readonly ImdbContext _imdbContext;
         private readonly UserRepository _userRepository;
@@ -45,8 +43,6 @@ namespace Testing
             _linkGeneratorMock = new Mock<LinkGenerator>();
             _configurationMock = new Mock<IConfiguration>();
             _personRepositoryMock = new Mock<IPersonRepository>();
-
-            _mapperMock = new Mock<IMapper>();
 
             _imdbContext = new ImdbContext();
             _userRepository = new UserRepository(_imdbContext);
@@ -205,7 +201,7 @@ namespace Testing
         [Fact]
         public void SearchText_ValidUserIdValidString_TitleRepositorySearchTextMustReturnListOfSearchTitle()
         {
-            var result = _titleRepository.SearchText(1, "apple");
+            var result = _titleRepository.SearchText(1, "apple", new DataAccessLayer.QueryString());
 
             Assert.IsType<List<SearchTitle>>(result);
         }
@@ -213,7 +209,7 @@ namespace Testing
         [Fact]
         public void SearchText_ValidUserIdValidString_TitleRepositorySearchTextMustReturnEmptyList()
         {
-            var result = _titleRepository.SearchText(1, "zzzzzzzzzzzzzzz");
+            var result = _titleRepository.SearchText(1, "zzzzzzzzzzzzzzz", new DataAccessLayer.QueryString());
 
             Assert.Empty(result);
         }
@@ -245,7 +241,7 @@ namespace Testing
         [Fact]
         public void StructuredStringSearch_ValidIdValidPlotValidCharacter_TitleRepositoryStructuredStringSearchMustReturnListOfStructuredStringSearch()
         {
-            var result = _titleRepository.StructuredStringSearch(1, null, "see", null, "maDs miKkelsen");
+            var result = _titleRepository.StructuredStringSearch(1, null, "see", null, "maDs miKkelsen", new DataAccessLayer.QueryString());
 
             Assert.IsType<List<StructuredStringSearch>>(result);
         }
@@ -253,7 +249,7 @@ namespace Testing
         [Fact]
         public void StructuredStringSearch_ValidId_TitleRepositoryStructuredStringSearchMustReturnEmptyList()
         {
-            var result = _titleRepository.StructuredStringSearch(1, null, null, null, "zzzzzzzzzzzzzz");
+            var result = _titleRepository.StructuredStringSearch(1, null, null, null, "zzzzzzzzzzzzzz", new DataAccessLayer.QueryString());
 
             Assert.Empty(result);
         }
@@ -261,7 +257,7 @@ namespace Testing
         [Fact]
         public void FindPersonByProfession_ValidProfession_PersonRepositoryFindPersonByProfessionMustReturnListOfFindPersonByProfession()
         {
-            var result = _personRepository.FindPersonByProfession("actor");
+            var result = _personRepository.FindPersonByProfession("actor", new DataAccessLayer.QueryString());
 
             Assert.IsType<List<FindPersonByProfession>>(result);
         }
@@ -269,7 +265,7 @@ namespace Testing
         [Fact]
         public void FindPersonByProfession_InvalidProfession_PersonRepositoryFindPersonByProfessionMustReturnEmptyList()
         {
-            var result = _personRepository.FindPersonByProfession("zzzzzzzzzzzzzz");
+            var result = _personRepository.FindPersonByProfession("zzzzzzzzzzzzzz", new DataAccessLayer.QueryString());
 
             Assert.Empty(result);
         }
@@ -277,16 +273,17 @@ namespace Testing
         [Fact]
         public void CoActor_ValidPersonId_PersonRepositoryCoActorMustReturnListOfCoActor()
         {
-            var result = _personRepository.CoActor("nm0003502 ");
-
+            var result = _personRepository.CoActor("John Cleese", new DataAccessLayer.QueryString()); 
+            Console.WriteLine(result);
             Assert.IsType<List<CoActor>>(result);
+
         }
 
         [Fact]
         public void CoActor_InvalidPersonId_PersonRepositoryCoActorMustReturnEmptyList()
         {
-            var result = _personRepository.CoActor("zzzzzzzzzzzzzz ");
-
+            var result = _personRepository.CoActor("zzzzzzzzzzzzzz", new DataAccessLayer.QueryString());
+            Console.WriteLine(result);
             Assert.Empty(result);
         }
 
@@ -304,7 +301,7 @@ namespace Testing
         [Fact]
         public void PopularActors_ValidTitle_PersonRepositoryPopularActorsMustReturnNotNullPopularActorsTypeAndTwoActorNames()
         {
-            var response = _personRepository.PopularActors("Casino Royale");
+            var response = _personRepository.PopularActors("Casino Royale", new DataAccessLayer.QueryString());
 
             foreach (PopularActors actor in response)
             {
@@ -319,7 +316,7 @@ namespace Testing
         [Fact]
         public void SimilarTitles_ValidTitle_TitleRepositorySimilarTitlesMustReturnNotNullSimilarTitleTypeIdNameStartYearAndGenre()
         {
-            var response = _titleRepository.SimilarTitle("tt0052520");
+            var response = _titleRepository.SimilarTitle("tt0052520", new DataAccessLayer.QueryString());
 
             foreach (SimilarTitle title in response)
             {
@@ -336,7 +333,7 @@ namespace Testing
         [Fact]
         public void ExactMatch_ValidThreeWordsEmptyCategory_TitleRepositoryExactMatchMustReturnNotNullExactMatchTypeIdAndTitle()
         {
-            var response = _titleRepository.ExactMatch("apple", "mads", "mikkelsen", "");
+            var response = _titleRepository.ExactMatch("apple", "mads", "mikkelsen", "", new DataAccessLayer.QueryString());
 
             foreach (ExactMatch title in response)
             {
@@ -351,7 +348,7 @@ namespace Testing
         [Fact]
         public void BestMatch_ValidThreeWords_TitleRepositoryBestMatchMustReturnNotNullBestMatchTypeIdRankAndTitle()
         {
-            var response = _titleRepository.BestMatch("apple", "mads", "mikkelsen");
+            var response = _titleRepository.BestMatch("apple", "mads", "mikkelsen", new DataAccessLayer.QueryString());
 
             foreach (BestMatch title in response)
             {
