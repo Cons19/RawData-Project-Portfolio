@@ -1,0 +1,242 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\Testing.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectName": "DataAccessLayer",
+        "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj",
+        "packagesPath": "C:\\Users\\razva\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\razva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\Testing.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\Testing.csproj",
+        "projectName": "Testing",
+        "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\Testing.csproj",
+        "packagesPath": "C:\\Users\\razva\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\Testing\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\razva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj"
+              },
+              "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\WebServiceLayer\\WebServiceLayer.csproj": {
+                "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\WebServiceLayer\\WebServiceLayer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.9.4, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.1, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\WebServiceLayer\\WebServiceLayer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\WebServiceLayer\\WebServiceLayer.csproj",
+        "projectName": "WebServiceLayer",
+        "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\WebServiceLayer\\WebServiceLayer.csproj",
+        "packagesPath": "C:\\Users\\razva\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\WebServiceLayer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\razva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\razva\\Documents\\University\\RUC\\Sem1\\Mandatory Core Topics\\Project Portfolio\\P2\\Backend\\DataAccessLayer\\DataAccessLayer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNet.WebApi.Core": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.14.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.14.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
