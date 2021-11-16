@@ -17,7 +17,6 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-
 namespace WebServiceLayer.Controllers
 {
     [ApiController]
@@ -28,22 +27,12 @@ namespace WebServiceLayer.Controllers
         LinkGenerator _linkGenerator;
         IConfiguration _configuration;
 
-
         public UserController(IUserRepository userRepository, LinkGenerator linkGenerator, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _linkGenerator = linkGenerator;
             _configuration = configuration;
-        }
-
-        [Authorization]
-        [HttpGet]
-        public IActionResult GetUsers()
-        {
-            var users = _userRepository.GetUsers();
-
-            return Ok(users.Select(x => GetUserViewModel(x)));
-        }
+        } 
 
         [Authorization]
         [HttpGet("{id}", Name = nameof(GetUser))]
