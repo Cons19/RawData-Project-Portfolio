@@ -7,9 +7,9 @@ namespace DataAccessLayer.Repository
 {
     public interface IBookmarkPersonRepository : IDisposable
     {
-        IList<BookmarkPerson> GetBookmarkPersonsForUser(int userId);
+        IList<BookmarkPerson> GetBookmarkPersonsForUser(int userId, QueryString queryString);
         BookmarkPerson GetBookmarkPerson(int id);
-        IEnumerable<BookmarkPerson> GetBookmarkPersons();
+        IEnumerable<BookmarkPerson> GetBookmarkPersons(QueryString queryString);
         void CreateBookmarkPerson(BookmarkPerson bookmarkPerson);
         bool DeleteBookmarkPerson(int id);
         void Save();

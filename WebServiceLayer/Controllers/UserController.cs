@@ -147,7 +147,7 @@ namespace WebServiceLayer.Controllers
             var tokenDescription = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", loggedInUser.Id.ToString()) }),
-                Expires = DateTime.Now.AddMinutes(5),
+                Expires = DateTime.Now.AddMinutes(120),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)

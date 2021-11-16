@@ -29,9 +29,9 @@ namespace WebServiceLayer.Controllers
         }
 
         [HttpGet("user/{userId}")]
-        public IActionResult GetRatingHistoryByUserId(int userId)
+        public IActionResult GetRatingHistoryByUserId([FromQuery] QueryString queryString, int userId)
         {
-            var ratingHistory = _ratingHistoryRepository.GetRatingHistoryByUserId(userId);
+            var ratingHistory = _ratingHistoryRepository.GetRatingHistoryByUserId(userId, queryString);
             if (ratingHistory.Count() == 0)
             {
                 return NotFound();
@@ -68,7 +68,7 @@ namespace WebServiceLayer.Controllers
             }
 
             // check if the rating history already exists
-            var checkedRatingHistory = _ratingHistoryRepository.GetRatingHistoryByUserId(userId);
+            var checkedRatingHistory = _ratingHistoryRepository.GetRatingHistoryByUserId(userId, null);
 
             foreach (RatingHistory rh in checkedRatingHistory)
             {

@@ -16,15 +16,23 @@ namespace DataAccessLayer.Repository
         {
             this.context = context;
         }
-        
+
         public RatingHistory GetRatingHistory(int id)
         {
             return context.RatingHistory.Find(id);
         }
 
-        public IEnumerable<RatingHistory> GetRatingHistoryByUserId(int userId)
+        public IEnumerable<RatingHistory> GetRatingHistoryByUserId(int userId, QueryString? queryString)
         {
-            return context.RatingHistory.ToArray().Where(x => x.UserId == userId);
+            if (queryString != null)
+            {
+                return context.RatingHistory.ToArray().Where(x => x.UserId == userId)
+                        .Skip(queryString.Page * queryString.PageSize)
+                        .Take(queryString.PageSize)
+                        .ToList();
+            }
+
+            return context.RatingHistory.ToArray().Where(x => x.UserId == userId).ToList();
         }
 
         public void CreateRatingHistory(RatingHistory ratingHistory)
