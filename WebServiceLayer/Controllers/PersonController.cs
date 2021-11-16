@@ -56,9 +56,9 @@ namespace WebServiceLayer.Controllers
         }
 
         [HttpGet("profession/{profession}")]
-        public IActionResult FindPersonByProfession(string profession)
+        public IActionResult FindPersonByProfession([FromQuery] QueryString queryString, string profession)
         {
-            var persons = _personRepository.FindPersonByProfession(profession);
+            var persons = _personRepository.FindPersonByProfession(profession, queryString);
 
             if (persons.Count() == 0)
             {
@@ -69,9 +69,9 @@ namespace WebServiceLayer.Controllers
         }
 
         [HttpGet("popular-actors/{title}")]
-        public IActionResult PopularActors(string title)
+        public IActionResult PopularActors([FromQuery] QueryString queryString, string title)
         {
-            var persons = _personRepository.PopularActors(title);
+            var persons = _personRepository.PopularActors(title, queryString);
 
             if (persons.Count() == 0)
             {
@@ -82,9 +82,9 @@ namespace WebServiceLayer.Controllers
         }
 
         [HttpGet("co-actor/{personName}")]
-        public IActionResult CoACtor(string personName)
+        public IActionResult CoACtor([FromQuery] QueryString queryString, string personName)
         {
-            var persons = _personRepository.CoActor(personName);
+            var persons = _personRepository.CoActor(personName, queryString);
 
             if (persons.Count() == 0)
             {

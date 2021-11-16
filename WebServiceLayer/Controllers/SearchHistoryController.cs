@@ -27,9 +27,9 @@ namespace WebServiceLayer.Controllers
         }
 
         [HttpGet("user/{userId}")]
-        public IActionResult GetSearchHistoryByUserId(int userId)
+        public IActionResult GetSearchHistoryByUserId([FromQuery] QueryString queryString, int userId)
         {
-            var searchHistory = _searchHistoryRepository.GetSearchHistoryByUserId(userId);
+            var searchHistory = _searchHistoryRepository.GetSearchHistoryByUserId(userId, queryString);
             if (searchHistory.Count() == 0)
             {
                 return NotFound();

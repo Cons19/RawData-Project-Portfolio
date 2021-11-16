@@ -19,9 +19,18 @@ namespace DataAccessLayer.Repository
             context.BookmarkTitles.Add(bookmarkTitle);
         }
 
-        public IList<BookmarkTitle> GetBookmarkTitlesForUser(int userId)
+        public IList<BookmarkTitle> GetBookmarkTitlesForUser(int userId, QueryString queryString)
         {
             IList<BookmarkTitle> allBookmarkTitles = context.BookmarkTitles.ToList();
+
+            if (queryString != null)
+            {
+                return allBookmarkTitles.Where(x => x.UserId == userId)
+                        .Skip(queryString.Page * queryString.PageSize)
+                        .Take(queryString.PageSize)
+                        .ToList();
+            }
+
             return allBookmarkTitles.Where(x => x.UserId == userId).ToList();
         }
 
@@ -30,9 +39,12 @@ namespace DataAccessLayer.Repository
             return context.BookmarkTitles.Find(id);
         }
 
-        public IEnumerable<BookmarkTitle> GetBookmarkTitles()
+        public IEnumerable<BookmarkTitle> GetBookmarkTitles(QueryString queryString)
         {
-            return context.BookmarkTitles.ToList();
+            return context.BookmarkTitles
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
         public bool DeleteBookmarkTitle(int id)
