@@ -19,4 +19,11 @@ namespace WebServiceLayer.ViewModels
         public string? Awards { get; set; }
         public string? Plot { get; set; }
     }
+
+    public class RateTitleViewModel
+    {
+        public int UserId { get; set; }
+        public string TitleId { get; set; }
+        public int Rating { get; set; }
+    }
 }

@@ -31,20 +31,29 @@ namespace DataAccessLayer.Repository
             return context.Persons.Find(id);
         }
 
-        public IEnumerable<FindPersonByProfession> FindPersonByProfession(string profession)
+        public IEnumerable<FindPersonByProfession> FindPersonByProfession(string profession, QueryString queryString)
         {
-            return context.FindPersonByProfession.FromSqlInterpolated($"SELECT * FROM find_persons_by_profession({profession}) LIMIT 50").ToList();
+            return context.FindPersonByProfession.FromSqlInterpolated($"SELECT * FROM find_persons_by_profession({profession}) LIMIT 50")
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
-        public IEnumerable<PopularActors> PopularActors(string title)
+        public IEnumerable<PopularActors> PopularActors(string title, QueryString queryString)
         {
-            return context.PopularActors.FromSqlInterpolated($"SELECT * FROM top_actors_by_movie({title}) LIMIT 50").ToList();
+            return context.PopularActors.FromSqlInterpolated($"SELECT * FROM top_actors_by_movie({title}) LIMIT 50")
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
 
-        public IEnumerable<CoActor> CoActor(string personId)
+        public IEnumerable<CoActor> CoActor(string personId, QueryString queryString)
         {
-            return context.CoActor.FromSqlInterpolated($"SELECT * FROM find_actors({personId}) LIMIT 50;").ToList();
+            return context.CoActor.FromSqlInterpolated($"SELECT * FROM find_actors({personId}) LIMIT 50;")
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
         public int NumberOfPersons()

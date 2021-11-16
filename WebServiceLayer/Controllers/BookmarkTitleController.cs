@@ -32,17 +32,17 @@ namespace WebServiceLayer.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetBookmarkTitles()
+        public IActionResult GetBookmarkTitles([FromQuery] QueryString queryString)
         {
-            var bookmarkTitles = _bookmarkTitleRepository.GetBookmarkTitles();
+            var bookmarkTitles = _bookmarkTitleRepository.GetBookmarkTitles(queryString);
 
             return Ok(bookmarkTitles.Select(x => GetBookmarkTitleViewModel(x)));
         }
 
         [HttpGet("user/{userId}")]
-        public IActionResult GetBookmarkTitleForUser(int userId)
+        public IActionResult GetBookmarkTitleForUser([FromQuery] QueryString queryString, int userId)
         {
-            var bookmarkTitles = _bookmarkTitleRepository.GetBookmarkTitlesForUser(userId);
+            var bookmarkTitles = _bookmarkTitleRepository.GetBookmarkTitlesForUser(userId, queryString);
 
             if (bookmarkTitles.Count == 0)
             {
@@ -86,7 +86,7 @@ namespace WebServiceLayer.Controllers
             }
 
             // check if the bookmark already exists
-            var checkedBookmarkTitles = _bookmarkTitleRepository.GetBookmarkTitlesForUser(userId);
+            var checkedBookmarkTitles = _bookmarkTitleRepository.GetBookmarkTitlesForUser(userId, null);
 
             foreach (BookmarkTitle t in checkedBookmarkTitles)
             {

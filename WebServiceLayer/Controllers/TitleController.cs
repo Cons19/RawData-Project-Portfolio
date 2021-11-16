@@ -11,7 +11,7 @@ using DataAccessLayer;
 using DataAccessLayer.Domain;
 using DataAccessLayer.Domain.Functions;
 using DataAccessLayer.Repository;
-
+using DataAccessLayer.Repository.Interfaces;
 
 namespace WebServiceLayer.Controllers
 {
@@ -23,12 +23,14 @@ namespace WebServiceLayer.Controllers
         ITitleRepository _titleRepository;
         LinkGenerator _linkGenerator;
         IUserRepository _userRepository;
+        IUpdatePersonsRatingRepository _updatePersonsRatingRepository;
 
-        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository)
+        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository, IUpdatePersonsRatingRepository updatePersonsRatingRepository)
         {
             _titleRepository = titleRepository;
             _linkGenerator = linkGenerator;
             _userRepository = userRepository;
+            _updatePersonsRatingRepository = updatePersonsRatingRepository;
         }
 
         [HttpGet(Name = nameof(GetTitles))]
@@ -57,15 +59,15 @@ namespace WebServiceLayer.Controllers
         }
 
         [HttpGet("search/{searchText}/user/{id}")]
-        public IActionResult SearchText(int id, string searchText)
+        public IActionResult SearchText([FromQuery] QueryString queryString, int id, string searchText)
         {
-            // check if user with the given id exists
+            // check if user with the given id existss
             if (_userRepository.GetUser(id) == null)
             {
                 return NotFound("User Id does not exists!");
             }
 
-            var titles = _titleRepository.SearchText(id, searchText);
+            var titles = _titleRepository.SearchText(id, searchText, queryString);
 
             if (titles.Count() == 0)
             {
@@ -81,7 +83,7 @@ namespace WebServiceLayer.Controllers
         // All parameters excepted the userId are defaulted to null
         // The userId is the only mandatory parameter, the rest are optional
         [HttpGet("structured-search")]
-        public IActionResult StructuredStringSearch(int userId, string? title = null, string? plot = null, string? inputCharacter = null, string? personName = null)
+        public IActionResult StructuredStringSearch([FromQuery] QueryString queryString, int userId, string? title = null, string? plot = null, string? inputCharacter = null, string? personName = null)
         {
             // check if user with the given id exists
             if (_userRepository.GetUser(userId) == null)
@@ -89,7 +91,7 @@ namespace WebServiceLayer.Controllers
                 return NotFound("User Id does not exists!");
             }
 
-            var titles = _titleRepository.StructuredStringSearch(userId, title, plot, inputCharacter, personName);
+            var titles = _titleRepository.StructuredStringSearch(userId, title, plot, inputCharacter, personName, queryString);
 
             if (titles.Count() == 0)
             {
@@ -104,9 +106,9 @@ namespace WebServiceLayer.Controllers
         // Category is defaulted to empty string
         // The 3 words are mandatory parameters, the category is optional
         [HttpGet("exact-match")]
-        public IActionResult ExactMatch(string word1, string word2, string word3, string? category = "")
+        public IActionResult ExactMatch([FromQuery] QueryString queryString, string word1, string word2, string word3, string? category = "")
         {
-            var titles = _titleRepository.ExactMatch(word1, word2, word3, category);
+            var titles = _titleRepository.ExactMatch(word1, word2, word3, category, queryString);
 
             if (titles.Count() == 0)
             {
@@ -119,11 +121,60 @@ namespace WebServiceLayer.Controllers
         // Query is string-based. So an example would be api/titles/best-match?word1=apple&word2=mads&word3=mikkelsen
         // If a filter in the request is mispelled or not written at all, it will be ignored
         [HttpGet("best-match")]
-        public IActionResult BestMatch(string? word1 = "", string? word2 = "", string? word3 = "")
+        public IActionResult BestMatch([FromQuery] QueryString queryString, string? word1 = "", string? word2 = "", string? word3 = "")
         {
-            var titles = _titleRepository.BestMatch(word1, word2, word3);
+            var titles = _titleRepository.BestMatch(word1, word2, word3, queryString);
 
             if (titles.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(titles);
+        }
+
+        [HttpGet("similar-title/{id}")]
+        public IActionResult SimilarTitle([FromQuery] QueryString queryString, string id)
+        {
+            var titles = _titleRepository.SimilarTitle(id, queryString);
+
+            if (titles.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(titles);
+        }
+
+        [HttpPost("rate-title")]
+        public IActionResult RateTitle(RateTitleViewModel model)
+        {
+            var userId = model.UserId;
+            var titleId = model.TitleId;
+
+            if (_userRepository.GetUser(userId) == null)
+            {
+                return NotFound("User Id does not exists!");
+            }
+
+            // check if the person with the given id exists
+            if (_titleRepository.GetTitle(titleId) == null)
+            {
+                return NotFound("Title Id does not exists!");
+            }
+
+            _updatePersonsRatingRepository.UpdatePersonsRating();
+
+            var result = _titleRepository.RateTitle(model.UserId, model.TitleId, model.Rating);
+            Console.WriteLine(result);
+            return Ok(result);
+        }
+
+        [HttpGet("similar-title/{titleId}")]
+        public IActionResult SimilarTitle(string titleId)
+        {
+            var titles = _titleRepository.SimilarTitle(titleId);
+            if (!titles.Any())
             {
                 return NotFound();
             }
@@ -167,7 +218,6 @@ namespace WebServiceLayer.Controllers
             var lastPage = GetLastPage(queryString.PageSize, total);
             return queryString.Page >= lastPage ? null : GetTitlesUrl(queryString.Page + 1, queryString.PageSize);
         }
-
 
         private string CreateCurrentPageLink(QueryString queryString)
         {

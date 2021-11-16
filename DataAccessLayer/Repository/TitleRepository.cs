@@ -32,19 +32,28 @@ namespace DataAccessLayer.Repository
             return context.Titles.Find(id);
         }
 
-        public IEnumerable<SearchTitle> SearchText(int id, string searchText)
+        public IEnumerable<SearchTitle> SearchText(int id, string searchText, QueryString queryString)
         {
-            return context.SearchTitle.FromSqlInterpolated($"SELECT * FROM search_string({id},{searchText})").ToList();
+            return context.SearchTitle.FromSqlInterpolated($"SELECT * FROM search_string({id},{searchText})")
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
-        public IEnumerable<StructuredStringSearch> StructuredStringSearch(int userId, string? title, string? plot, string? inputCharacter, string? personName)
+        public IEnumerable<StructuredStringSearch> StructuredStringSearch(int userId, string? title, string? plot, string? inputCharacter, string? personName, QueryString queryString)
         {
-            return context.StructuredStringSearch.FromSqlInterpolated($"SELECT * FROM structured_string_search({title},{plot},{inputCharacter},{personName},{userId})").ToList();
+            return context.StructuredStringSearch.FromSqlInterpolated($"SELECT * FROM structured_string_search({title},{plot},{inputCharacter},{personName},{userId})")
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
-        public IEnumerable<ExactMatch> ExactMatch(string word1, string word2, string word3, string? category)
+        public IEnumerable<ExactMatch> ExactMatch(string word1, string word2, string word3, string? category, QueryString queryString)
         {
-            return context.ExactMatch.FromSqlInterpolated($"select * from exact_match({word1},{word2},{word3},{category})").ToList();
+            return context.ExactMatch.FromSqlInterpolated($"select * from exact_match({word1},{word2},{word3},{category})")
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
         public Exception RateTitle(int userId, string titleId, int rating)
@@ -61,17 +70,23 @@ namespace DataAccessLayer.Repository
             return null;
         }
 
-        public IEnumerable<BestMatch> BestMatch(string? word1, string? word2, string? word3)
+        public IEnumerable<BestMatch> BestMatch(string? word1, string? word2, string? word3, QueryString queryString)
         {
-            return context.BestMatch.FromSqlInterpolated($"SELECT * FROM bestmatch({word1},{word2},{word3}) LIMIT 50").ToList();
+            return context.BestMatch.FromSqlInterpolated($"SELECT * FROM bestmatch({word1},{word2},{word3}) LIMIT 50")
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
-        public IEnumerable<SimilarTitle> SimilarTitle(string title_id)
+        public IEnumerable<SimilarTitle> SimilarTitle(string title_id, QueryString queryString)
         {
-            return context.SimilarTitle.FromSqlInterpolated($"SELECT * FROM similar_movies({title_id})");
+            return context.SimilarTitle.FromSqlInterpolated($"SELECT * FROM similar_movies({title_id})")
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
-         public int NumberOfTitles()
+        public int NumberOfTitles()
         {
             return context.Titles.Count();
         }

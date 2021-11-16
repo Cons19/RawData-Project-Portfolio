@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TB+Jf0Y430Nsp+/DO8LDqlij5vBSavcKqzvQOzN+tc/lTdLKNU5E9/ZwcbQNnscTyPJ9IX/lyULoC1OXHrkMnA==",
+  "dgSpecHash": "s6gGK2uxxd+MMv+G/kaCWomUUJriQj8wfi+6HB/xwKtjBySb4NDqGn5s+EHPY3vv9EWXzOjP3KAQaAURe2Aylg==",
   "success": true,
   "projectFilePath": "C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\Testing\\Testing.csproj",
   "expectedPackageFiles": [
@@ -137,6 +137,12 @@
     "C:\\Users\\still\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.3\\xunit.runner.visualstudio.2.4.3.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\still\\OneDrive\\Diverse\\RUC\\RAWDATA\\Project Portofolio - part 2\\RawData-Project-Portfolio\\Testing\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",

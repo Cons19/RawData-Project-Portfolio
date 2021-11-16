@@ -19,9 +19,16 @@ namespace DataAccessLayer.Repository
             context.BookmarkPersons.Add(bookmarkPerson);
         }
 
-        public IList<BookmarkPerson> GetBookmarkPersonsForUser(int userId)
+        public IList<BookmarkPerson> GetBookmarkPersonsForUser(int userId, QueryString queryString)
         {
             IList<BookmarkPerson> allBookmarkPersons = context.BookmarkPersons.ToList();
+            if (queryString != null)
+            {
+                return allBookmarkPersons.Where(x => x.UserId == userId)
+                        .Skip(queryString.Page * queryString.PageSize)
+                        .Take(queryString.PageSize)
+                        .ToList();
+            }
             return allBookmarkPersons.Where(x => x.UserId == userId).ToList();
         }
 
@@ -30,9 +37,12 @@ namespace DataAccessLayer.Repository
             return context.BookmarkPersons.Find(id);
         }
 
-        public IEnumerable<BookmarkPerson> GetBookmarkPersons()
+        public IEnumerable<BookmarkPerson> GetBookmarkPersons(QueryString queryString)
         {
-            return context.BookmarkPersons.ToList();
+            return context.BookmarkPersons.ToList()
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
         public bool DeleteBookmarkPerson(int id)

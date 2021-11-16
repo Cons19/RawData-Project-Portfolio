@@ -1,4 +1,4 @@
-    using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
@@ -16,9 +16,12 @@ namespace DataAccessLayer.Repository
             this.context = context;
         }
 
-        public IEnumerable<SearchHistory> GetSearchHistoryByUserId(int userId)
+        public IEnumerable<SearchHistory> GetSearchHistoryByUserId(int userId, QueryString queryString)
         {
-            return context.SearchHistory.ToArray().Where(x => x.UserId == userId);
+            return context.SearchHistory.ToArray().Where(x => x.UserId == userId)
+                    .Skip(queryString.Page * queryString.PageSize)
+                    .Take(queryString.PageSize)
+                    .ToList();
         }
 
         public void CreateSearchHistory(SearchHistory searchHistory)
@@ -29,7 +32,7 @@ namespace DataAccessLayer.Repository
         public bool DeleteSearchHistory(int userId)
         {
             IEnumerable<SearchHistory> searchHistory = context.SearchHistory.ToArray().Where(x => x.UserId == userId);
-            if (searchHistory == null)
+            if (!searchHistory.Any())
             {
                 return false;
             }
