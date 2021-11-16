@@ -22,7 +22,6 @@ namespace WebServiceLayer
         {
             services.AddMvc();
             services.AddDbContext<ImdbContext>()
-                    .AddAuthorization()
                     .AddScoped<IUserRepository, UserRepository>()
                     .AddScoped<ITitleRepository, TitleRepository>()
                     .AddScoped<IPersonRepository, PersonRepository>()

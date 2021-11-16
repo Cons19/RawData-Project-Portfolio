@@ -9,10 +9,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebServiceLayer.ViewModels;
 using WebServiceLayer.Controllers;
+using WebServiceLayer.Attributes;
 using DataAccessLayer.Repository.Interfaces;
 
 namespace WebServiceLayer.Controllers
 {
+    [Authorization]
     [ApiController]
     [Route("api/persons")]
     public class PersonController : Controller
@@ -34,9 +36,9 @@ namespace WebServiceLayer.Controllers
             var persons = _personRepository.GetPersons(queryString);
 
             var items = persons.Select(GetPersonViewModel);
-            
+
             var result = CreateResultModel(queryString, _personRepository.NumberOfPersons(), items);
-            
+
             return Ok(result);
         }
 
@@ -122,7 +124,7 @@ namespace WebServiceLayer.Controllers
             return queryString.Page >= lastPage ? null : GetPersonsUrl(queryString.Page + 1, queryString.PageSize);
         }
 
-        
+
         private string CreateCurrentPageLink(QueryString queryString)
         {
             return GetPersonsUrl(queryString.Page, queryString.PageSize);

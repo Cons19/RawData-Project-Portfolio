@@ -10,6 +10,13 @@ using System.Web;
 using System.Linq;
 using System.Threading.Tasks;
 using WebServiceLayer.ViewModels;
+using WebServiceLayer.Attributes;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+
 
 namespace WebServiceLayer.Controllers
 {
@@ -19,13 +26,17 @@ namespace WebServiceLayer.Controllers
     {
         IUserRepository _userRepository;
         LinkGenerator _linkGenerator;
+        IConfiguration _configuration;
 
-        public UserController(IUserRepository userRepository, LinkGenerator linkGenerator)
+
+        public UserController(IUserRepository userRepository, LinkGenerator linkGenerator, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _linkGenerator = linkGenerator;
+            _configuration = configuration;
         }
 
+        [Authorization]
         [HttpGet]
         public IActionResult GetUsers()
         {
@@ -34,6 +45,7 @@ namespace WebServiceLayer.Controllers
             return Ok(users.Select(x => GetUserViewModel(x)));
         }
 
+        [Authorization]
         [HttpGet("{id}", Name = nameof(GetUser))]
         public IActionResult GetUser(int id)
         {
@@ -68,6 +80,7 @@ namespace WebServiceLayer.Controllers
             return Created("", user);
         }
 
+        [Authorization]
         [HttpPut("{id}", Name = nameof(UpdateUser))]
         public IActionResult UpdateUser(int id, CreateUpdateUserViewModel model)
         {
@@ -87,6 +100,7 @@ namespace WebServiceLayer.Controllers
             return Ok(user);
         }
 
+        [Authorization]
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
@@ -110,9 +124,39 @@ namespace WebServiceLayer.Controllers
 
             if (loggedInUser == null)
             {
-                return NotFound();
+                return BadRequest();
             }
-            return Ok(loggedInUser);
+
+            int.TryParse(_configuration.GetSection("Auth:PasswordSize").Value, out int pwdSize);
+
+            if (pwdSize == 0)
+            {
+                throw new ArgumentException("No password size");
+            }
+
+            string secret = _configuration.GetSection("Auth:Secret").Value;
+            if (string.IsNullOrEmpty(secret))
+            {
+                throw new ArgumentException("No secret");
+            }
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var key = Encoding.UTF8.GetBytes(secret);
+
+            var tokenDescription = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[] { new Claim("id", loggedInUser.Id.ToString()) }),
+                Expires = DateTime.Now.AddMinutes(5),
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var securityToken = tokenHandler.CreateToken(tokenDescription);
+            var token = tokenHandler.WriteToken(securityToken);
+
+            return Ok(new { loggedInUser, token });
         }
 
         private UserViewModel GetUserViewModel(User user)

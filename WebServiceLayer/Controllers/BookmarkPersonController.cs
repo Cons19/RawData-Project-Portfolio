@@ -9,9 +9,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebServiceLayer.ViewModels;
 using WebServiceLayer.Controllers;
+using WebServiceLayer.Attributes;
 
 namespace WebServiceLayer.Controllers
 {
+    [Authorization]
     [ApiController]
     [Route("api/bookmark-persons")]
     public class BookmarkPersonController : Controller

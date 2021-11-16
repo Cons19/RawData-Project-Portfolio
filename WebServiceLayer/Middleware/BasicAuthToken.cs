@@ -44,28 +44,27 @@ namespace WebServiceLayer.Middleware
             try
             {
                 var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                if (token == null)
-                {
-                    throw new InvalidOperationException("Authorization token not found in request");
-                }
-                byte[] credentialBytes = Convert.FromBase64String(token);
-                string[] credentials = Encoding.ASCII.GetString(credentialBytes).Split(":");
+                var secret = Encoding.UTF8.GetBytes(_configuration.GetSection("Auth:Secret").Value);
 
-                var user = _userRepository.LoginUser(credentials[0].TrimEnd(), credentials[1].TrimEnd());
-                if (user == null)
+                var tokenHandler = new JwtSecurityTokenHandler();
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
                 {
-                    context.Response.StatusCode = (int)(HttpStatusCode.Unauthorized);
-                    context.Response.WriteAsync("Authentication Failed");
-                }
-                else
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(secret),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                }, out var validatedToken);
+
+                var jwtToken = validatedToken as JwtSecurityToken;
+                var claim = jwtToken.Claims.FirstOrDefault(x => x.Type == "id");
+                if (claim != null)
                 {
-                    context.Items["User"] = user;
+                    int.TryParse(claim.Value.ToString(), out var id);
+                    context.Items["User"] = _userRepository.GetUser(id);
                 }
             }
-            catch (Exception e)
-            {
-                context.Response.WriteAsync(e.ToString());
-            }
+            catch { }
 
             await _next(context);
         }

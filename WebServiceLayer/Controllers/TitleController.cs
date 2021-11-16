@@ -1,6 +1,3 @@
-using DataAccessLayer;
-using DataAccessLayer.Domain;
-using DataAccessLayer.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -9,10 +6,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebServiceLayer.ViewModels;
 using WebServiceLayer.Controllers;
+using WebServiceLayer.Attributes;
+using DataAccessLayer;
+using DataAccessLayer.Domain;
 using DataAccessLayer.Domain.Functions;
+using DataAccessLayer.Repository;
+
 
 namespace WebServiceLayer.Controllers
 {
+    [Authorization]
     [ApiController]
     [Route("api/titles")]
     public class TitleController : Controller
@@ -34,9 +37,9 @@ namespace WebServiceLayer.Controllers
             var titles = _titleRepository.GetTitles(queryString);
 
             var items = titles.Select(GetTitleViewModel);
-            
+
             var result = CreateResultModel(queryString, _titleRepository.NumberOfTitles(), items);
-            
+
             return Ok(result);
         }
 
@@ -165,7 +168,7 @@ namespace WebServiceLayer.Controllers
             return queryString.Page >= lastPage ? null : GetTitlesUrl(queryString.Page + 1, queryString.PageSize);
         }
 
-        
+
         private string CreateCurrentPageLink(QueryString queryString)
         {
             return GetTitlesUrl(queryString.Page, queryString.PageSize);

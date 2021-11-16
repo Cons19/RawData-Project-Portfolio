@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Repository.Interfaces;
+using WebServiceLayer.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 
 namespace WebServiceLayer.Controllers
 {
+    [Authorization]
     [ApiController]
     [Route("api/words")]
     public class WordController : Controller

@@ -8,9 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebServiceLayer.ViewModels;
+using WebServiceLayer.Attributes;
 
 namespace WebServiceLayer.Controllers
 {
+    [Authorization]
     [ApiController]
     [Route("api/search-history")]
     public class SearchHistoryController : Controller
