@@ -36,8 +36,6 @@ namespace Testing
         private readonly TitleRepository _titleRepository;
         private readonly WordToWordRepository _wordToWordRepository;
         private readonly UpdatePersonsRatingRepository _updatePersonsRatingRepository;
-        private readonly TitleRepository _titleRepository;
-        private readonly PersonRepository _personRepository;
 
 
         public UserControllerTest()
@@ -56,8 +54,6 @@ namespace Testing
             _personRepository = new PersonRepository(_imdbContext);
             _titleRepository = new TitleRepository(_imdbContext);
             _wordToWordRepository = new WordToWordRepository(_imdbContext);
-            _titleRepository = new TitleRepository(_imdbContext);
-            _personRepository = new PersonRepository(_imdbContext);
         }
 
         [Fact]
