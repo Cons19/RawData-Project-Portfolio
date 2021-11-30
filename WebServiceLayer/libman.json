@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "unpkg",
+      "library": "requirejs@2.3.6",
+      "destination": "wwwroot/js/lib/requirejs/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "knockout@3.5.1",
+      "destination": "wwwroot/js/lib/knockout/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery@3.6.0",
+      "destination": "wwwroot/js/lib/jquery/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "requirejs-text@2.0.16",
+      "destination": "wwwroot/js/lib/requirejs-text/"
+    }
+  ]
+}
