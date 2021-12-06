@@ -29,5 +29,4 @@ require(['knockout'], (ko) => {
 require(["knockout", "viewmodel"], function (ko, viewmodel) {
 
     ko.applyBindings(viewmodel);
-
 });

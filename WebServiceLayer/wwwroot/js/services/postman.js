@@ -1,13 +1,13 @@
 ﻿define([], () => {
     let subscribers = [];
 
-    let subscribe = (event, callback) => {
-        let subscriber = { event, callback };
+    let subscribe = (event, callback, target) => {
+        let subscriber = { event, callback, target };
 
         if (!subscribers.find(x => x.target === target && x.event === event))
             subscribers.push(subscriber);
 
-        console.log(subscriber);
+        console.log(subscriber);    
     };
 
     let publish = (event, data) => {
