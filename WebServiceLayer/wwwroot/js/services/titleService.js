@@ -10,8 +10,7 @@
         .then(response => response.json())
             .then(json => {
                 console.log("Titles:", json);
-
-                callback(json.items, json.next);
+                callback(json);
             });
     };
     

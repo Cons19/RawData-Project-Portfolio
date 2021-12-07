@@ -1,20 +1,22 @@
 define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
     return function (params) {
         let titles = ko.observableArray([]);
+        let prev, next;
 
-        ts.getTitles(titles);
-
+        ts.getTitles(json => {
+            titles(json.items);
+            prev = json.prev;
+            next = json.next;
+        });
 
         let previousPageButton = () => {
-        //    ts.getTitles.prev
+            console.log("previous");
         }
-        let nextPageButton = (next) => {
 
+        let nextPageButton = () => {
             console.log(next);
-            ts.getTitles(titles);
             ts.getNextTitles(titles, next);
         }
-
 
         return {
             titles,
