@@ -24,7 +24,7 @@
                     errorMessage.textContent = "Unable to login this user."
                 }
             });
-        };
+        };  
 
     return {
         loginUser

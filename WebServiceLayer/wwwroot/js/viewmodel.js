@@ -3,7 +3,8 @@
     let menuItems = [
         { title: "Login", component: "login-user" },
         { title: "Dashboard", component: "dashboard" },
-        { title: "Bookmarks", component: "bookmarks" }
+        { title: "Title", component: "title" },
+        { title: "Person", component: "person" },
     ];
 
     let currentView = ko.observable(menuItems[0].component);
