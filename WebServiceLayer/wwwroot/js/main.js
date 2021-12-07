@@ -9,7 +9,10 @@ require.config({
         jquery: "lib/jquery/dist/jquery.min",
         knockout: "lib/knockout/build/output/knockout-latest.debug",
         loginService: "services/loginService",
+        titleService: "services/titleService",
         loginComponent: "components/user/login",
+        dashboard: "components/dashboard/dashboard",
+        titleComponent: "components/title/title",
         postman: "services/postman"
         //bootstrap: "lib/bootstrap/dist/css/bootstrap.css",
     }
@@ -22,8 +25,12 @@ require(['knockout'], (ko) => {
         template: { require: "text!components/user/login.html" }
     });
     ko.components.register("dashboard", {
-        viewModel: { require: "components/dashboard" },
-        template: { require: "text!components/dashboard.html" }
+        viewModel: { require: "components/dashboard/dashboard" },
+        template: { require: "text!components/dashboard/dashboard.html" }
+    });
+    ko.components.register("title", {
+        viewModel: { require: "components/title/title" },
+        template: { require: "text!components/title/title.html" }
     });
 });
 

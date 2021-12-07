@@ -17,7 +17,6 @@
             .then(json => {
                 localStorage.setItem("jwt", json.token);
                 callback(json);
-                // localStorage.getItem("lastname");
             })
             .catch(function (error) {
                 alert("Not authorized");
