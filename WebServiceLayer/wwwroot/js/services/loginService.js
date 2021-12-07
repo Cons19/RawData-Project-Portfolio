@@ -9,13 +9,20 @@
             }
         }
         fetch("/api/users/login", param)
-            .then(response => response.json())
+            .then(response => {
+                if (response.status == 401)
+                    throw new Error(response.status);
+                return response.json();
+            })
             .then(json => {
                 localStorage.setItem("jwt", json.token);
                 callback(json);
                 // localStorage.getItem("lastname");
+            })
+            .catch(function (error) {
+                alert("Not authorized");
             });
-    };
+        };
 
     return {
         loginUser

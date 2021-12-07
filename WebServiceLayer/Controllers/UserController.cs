@@ -113,7 +113,7 @@ namespace WebServiceLayer.Controllers
 
             if (loggedInUser == null)
             {
-                return BadRequest();
+                return Unauthorized();
             }
 
             int.TryParse(_configuration.GetSection("Auth:PasswordSize").Value, out int pwdSize);

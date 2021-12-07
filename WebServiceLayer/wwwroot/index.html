@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="js/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>IMDB</title>
 </head>
-<body>
+<body class="container-fluid">
 
-    <div data-bind="component: {name: currentView, params: { currentView }}"></div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Viewer</a>
 
+        <!--
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        -->
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto" data-bind="foreach: menuItems">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bind="click: $parent.changeContent, css: $parent.isActive($data)">
+                        <span data-bind="text: title"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div data-bind="component: {name: currentView }"></div>
 
     <script data-main="js/main.js" src="js/lib/requirejs/require.js"></script>
 

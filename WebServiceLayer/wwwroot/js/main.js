@@ -11,6 +11,7 @@ require.config({
         loginService: "services/loginService",
         loginComponent: "components/user/login",
         postman: "services/postman"
+        //bootstrap: "lib/bootstrap/dist/css/bootstrap.css",
     }
 });
 
