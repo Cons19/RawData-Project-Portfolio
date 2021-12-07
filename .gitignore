@@ -5,3 +5,5 @@ WebServiceLayer/bin
 WebServiceLayer/.vs
 WebServiceLayer/obj
 .vs
+Testing/obj
+Testing/bin
