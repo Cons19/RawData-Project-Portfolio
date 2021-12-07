@@ -72,7 +72,7 @@ namespace DataAccessLayer.Repository
 
         public IEnumerable<BestMatch> BestMatch(string? word1, string? word2, string? word3, QueryString queryString)
         {
-            return context.BestMatch.FromSqlInterpolated($"SELECT * FROM bestmatch({word1},{word2},{word3}) LIMIT 50")
+            return context.BestMatch.FromSqlInterpolated($"SELECT * FROM bestmatch({word1},{word2},{word3})")
                     .Skip(queryString.Page * queryString.PageSize)
                     .Take(queryString.PageSize)
                     .ToList();

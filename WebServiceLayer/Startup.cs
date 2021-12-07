@@ -20,6 +20,7 @@ namespace WebServiceLayer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc();
             services.AddDbContext<ImdbContext>()
                     .AddScoped<IUserRepository, UserRepository>()
@@ -40,9 +41,17 @@ namespace WebServiceLayer
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseFileServer();
+
             app.UseRouting();
 
             app.UseJwtAuth();
+
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials());
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
 
