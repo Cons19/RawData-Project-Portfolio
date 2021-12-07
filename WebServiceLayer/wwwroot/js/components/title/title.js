@@ -10,12 +10,19 @@ define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
         });
 
         let previousPageButton = () => {
-            console.log("previous");
+            ts.getNextTitles((json) => {
+                titles(json.items)
+                prev = json.prev;
+                next = json.next;
+            }, prev)
         }
 
         let nextPageButton = () => {
-            console.log(next);
-            ts.getNextTitles(titles, next);
+            ts.getNextTitles((json) => {
+                titles(json.items)
+                prev = json.prev;
+                next = json.next;
+            }, next)
         }
 
         return {

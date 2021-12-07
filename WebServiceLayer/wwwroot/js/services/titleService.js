@@ -24,7 +24,7 @@
             .then(response => response.json())
             .then(json => {
                 console.log("Titles:", json);
-                callback(json.items);
+                callback(json);
             });
     };
 
