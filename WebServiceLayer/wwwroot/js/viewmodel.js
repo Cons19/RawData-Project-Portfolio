@@ -5,7 +5,31 @@
     if (isUserAuth) {
         currentView = ko.observable("dashboard");
     } else {
+        document.getElementsByTagName("nav")[0].style.display = "none"
         currentView = ko.observable("login-user");
+    }
+
+    let menuItems = [
+        { title: "Dashboard", component: "dashboard" },
+        { title: "Title", component: "title" },
+        { title: "Person", component: "person" },
+    ];
+
+    let changeContent = menuItem => {
+        if (isUserAuth) {
+            postman.publish("changeView", menuItem.component);
+        } else {
+            alert("Please login!")
+        }
+    };
+
+    let logout = () => {
+        localStorage.removeItem("jwt");
+        location.reload();
+    }
+
+    let isActive = menuItem => {
+        return menuItem.component === currentView() ? "active" : "";
     }
 
     postman.subscribe("changeView", function (data) {
@@ -13,6 +37,10 @@
     });
 
     return {
+        menuItems,
+        changeContent,
+        isActive,
         currentView,
+        logout,
     }
 });

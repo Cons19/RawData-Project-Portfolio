@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="js/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-
+    <script src="js/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <link href="css/app.css" rel="stylesheet" />
@@ -11,6 +12,39 @@
     <title>IMDB</title>
 </head>
 <body class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light mt-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fas fa-video"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav mr-auto" data-bind="foreach: menuItems">
+                    <li class="nav-item">
+                        <a class="nav-link" data-bind="click: $parent.changeContent, css: $parent.isActive($data)">
+                            <span data-bind="text: title"></span>
+                        </a>
+                    </li>
+                </ul>
+                <form class="d-flex float-end">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+
+                <li class="nav-item dropdown dropstart" id="user-dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" data-bind="click: logout">Logout</a></li>
+                    </ul>
+                  </li>
+            </div>
+        </div>
+    </nav>
 
     <div data-bind="component: {name: currentView }"></div>
 

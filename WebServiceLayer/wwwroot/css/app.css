@@ -62,4 +62,18 @@ nav {
 .nav-item > .nav-link {
     color: white !important;
     font-size: large;
+    cursor: pointer;
+}
+
+.active {
+    font-weight: bolder;
+}
+
+#user-dropdown {
+    position: absolute;
+    right: 0;
+}
+
+.dropdown .dropdown-menu .dropdown-item:focus {
+    background-color: #FFC312;
 }
