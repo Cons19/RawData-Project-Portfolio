@@ -10,6 +10,7 @@ require.config({
         knockout: "lib/knockout/build/output/knockout-latest.debug",
         loginService: "services/loginService",
         loginComponent: "components/user/login",
+        bookmarkComponent: "components/bookmarks/bookmarks",
         postman: "services/postman"
         //bootstrap: "lib/bootstrap/dist/css/bootstrap.css",
     }
@@ -24,6 +25,10 @@ require(['knockout'], (ko) => {
     ko.components.register("dashboard", {
         viewModel: { require: "components/dashboard" },
         template: { require: "text!components/dashboard.html" }
+    });
+    ko.components.register("bookmarks", {
+        viewModel: { require: "components/bookmarks/bookmarks" },
+        template: { require: "text!components/bookmarks.html" }
     });
 });
 

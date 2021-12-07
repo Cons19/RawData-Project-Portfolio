@@ -17,10 +17,12 @@
             .then(json => {
                 localStorage.setItem("jwt", json.token);
                 callback(json);
-                // localStorage.getItem("lastname");
             })
             .catch(function (error) {
-                alert("Not authorized");
+                errorMessage = document.getElementById("error-message")
+                if (errorMessage != null) {
+                    errorMessage.textContent = "Unable to login this user."
+                }
             });
         };
 
