@@ -31,6 +31,11 @@
       "provider": "unpkg",
       "library": "buffer@6.0.3",
       "destination": "wwwroot/js/lib/buffer/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "base64js@1.0.1",
+      "destination": "wwwroot/js/lib/base64js/"
     }
   ]
 }
