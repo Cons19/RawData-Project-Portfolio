@@ -8,7 +8,7 @@ require.config({
         text: "lib/requirejs/text",
         jquery: "lib/jquery/dist/jquery.min",
         knockout: "lib/knockout/build/output/knockout-latest.debug",
-        buffer: "https://bundle.run/buffer@6.0.3",
+        buffer: "lib/buffer/index",
 
         postman: "services/postman",
         loginService: "services/loginService",
@@ -21,7 +21,6 @@ require.config({
         titleComponent: "components/title/title",
         tileDetailsComponent: "components/title/details/details",
         postman: "services/postman",
-        buffer: "lib/buffer/index.js",
         personComponent: "components/person/person",
         searchHistoryComponent: "components/searchHistory/searchHistory",
     }

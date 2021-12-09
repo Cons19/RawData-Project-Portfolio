@@ -1,6 +1,6 @@
 define(["knockout", "searchHistoryService", "buffer"], function (ko, shs, bf) {
     return function (params) {
-        const jwt = Buffer.from(localStorage.getItem("jwt").split('.')[1], 'base64').toString();
+        const jwt = bf.from(localStorage.getItem("jwt").split('.')[1], 'base64').toString();
         console.log(jwt)
         const url = "api/search-history/user" + `/${jwt.Id}`
 
