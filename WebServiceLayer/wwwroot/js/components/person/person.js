@@ -1,33 +1,34 @@
-define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
+define(["knockout", "personService"], function (ko, ps) {
     return function (params) {
-        const url = "api/titles"
-        let titles = ko.observableArray([]);
+        const url = "api/persons"
+        let persons = ko.observableArray([]);
         let prev, next;
 
-        ts.getTitles(json => {
-            titles(json.items);
+        ps.getPersons(json => {
+            persons(json.items);
             prev = json.prev;
             next = json.next;
         }, url);
 
         let previousPageButton = () => {
-            ts.getTitles((json) => {
-                titles(json.items)
+            ps.getPersons((json) => {
+                persons(json.items)
                 prev = json.prev;
                 next = json.next;
             }, prev)
         }
 
         let nextPageButton = () => {
-            ts.getTitles((json) => {
-                titles(json.items)
+            ps.getPersons((json) => {
+                persons(json.items)
                 prev = json.prev;
                 next = json.next;
             }, next)
         }
 
+
         return {
-            titles,
+            persons,
             nextPageButton,
             previousPageButton
         }

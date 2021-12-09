@@ -1,18 +1,19 @@
-﻿define([], () => {
-    let getTitles = (callback, url) => {
+define([], () => {
+
+    let getPersons = (callback, url) => {
         fetch(url, {
             method: 'GET',
             headers: new Headers({
                 'Authorization': 'Bearer ' + localStorage.getItem("jwt")
             })
         })
-            .then(response => response.json())
+        .then(response => response.json())
             .then(json => {
                 callback(json);
             });
     };
 
     return {
-        getTitles
+        getPersons,
     }
 });
