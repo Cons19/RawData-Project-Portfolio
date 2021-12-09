@@ -1,25 +1,17 @@
-define(["knockout", "searchHistoryService", "buffer"], function (ko, shs, bf) {
+define(["knockout", "searchHistoryService"], function (ko, shs) {
     return function (params) {
-        const jwt = bf.from(localStorage.getItem("jwt").split('.')[1], 'base64').toString();
-        console.log(jwt)
-        const url = "api/search-history/user" + `/${jwt.Id}`
-
+        const jwt = atob(localStorage.getItem("jwt").split('.')[1])
+        const url = "api/search-history/user/" + JSON.parse(jwt).id
         let searchHistory = ko.observableArray([]);
-        let prev, next;
 
         shs.getSearchHistory(json => {
-            searchHistory(json.items);
-            prev = json.prev;
-            next = json.next;
+            if (json !== undefined ) {
+                searchHistory(json);
+            }
         }, url);
 
-
-        postman.subscribe("changeView", function (data) {
-            currentView(data);
-        });
-
         return {
-
+            searchHistory
         }
     };
 });

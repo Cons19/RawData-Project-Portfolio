@@ -8,7 +8,6 @@ require.config({
         text: "lib/requirejs/text",
         jquery: "lib/jquery/dist/jquery.min",
         knockout: "lib/knockout/build/output/knockout-latest.debug",
-        buffer: "lib/buffer/index",
 
         postman: "services/postman",
         loginService: "services/loginService",

@@ -1,1 +1,20 @@
-<h1>Users search history</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 card text-dark bg-secondary mb-3 mt-3" style="width: 100%; height: 100%;">
+            <div class="card-header" style="text-color: #fff">User search history</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr><th>Search Text</th><th>Date</th></tr>
+                    </thead>
+                    <tbody data-bind="foreach: searchHistory">
+                        <tr>
+                            <td data-bind="text: searchText"></td>
+                            <td data-bind="text: createdAt"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
