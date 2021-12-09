@@ -1,4 +1,4 @@
-<h1>Title component</h1>
+<h1>Title list</h1>
 
 <table class="table">
     <thead>
@@ -6,10 +6,9 @@
     </thead>
     <tbody data-bind="foreach: titles">
         <tr>
-            <!--<td data-bind="text: poster"></td>-->
             <td><img width="100px" data-bind="attr:{src: poster}" /></td>
             <td data-bind="text: primaryTitle"></td>
-            <td><button class="btn btn-danger btn-sm" data-bind="click: $parent.del">Details</button></td>
+            <td><button class="btn btn-info btn-sm" data-bind="click: $parent.details">Details</button></td>
         </tr>
     </tbody>
 </table>

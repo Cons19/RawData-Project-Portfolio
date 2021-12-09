@@ -25,10 +25,16 @@ define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
             }, next)
         }
 
+        let details = (data) => {
+            postman.publish("titleDetails", data);
+            postman.publish("changeView", "title-details");
+        }
+
         return {
             titles,
             nextPageButton,
-            previousPageButton
+            previousPageButton,
+            details
         }
     };
 });

@@ -9,23 +9,10 @@
             currentView = ko.observable("login-user");
         }
 
-        let titleButton = () => {
-            postman.publish("changeView", "title");
-        }
-        let personButton = () => {
-            postman.publish("changeView", "person");
-        }
-
-        postman.subscribe("changeView", function (data) {
-            currentView(data);
-        });
-
         postman.subscribe("loginUser", login => {
         }, "dashboard");
 
         return {
-            titleButton,
-            personButton
         }
     };
 });
