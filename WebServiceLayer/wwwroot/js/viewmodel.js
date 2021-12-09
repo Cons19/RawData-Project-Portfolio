@@ -17,6 +17,7 @@
 
     let changeContent = menuItem => {
         if (isUserAuth) {
+            console.log(menuItem.component)
             postman.publish("changeView", menuItem.component);
         } else {
             alert("Please login!");
