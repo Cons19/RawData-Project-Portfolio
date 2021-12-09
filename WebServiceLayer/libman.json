@@ -26,6 +26,11 @@
       "provider": "unpkg",
       "library": "bootstrap@5.1.3",
       "destination": "wwwroot/js/lib/bootstrap/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "buffer@6.0.3",
+      "destination": "wwwroot/js/lib/buffer/"
     }
   ]
 }

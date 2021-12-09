@@ -19,6 +19,9 @@ require.config({
         dashboard: "components/dashboard/dashboard",
         loginComponent: "components/user/login",
         titleComponent: "components/title/title",
+        tileDetailsComponent: "components/title/details/details",
+        postman: "services/postman",
+        buffer: "lib/buffer/index.js",
         personComponent: "components/person/person",
         searchHistoryComponent: "components/searchHistory/searchHistory",
     }
@@ -37,6 +40,10 @@ require(['knockout'], (ko) => {
     ko.components.register("title", {
         viewModel: { require: "components/title/title" },
         template: { require: "text!components/title/title.html" }
+    });
+    ko.components.register("title-details", {
+        viewModel: { require: "components/title-details/title-details" },
+        template: { require: "text!components/title-details/title-details.html" }
     });
     ko.components.register("person", {
         viewModel: { require: "components/person/person" },

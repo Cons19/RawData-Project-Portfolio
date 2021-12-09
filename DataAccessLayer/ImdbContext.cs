@@ -8,9 +8,9 @@ namespace DataAccessLayer
     public class ImdbContext : DbContext
     {
         private const string host = "localhost";
-        private const string database = "imdb";
-        private const string uid = "dev";
-        private const string password = "dev";
+        private const string database = "imdb_small";
+        private const string uid = "postgres";
+        private const string password = "Kea06##";
         public DbSet<User> User { get; set; }
         public DbSet<BookmarkTitle> BookmarkTitles { get; set; }
         public DbSet<BookmarkPerson> BookmarkPersons { get; set; }

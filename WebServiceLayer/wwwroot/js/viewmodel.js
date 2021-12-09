@@ -1,11 +1,11 @@
 ﻿define(["knockout", "postman"], function (ko, postman) {
     isUserAuth = localStorage.getItem("jwt")
 
-    let currentView
+    let currentView;
     if (isUserAuth) {
         currentView = ko.observable("dashboard");
     } else {
-        document.getElementsByTagName("nav")[0].style.display = "none"
+        document.getElementsByTagName("nav")[0].style.display = "none";
         currentView = ko.observable("login-user");
     }
 
@@ -38,7 +38,7 @@
             }
             postman.publish("changeView", menuItem.component);
         } else {
-            alert("Please login!")
+            alert("Please login!");
         }
     };
 
