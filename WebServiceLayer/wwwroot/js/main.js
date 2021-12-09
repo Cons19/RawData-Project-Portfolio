@@ -8,16 +8,19 @@ require.config({
         text: "lib/requirejs/text",
         jquery: "lib/jquery/dist/jquery.min",
         knockout: "lib/knockout/build/output/knockout-latest.debug",
+        buffer: "https://bundle.run/buffer@6.0.3",
 
         postman: "services/postman",
         loginService: "services/loginService",
         titleService: "services/titleService",
         personService: "services/personService",
+        searchHistoryService: "services/searchHistory",
 
         dashboard: "components/dashboard/dashboard",
         loginComponent: "components/user/login",
         titleComponent: "components/title/title",
         personComponent: "components/person/person",
+        searchHistoryComponent: "components/searchHistory/searchHistory",
     }
 });
 
@@ -38,6 +41,10 @@ require(['knockout'], (ko) => {
     ko.components.register("person", {
         viewModel: { require: "components/person/person" },
         template: { require: "text!components/person/person.html" }
+    });
+    ko.components.register("search-history", {
+        viewModel: { require: "components/searchHistory/searchHistory" },
+        template: { require: "text!components/searchHistory/searchHistory.html" }
     });
 });
 

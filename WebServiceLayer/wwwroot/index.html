@@ -36,10 +36,12 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
                         <i class="fas fa-user"></i>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#" data-bind="click: logout">Logout</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" data-bind="foreach: userItems">
+                        <li>
+                            <a class="dropdown-item" href="#" data-bind="click: $parent.changeUserContent">
+                                <span data-bind="text: title"></span>
+                            </a>
+                        </li>
                     </ul>
                   </li>
             </div>

@@ -6,8 +6,6 @@
 
         if (!subscribers.find(x => x.target === target && x.event === event))
             subscribers.push(subscriber);
-
-        console.log(subscriber);    
     };
 
     let publish = (event, data) => {

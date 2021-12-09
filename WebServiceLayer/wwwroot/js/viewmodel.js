@@ -17,7 +17,25 @@
 
     let changeContent = menuItem => {
         if (isUserAuth) {
-            console.log(menuItem.component)
+            postman.publish("changeView", menuItem.component);
+        } else {
+            alert("Please login!")
+        }
+    };
+
+    let userItems = [
+        { title: "Profile", component: "#" },
+        { title: "Search History", component: "search-history" },
+        { title: "Rating History", component: "rating-history" },
+        { title: "Logout"}
+    ];
+
+    let changeUserContent = menuItem => {
+        if (isUserAuth) {
+            if (menuItem.title == "Logout") {
+                logout()
+                return
+            }
             postman.publish("changeView", menuItem.component);
         } else {
             alert("Please login!")
@@ -39,7 +57,9 @@
 
     return {
         menuItems,
+        userItems,
         changeContent,
+        changeUserContent,
         isActive,
         currentView,
         logout,
