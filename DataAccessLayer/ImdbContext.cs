@@ -7,10 +7,14 @@ namespace DataAccessLayer
 {
     public class ImdbContext : DbContext
     {
+        /*private const string host = "rawdata.ruc.dk";
+        private const string database = "raw4";
+        private const string uid = "raw4";
+        private const string password = "UXyNO(IR";*/
         private const string host = "localhost";
-        private const string database = "imdb_small";
+        private const string database = "imdb";
         private const string uid = "postgres";
-        private const string password = "Kea06##";
+        private const string password = "pass123";
         public DbSet<User> User { get; set; }
         public DbSet<BookmarkTitle> BookmarkTitles { get; set; }
         public DbSet<BookmarkPerson> BookmarkPersons { get; set; }
