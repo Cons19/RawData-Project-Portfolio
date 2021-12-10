@@ -14,14 +14,16 @@ require.config({
         titleService: "services/titleService",
         personService: "services/personService",
         searchHistoryService: "services/searchHistory",
-
+        searchService: "services/searchResult",
+        
         dashboard: "components/dashboard/dashboard",
         loginComponent: "components/user/login",
         titleComponent: "components/title/title",
         tileDetailsComponent: "components/title/details/details",
         postman: "services/postman",
         personComponent: "components/person/person",
-        searchHistoryComponent: "components/searchHistory/searchHistory",
+        searchHistoryComponent: "components/search-history/search-history",
+        searchResultComponent: "components/search-result/search-result",
     }
 });
 
@@ -48,8 +50,12 @@ require(['knockout'], (ko) => {
         template: { require: "text!components/person/person.html" }
     });
     ko.components.register("search-history", {
-        viewModel: { require: "components/searchHistory/searchHistory" },
-        template: { require: "text!components/searchHistory/searchHistory.html" }
+        viewModel: { require: "components/search-history/search-history" },
+        template: { require: "text!components/search-history/search-history.html" }
+    });
+    ko.components.register("search-result", {
+        viewModel: { require: "components/search-result/search-result" },
+        template: { require: "text!components/search-result/search-result.html" }
     });
 });
 

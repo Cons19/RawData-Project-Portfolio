@@ -28,8 +28,8 @@
                     </li>
                 </ul>
                 <form class="d-flex float-end">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" data-bind="value: searchTextValue" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" data-bind="click: searchText">Search</button>
                 </form>
 
                 <li class="nav-item dropdown dropstart" id="user-dropdown">
@@ -48,7 +48,7 @@
         </div>
     </nav>
 
-    <div data-bind="component: {name: currentView }"></div>
+    <div data-bind="component: {name: currentView, params: currentViewParams}"></div>
 
     <script data-main="js/main.js" src="js/lib/requirejs/require.js"></script>
 

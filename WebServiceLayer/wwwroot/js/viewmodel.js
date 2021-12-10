@@ -1,7 +1,9 @@
-﻿define(["knockout", "postman"], function (ko, postman) {
+﻿define(["knockout", "postman", "searchService"], function (ko, postman, ss) {
     isUserAuth = localStorage.getItem("jwt")
 
     let currentView;
+    let currentViewParams = ko.observable()
+
     if (isUserAuth) {
         currentView = ko.observable("dashboard");
     } else {
@@ -47,12 +49,26 @@
         location.reload();
     }
 
+    this.searchTextValue = ko.observable();
+
+    let searchText = () => {
+        let text = this.searchTextValue()
+        const userId = JSON.parse(atob(localStorage.getItem("jwt").split('.')[1])).id
+        const url = `api/titles/search/${text}/user/${userId}`
+
+        ss.getSearchString((json) => {
+            // postman.publish("sendData", json)
+            postman.publish("changeView", "search-result", json)
+        }, url)
+    }
+
     let isActive = menuItem => {
         return menuItem.component === currentView() ? "active" : "";
     }
 
-    postman.subscribe("changeView", function (data) {
+    postman.subscribe("changeView", function (data, params) {
         currentView(data);
+        currentViewParams(params);
     });
 
     return {
@@ -62,6 +78,8 @@
         changeUserContent,
         isActive,
         currentView,
+        currentViewParams,
         logout,
+        searchText,
     }
 });

@@ -8,11 +8,12 @@
             subscribers.push(subscriber);
     };
 
-    let publish = (event, data) => {
-
+    let publish = (event, data, params) => {
         subscribers.forEach(x => {
-            if (x.event === event)
-                x.callback(data);
+            if (x.event === event) {
+                x.callback(data, params);
+            }
+
         });
     };
 

@@ -1,11 +1,12 @@
 ﻿define(["knockout", "postman"], function (ko, postman) {
     return function (params) {
         let title = ko.observable();
-
-        postman.subscribe("titleDetails", function (data) {
-            title(data);
-            console.log("data from details INSIDE", title());
-        });
+        console.log(params)
+        title(params)
+        // postman.subscribe("titleDetails", function (data) {
+        //     title(data);
+        //     console.log("data from details INSIDE", title());
+        // });
 
         console.log("data from details", title());
 
