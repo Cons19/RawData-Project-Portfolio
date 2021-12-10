@@ -1,4 +1,5 @@
 ﻿define([], () => {
+    
     let getTitles = (callback, url) => {
         fetch(url, {
             method: 'GET',

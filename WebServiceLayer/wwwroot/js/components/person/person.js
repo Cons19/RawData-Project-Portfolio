@@ -1,19 +1,30 @@
-define(["knockout", "personService"], function (ko, ps) {
+define(["knockout", "personService", "postman"], function (ko, ps, postman) {
     return function (params) {
-        const url = "api/persons"
+        let url;
+
+        if (params) {
+            url = params.cur;
+        } else
+        {
+            url = "api/persons";
+        }
+
         let persons = ko.observableArray([]);
-        let prev, next;
+        let prev, cur, next;
 
         ps.getPersons(json => {
             persons(json.items);
             prev = json.prev;
+            cur = json.cur;
             next = json.next;
         }, url);
+
 
         let previousPageButton = () => {
             ps.getPersons((json) => {
                 persons(json.items)
                 prev = json.prev;
+                cur = json.cur;
                 next = json.next;
             }, prev)
         }
@@ -22,15 +33,21 @@ define(["knockout", "personService"], function (ko, ps) {
             ps.getPersons((json) => {
                 persons(json.items)
                 prev = json.prev;
+                cur = json.cur;
                 next = json.next;
             }, next)
         }
 
+        let details = (data) => {
+            data.currentPage = cur;
+            postman.publish("changeView", "person-details", data);
+        }
 
         return {
             persons,
             nextPageButton,
-            previousPageButton
+            previousPageButton,
+            details
         }
     };
 });

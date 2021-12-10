@@ -9,8 +9,8 @@
                     </thead>
                     <tbody data-bind="foreach: titles">
                         <tr>
-                            <td><img width="100px" data-bind="attr:{src: poster}" /></td>
-                            <td data-bind="text: primaryTitle"></td>
+                            <td><img width="100px" data-bind="attr: poster ? {src: poster} : {src: 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png'}" /></td>
+                            <td data-bind="text: primaryTitle ? primaryTitle : 'N/A'"></td>
                             <td><button class="btn btn-info btn-sm" data-bind="click: $parent.details">Details</button></td>
                         </tr>
                     </tbody>
