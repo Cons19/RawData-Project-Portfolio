@@ -1,10 +1,13 @@
 define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
     return function (params) {
-        console.log("params titles", params);
-        let url = "api/titles"
-        //if (params.currentPage) {
-        //    url = params.currentPage;
-        //}
+        let url;
+
+        if (params) {
+            url = params.cur;
+        } else
+        {
+            url = "api/titles";
+        }
 
         let titles = ko.observableArray([]);
         let prev, cur, next;
