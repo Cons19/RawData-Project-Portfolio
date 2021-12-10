@@ -1,10 +1,14 @@
-﻿<div class="vh-100 d-flex justify-content-center align-items-center">
+<div class="vh-100 d-flex justify-content-center align-items-center">
     <div class="card">
         <div class="card-header">
-            <h3>Sign In</h3>
+            <h3>Register</h3>
         </div>
         <div class="card-body">
             <form>
+                <div class="input-group mb-3">
+                    <span class="input-group-icon input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control" data-bind="value: name" placeholder="Name">
+                </div>
                 <div class="input-group mb-3">
                     <span class="input-group-icon input-group-text"><i class="fa fa-envelope"></i></span>
                     <input type="text" class="form-control" data-bind="value: email" placeholder="Email">
@@ -17,14 +21,13 @@
                 <span id="error-message" class="error text-danger"></span>
 
                 <div class="form-group">
-                    <input type="submit" value="Login" data-bind="click: login" class="btn float-end login_btn">
+                    <input type="submit" value="Register" data-bind="click: register" class="btn float-end login_btn">
                 </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Cancel" data-bind="click: cancel" class="btn float-start btn-danger">
+                </div>       
             </form>
-        </div>
-        <div class="card-footer">
-            <div class="d-flex justify-content-center links">
-                Don't have an account?<a href="#" data-bind="click: register">Sign Up</a>
-            </div>
         </div>
     </div>
 </div>

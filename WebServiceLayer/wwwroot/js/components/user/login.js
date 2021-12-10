@@ -7,7 +7,6 @@
         let login = () => {
             let userCredentials = { email: email(), password: password() };
             ls.loginUser(userCredentials, user => {
-                postman.publish("loginUser", user);
                 document.getElementsByTagName("nav")[0].style.display = "block"
                 postman.publish("changeView", "dashboard");
             });
@@ -15,10 +14,15 @@
             password("");
         }
 
+        let register = () => {
+            postman.publish("changeView", "register");
+        }
+
         return {
             email,
             password,
-            login
+            login,
+            register
         }
     };
 });

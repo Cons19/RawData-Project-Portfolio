@@ -9,9 +9,6 @@
             currentView = ko.observable("login-user");
         }
 
-        postman.subscribe("loginUser", login => {
-        }, "dashboard");
-
         return {
         }
     };

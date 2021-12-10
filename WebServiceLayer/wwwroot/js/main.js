@@ -20,11 +20,11 @@ require.config({
         loginComponent: "components/user/login",
         titleComponent: "components/title/title",
         tileDetailsComponent: "components/title/details/details",
-        postman: "services/postman",
         personComponent: "components/person/person",
         searchHistoryComponent: "components/search-history/search-history",
         searchResultComponent: "components/search-result/search-result",
         personDetailsComponent: "components/person-details/person-details",
+        registerComponent: "components/register/register"
     }
 });
 
@@ -61,6 +61,10 @@ require(['knockout'], (ko) => {
     ko.components.register("person-details", {
         viewModel: { require: "components/person-details/person-details" },
         template: { require: "text!components/person-details/person-details.html" }
+    });
+    ko.components.register("register", {
+        viewModel: { require: "components/register/register" },
+        template: { require: "text!components/register/register.html" }
     });
 });
 
