@@ -1,8 +1,4 @@
-﻿/// <reference path="lib/jquery/dist/jquery.min.js" />
-/// <reference path="lib/requirejs/text.js" />
-/// <reference path="lib/knockout/build/output/knockout-latest.debug.js" />
-
-require.config({
+﻿require.config({
     baseUrl: 'js',
     paths: {
         text: "lib/requirejs/text",
@@ -17,14 +13,15 @@ require.config({
         searchService: "services/searchResult",
         
         dashboard: "components/dashboard/dashboard",
-        loginComponent: "components/user/login",
+        loginComponent: "components/login/login",
         titleComponent: "components/title/title",
         tileDetailsComponent: "components/title/details/details",
         personComponent: "components/person/person",
         searchHistoryComponent: "components/search-history/search-history",
         searchResultComponent: "components/search-result/search-result",
         personDetailsComponent: "components/person-details/person-details",
-        registerComponent: "components/register/register"
+        registerComponent: "components/register/register",
+        userDetailsComponent: "components/user-details/user-details"
     }
 });
 
@@ -35,8 +32,8 @@ require(['knockout'], (ko) => {
         template: { require: "text!components/dashboard/dashboard.html" }
     });
     ko.components.register("login-user", {
-        viewModel: { require: "components/user/login" },
-        template: { require: "text!components/user/login.html" }
+        viewModel: { require: "components/login/login" },
+        template: { require: "text!components/login/login.html" }
     });
     ko.components.register("title", {
         viewModel: { require: "components/title/title" },
@@ -65,6 +62,10 @@ require(['knockout'], (ko) => {
     ko.components.register("register", {
         viewModel: { require: "components/register/register" },
         template: { require: "text!components/register/register.html" }
+    });
+    ko.components.register("user-details", {
+        viewModel: { require: "components/user-details/user-details" },
+        template: { require: "text!components/user-details/user-details.html" }
     });
 });
 

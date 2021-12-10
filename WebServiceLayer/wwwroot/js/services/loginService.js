@@ -1,5 +1,4 @@
 ﻿define([], () => {
-
     let loginUser = (userCredentials, callback) => {
         let param = {
             method: "POST",

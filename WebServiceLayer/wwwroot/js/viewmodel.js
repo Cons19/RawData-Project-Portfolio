@@ -1,8 +1,8 @@
 ﻿define(["knockout", "postman", "searchService"], function (ko, postman, ss) {
-    isUserAuth = localStorage.getItem("jwt")
+    isUserAuth = localStorage.getItem("jwt");
 
     let currentView;
-    let currentViewParams = ko.observable()
+    let currentViewParams = ko.observable();
 
     if (isUserAuth) {
         currentView = ko.observable("dashboard");
@@ -21,12 +21,12 @@
         if (isUserAuth) {
             postman.publish("changeView", menuItem.component);
         } else {
-            alert("Please login!")
+            alert("Please login!");
         }
     };
 
     let userItems = [
-        { title: "Profile", component: "#" },
+        { title: "Profile", component: "user-details" },
         { title: "Search History", component: "search-history" },
         { title: "Rating History", component: "rating-history" },
         { title: "Logout"}
@@ -35,8 +35,8 @@
     let changeUserContent = menuItem => {
         if (isUserAuth) {
             if (menuItem.title == "Logout") {
-                logout()
-                return
+                logout();
+                return;
             }
             postman.publish("changeView", menuItem.component);
         } else {
@@ -52,13 +52,13 @@
     this.searchTextValue = ko.observable();
 
     let searchText = () => {
-        let text = this.searchTextValue()
-        const userId = JSON.parse(atob(localStorage.getItem("jwt").split('.')[1])).id
-        const url = `api/titles/search/${text}/user/${userId}`
+        let text = this.searchTextValue();
+        const userId = JSON.parse(atob(localStorage.getItem("jwt").split('.')[1])).id;
+        const url = `api/titles/search/${text}/user/${userId}`;
 
         ss.getSearchString((json) => {
-            postman.publish("changeView", "search-result", json)
-        }, url)
+            postman.publish("changeView", "search-result", json);
+        }, url);
     }
 
     let isActive = menuItem => {
@@ -79,6 +79,6 @@
         currentView,
         currentViewParams,
         logout,
-        searchText,
+        searchText
     }
 });

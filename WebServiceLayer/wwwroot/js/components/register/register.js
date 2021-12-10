@@ -1,6 +1,5 @@
 define(["knockout", "loginService", "postman"], function (ko, ls, postman) {
     return function (params) {
-
         let name = ko.observable();
         let email = ko.observable();
         let password = ko.observable();
@@ -8,7 +7,7 @@ define(["knockout", "loginService", "postman"], function (ko, ls, postman) {
         let register = () => {
             let userCredentials = { name: name(), email: email(), password: password() };
             ls.registerUser(userCredentials, user => {
-                document.getElementsByTagName("nav")[0].style.display = "block"
+                document.getElementsByTagName("nav")[0].style.display = "block";
                 postman.publish("changeView", "dashboard");
             });
             name("");

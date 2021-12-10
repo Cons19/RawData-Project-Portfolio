@@ -1,8 +1,8 @@
 ﻿define(["knockout", "postman"], function (ko, postman) {
     return function (params) {
-        isUserAuth = localStorage.getItem("jwt")
+        isUserAuth = localStorage.getItem("jwt");
 
-        let currentView
+        let currentView;
         if (isUserAuth) {
             currentView = ko.observable("dashboard");
         } else {
