@@ -57,7 +57,6 @@
         const url = `api/titles/search/${text}/user/${userId}`
 
         ss.getSearchString((json) => {
-            // postman.publish("sendData", json)
             postman.publish("changeView", "search-result", json)
         }, url)
     }

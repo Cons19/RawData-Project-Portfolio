@@ -1,18 +1,40 @@
-define(["knockout", "postman"], function (ko, postman) {
+define(["knockout", "postman", "searchService"], function (ko, postman, ss) {
     return function (params) {
         let results = ko.observableArray([])
-        results(params)
-        // postman.subscribe("changeView", function (data, target) {
-        //     console.log(target)
-        //     console.log(data)
-        //     // results(data);
-        //     // console.log(results());
-        // });
+        let shouldShowButtons = ko.observable(true)
+        results(params.items)
 
-        // console.log(results());
+        if (params.next == null && params.prev == null) {
+            shouldShowButtons(false)
+        } else {
+            prev = params.prev;
+            next = params.next;
+        }
+
+        let previousPageButton = () => {
+            ss.getSearchString((json) => {
+                results(json.items)
+                prev = json.prev;
+                next = json.next;
+            }, prev)
+        }
+
+        let nextPageButton = () => {
+            ss.getSearchString((json) => {
+                results(json.items)
+                if (json.next == null && json.prev == null) {
+                    shouldShowButtons(false)
+                }
+                prev = json.prev;
+                next = json.next;
+            }, next)
+        }
 
         return {
-            results
+            results,
+            previousPageButton,
+            nextPageButton,
+            shouldShowButtons
         }
     };
 });

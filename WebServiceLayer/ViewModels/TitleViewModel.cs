@@ -20,6 +20,12 @@ namespace WebServiceLayer.ViewModels
         public string? Plot { get; set; }
     }
 
+    public class SearchTitleViewModel
+    {
+        public string Id { get; set; }
+        public string? PrimaryTitle { get; set; }
+    }
+
     public class RateTitleViewModel
     {
         public int UserId { get; set; }
