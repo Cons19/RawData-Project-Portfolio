@@ -1,12 +1,21 @@
 define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
     return function (params) {
-        const url = "api/titles"
+        let url;
+
+        if (params) {
+            url = params.cur;
+        } else
+        {
+            url = "api/titles";
+        }
+
         let titles = ko.observableArray([]);
-        let prev, next;
+        let prev, cur, next;
 
         ts.getTitles(json => {
             titles(json.items);
             prev = json.prev;
+            cur = json.cur;
             next = json.next;
         }, url);
 
@@ -14,6 +23,7 @@ define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
             ts.getTitles((json) => {
                 titles(json.items)
                 prev = json.prev;
+                cur = json.cur;
                 next = json.next;
             }, prev)
         }
@@ -22,11 +32,14 @@ define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
             ts.getTitles((json) => {
                 titles(json.items)
                 prev = json.prev;
+                cur = json.cur;
                 next = json.next;
             }, next)
         }
 
+
         let details = (data) => {
+            data.currentPage = cur;
             postman.publish("changeView", "title-details", data);
         }
 

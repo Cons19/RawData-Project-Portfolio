@@ -1,18 +1,13 @@
-﻿define(["knockout", "postman"], function (ko, postman) {
+﻿define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
     return function (params) {
         let title = ko.observable();
-        console.log(params)
-        title(params)
-        // postman.subscribe("titleDetails", function (data) {
-        //     title(data);
-        //     console.log("data from details INSIDE", title());
-        // });
 
-        console.log("data from details", title());
+        title(params);
 
-        // It should go back to the original page, not the first one...
         let back = () => {
-            postman.publish("changeView", "title");
+            ts.getTitles(json => {
+                postman.publish("changeView", "title", json);
+            }, params.currentPage);
         };
 
         return {
