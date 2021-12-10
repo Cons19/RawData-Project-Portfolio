@@ -67,9 +67,10 @@ namespace WebServiceLayer.Controllers
                 return NotFound("User Id does not exists!");
             }
 
-            var titles = _titleRepository.SearchText(id, searchText, queryString);
-            var count = _titleRepository.GetSearchTextCount(id, searchText);
+            var resultQuery = _titleRepository.SearchText(id, searchText, queryString);
+            var titles = (IEnumerable<SearchTitle>)resultQuery[0];
             var items = titles.Select(GetSearchTitleViewModel);
+            var count = (int)resultQuery[1];
 
             if (titles.Count() == 0)
             {
