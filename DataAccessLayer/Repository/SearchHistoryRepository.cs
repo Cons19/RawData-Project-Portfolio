@@ -19,6 +19,7 @@ namespace DataAccessLayer.Repository
         public IEnumerable<SearchHistory> GetSearchHistoryByUserId(int userId, QueryString queryString)
         {
             return context.SearchHistory.ToArray().Where(x => x.UserId == userId)
+                    .OrderByDescending(x => x.CreatedAt)
                     .Skip(queryString.Page * queryString.PageSize)
                     .Take(queryString.PageSize)
                     .ToList();

@@ -39,6 +39,10 @@ namespace DataAccessLayer.Repository
                     .Take(queryString.PageSize)
                     .ToList();
         }
+        public int GetSearchTextCount(int id, string searchText)
+        {
+            return context.SearchTitle.FromSqlInterpolated($"SELECT * FROM search_string({id},{searchText})").Count();
+        }
 
         public IEnumerable<StructuredStringSearch> StructuredStringSearch(int userId, string? title, string? plot, string? inputCharacter, string? personName, QueryString queryString)
         {
@@ -84,6 +88,10 @@ namespace DataAccessLayer.Repository
                     .Skip(queryString.Page * queryString.PageSize)
                     .Take(queryString.PageSize)
                     .ToList();
+        }
+        public int NumberOfSearchText()
+        {
+            return context.SearchTitle.Count();
         }
 
         public int NumberOfTitles()

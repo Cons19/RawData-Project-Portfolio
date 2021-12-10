@@ -27,7 +27,6 @@ define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
         }
 
         let details = (data) => {
-            // postman.publish("titleDetails", data);
             postman.publish("changeView", "title-details", data);
         }
 

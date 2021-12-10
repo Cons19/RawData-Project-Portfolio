@@ -58,7 +58,7 @@ namespace WebServiceLayer.Controllers
             return Ok(GetTitleViewModel(title));
         }
 
-        [HttpGet("search/{searchText}/user/{id}")]
+        [HttpGet("search/{searchText}/user/{id}", Name = nameof(SearchText))]
         public IActionResult SearchText([FromQuery] QueryString queryString, int id, string searchText)
         {
             // check if user with the given id existss
@@ -68,13 +68,18 @@ namespace WebServiceLayer.Controllers
             }
 
             var titles = _titleRepository.SearchText(id, searchText, queryString);
+            var count = _titleRepository.GetSearchTextCount(id, searchText);
+            var items = titles.Select(GetSearchTitleViewModel);
 
             if (titles.Count() == 0)
             {
                 return NotFound();
             }
 
-            return Ok(titles);
+            // Console.WriteLine(GetSearchTitlesUrl(0, 10, searchText, id));
+            var result = CreateSearchResultModel(queryString, count, items, searchText, id);
+
+            return Ok(result);
         }
 
         // Query is string-based. So an example would be api/titles/structured-search?plot=see&personName=Mads+miKkelsen&userId=1
@@ -188,6 +193,16 @@ namespace WebServiceLayer.Controllers
             };
         }
 
+
+        private SearchTitleViewModel GetSearchTitleViewModel(SearchTitle title)
+        {
+            return new SearchTitleViewModel
+            {
+                Id = title.Id,
+                PrimaryTitle = title.PrimaryTitle,
+            };
+        }
+
         private object CreateResultModel(QueryString queryString, int total, IEnumerable<TitleViewModel> model)
         {
             return new
@@ -199,6 +214,19 @@ namespace WebServiceLayer.Controllers
                 items = model
             };
         }
+
+        private object CreateSearchResultModel(QueryString queryString, int total, IEnumerable<SearchTitleViewModel> model, string searchText, int userId)
+        {
+            return new
+            {
+                total,
+                prev = CreateNextPageSearchTextLink(queryString, searchText, userId),
+                cur = CreateCurrentPageSearchTextLink(queryString, searchText, userId),
+                next = CreateNextPageSearchTextLink(queryString, total, searchText, userId),
+                items = model
+            };
+        }
+
 
         private string CreateNextPageLink(QueryString queryString, int total)
         {
@@ -223,10 +251,30 @@ namespace WebServiceLayer.Controllers
                 nameof(GetTitles),
                 new { page, pageSize });
         }
-
         private static int GetLastPage(int pageSize, int total)
         {
             return (int)Math.Ceiling(total / (double)pageSize) - 1;
+        }
+
+        private string GetSearchTitlesUrl(int page, int pageSize, string searchText, int userId)
+        {
+            return $"http://localhost:5000/api/titles/search/{searchText}/user/{userId}?page={page}&pageSize={pageSize}";
+        }
+
+        private string CreateNextPageSearchTextLink(QueryString queryString, int total, string searchText, int userId)
+        {
+            var lastPage = GetLastPage(queryString.PageSize, total);
+            return queryString.Page >= lastPage ? null : GetSearchTitlesUrl(queryString.Page + 1, queryString.PageSize, searchText, userId);
+        }
+
+        private string CreateCurrentPageSearchTextLink(QueryString queryString, string searchText, int userId)
+        {
+            return GetSearchTitlesUrl(queryString.Page, queryString.PageSize, searchText, userId);
+        }
+
+        private string CreateNextPageSearchTextLink(QueryString queryString, string searchText, int userId)
+        {
+            return queryString.Page <= 0 ? null : GetSearchTitlesUrl(queryString.Page - 1, queryString.PageSize, searchText, userId);
         }
     }
 }
