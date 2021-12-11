@@ -24,7 +24,8 @@
         personDetailsComponent: "components/person-details/person-details",
         registerComponent: "components/register/register",
         userDetailsComponent: "components/user-details/user-details",
-        structuredSearchComponent: "components/structured-search/structured-search"
+        structuredSearchComponent: "components/structured-search/structured-search",
+        popularActorsComponent: "components/popular-actors/popular-actors"
     }
 });
 
@@ -73,6 +74,10 @@ require(['knockout'], (ko) => {
     ko.components.register("structured-search", {
         viewModel: { require: "components/structured-search/structured-search" },
         template: { require: "text!components/structured-search/structured-search.html" }
+    });
+    ko.components.register("popular-actors", {
+        viewModel: { require: "components/popular-actors/popular-actors" },
+        template: { require: "text!components/popular-actors/popular-actors.html" }
     });
 });
 
