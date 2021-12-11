@@ -23,6 +23,7 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
         { title: "Person", component: "person" },
         { title: "Structured Search", component: "structured-search" },
         { title: "Popular Actors", component: "popular-actors" },
+        { title: "Best Match", component: "best-match" }
     ];
 
     let userItems = [
