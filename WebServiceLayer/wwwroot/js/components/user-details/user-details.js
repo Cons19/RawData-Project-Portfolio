@@ -5,7 +5,7 @@ define(["knockout", "userService", "postman"], function (ko, us, postman) {
         let password = ko.observable();
         let userId = JSON.parse(atob(localStorage.getItem("jwt").split('.')[1])).id;
         let url = "api/users/" + userId;
-    
+
         name(params.name);
         email(params.email);
         password(params.password);
