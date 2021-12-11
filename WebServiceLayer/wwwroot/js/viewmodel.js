@@ -14,7 +14,7 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
     } else {
         document.getElementsByTagName("nav")[0].style.display = "none";
         currentView = ko.observable("login-user");
-        localStorage.removeItem("jwt")
+        localStorage.removeItem("jwt");
     }
 
     let menuItems = [
@@ -35,27 +35,22 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
     };
 
     let changeUserContent = menuItem => {
-        if (isUserAuth) {
-            if (menuItem.title == "Logout") {
-                logout();
-                return;
-            }
-            if (menuItem.title = "Profile")
-            {
-                let userId = JSON.parse(atob(localStorage.getItem("jwt").split('.')[1])).id;
-                let url = "api/users/" + userId;
-                us.getUserById(json => {
-                    if (json !== undefined) {
-                        postman.publish("changeView", "user-details", json);
-                    }
-                }, url);
-            } else {
-                postman.publish("changeView", menuItem.component);
-            }
-        } else {
-            alert("Please login!");
+        if (menuItem.title == "Logout") {
+            logout();
+            return;
         }
-        postman.publish("changeView", menuItem.component);
+        if (menuItem.title = "Profile")
+        {
+            let userId = JSON.parse(atob(localStorage.getItem("jwt").split('.')[1])).id;
+            let url = "api/users/" + userId;
+            us.getUserById(json => {
+                if (json !== undefined) {
+                    postman.publish("changeView", "user-details", json);
+                }
+            }, url);
+        } else {
+            postman.publish("changeView", menuItem.component);
+        }
     };
 
     let logout = () => {
