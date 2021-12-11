@@ -23,14 +23,6 @@
         { title: "Person", component: "person" },
     ];
 
-    let changeContent = menuItem => {
-        if (isUserAuth) {
-            postman.publish("changeView", menuItem.component);
-        } else {
-            alert("Please login!");
-        }
-    };
-
     let userItems = [
         { title: "Profile", component: "user-details" },
         { title: "Search History", component: "search-history" },
@@ -39,10 +31,6 @@
     ];
 
     let changeContent = menuItem => {
-        if (menuItem.title == "Logout") {
-            logout()
-            return
-        }
         postman.publish("changeView", menuItem.component);
     };
 
