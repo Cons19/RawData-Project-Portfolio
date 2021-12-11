@@ -1,4 +1,4 @@
-﻿define(["knockout", "postman", "searchService"], function (ko, postman, ss) {
+﻿define(["knockout", "postman", "searchService", "userService"], function (ko, postman, ss, us) {
     isUserAuth = localStorage.getItem("jwt");
 
     let currentView;
@@ -38,7 +38,18 @@
                 logout();
                 return;
             }
-            postman.publish("changeView", menuItem.component);
+            if (menuItem.title = "Profile")
+            {
+                let userId = JSON.parse(atob(localStorage.getItem("jwt").split('.')[1])).id;
+                let url = "api/users/" + userId;
+                us.getUserById(json => {
+                    if (json !== undefined) {
+                        postman.publish("changeView", "user-details", json);
+                    }
+                }, url);
+            } else {
+                postman.publish("changeView", menuItem.component);
+            }
         } else {
             alert("Please login!");
         }

@@ -12,7 +12,7 @@ define(["knockout", "searchHistoryService", "postman"], function (ko, shs, postm
         }
 
         shs.getSearchHistory(json => {
-            if (json !== undefined ) {
+            if (json !== undefined) {
                 searchHistory(json);
             }
         }, url);

@@ -26,7 +26,7 @@ define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
                 cur = json.cur;
                 next = json.next;
             }, prev)
-        }
+        };
 
         let nextPageButton = () => {
             ts.getTitles((json) => {
@@ -35,12 +35,12 @@ define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
                 cur = json.cur;
                 next = json.next;
             }, next)
-        }
+        };
         
         let details = (data) => {
             data.currentPage = cur;
             postman.publish("changeView", "title-details", data);
-        }
+        };
 
         return {
             titles,

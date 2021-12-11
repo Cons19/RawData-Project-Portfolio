@@ -13,7 +13,7 @@ namespace DataAccessLayer.Repository
         User GetUserByEmail(string email);
         void CreateUser(User user);
         User LoginUser(string email, string password);
-        void UpdateUser(User user);
+        void UpdateUser(User user, bool passChanged);
         bool DeleteUser(int id);
         void Save();
     }
