@@ -18,7 +18,7 @@
                 callback(json);
             })
             .catch(function (error) {
-                errorMessage = document.getElementById("error-message")
+                errorMessage = document.getElementById("error-message");
                 if (errorMessage != null) {
                     errorMessage.textContent = "Unable to login this user."
                 }

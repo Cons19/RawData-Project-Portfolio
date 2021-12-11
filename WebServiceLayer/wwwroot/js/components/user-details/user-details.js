@@ -29,17 +29,12 @@ define(["knockout", "userService", "postman"], function (ko, us, postman) {
             }, url);
         };
 
-        let back = () => {
-            postman.publish("changeView", "dashboard");  
-        };
-
         return {
             name,
             email,
             password,
             update,
-            remove,
-            back  
+            remove
         }
     };
 });

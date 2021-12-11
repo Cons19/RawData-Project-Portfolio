@@ -21,6 +21,7 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
         { title: "Dashboard", component: "dashboard" },
         { title: "Title", component: "title" },
         { title: "Person", component: "person" },
+        { title: "Structured Search", component: "structured-search" },
     ];
 
     let userItems = [

@@ -12,6 +12,7 @@
         searchHistoryService: "services/searchHistory",
         searchService: "services/searchResult",
         userService: "services/userService",
+        functionService: "services/functionService",
         
         dashboard: "components/dashboard/dashboard",
         loginComponent: "components/login/login",
@@ -22,7 +23,8 @@
         searchResultComponent: "components/search-result/search-result",
         personDetailsComponent: "components/person-details/person-details",
         registerComponent: "components/register/register",
-        userDetailsComponent: "components/user-details/user-details"
+        userDetailsComponent: "components/user-details/user-details",
+        structuredSearchComponent: "components/structured-search/structured-search"
     }
 });
 
@@ -67,6 +69,10 @@ require(['knockout'], (ko) => {
     ko.components.register("user-details", {
         viewModel: { require: "components/user-details/user-details" },
         template: { require: "text!components/user-details/user-details.html" }
+    });
+    ko.components.register("structured-search", {
+        viewModel: { require: "components/structured-search/structured-search" },
+        template: { require: "text!components/structured-search/structured-search.html" }
     });
 });
 
