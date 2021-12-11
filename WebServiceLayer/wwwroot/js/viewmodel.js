@@ -40,7 +40,7 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
             logout();
             return;
         }
-        if (menuItem.title = "Profile")
+        if (menuItem.title == "Profile")
         {
             let userId = JSON.parse(atob(localStorage.getItem("jwt").split('.')[1])).id;
             let url = "api/users/" + userId;
