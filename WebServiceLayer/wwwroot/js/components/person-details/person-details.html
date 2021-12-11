@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 card text-dark bg-secondary mb-3 mt-3" style="width: 100%; height: 100%;">
+            <div class="card-header">
+                <h5 class="d-flex justify-content-between align-items-center">
+                    <span style="color: #fff;">Person Details</span>
+                    <button class="btn btn-secondary float-right" data-bind="click: back">Back</button>
+                </h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Birth Year</th>
+                            <th>Death Year</th>
+                            <th>Rating<th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-bind="text: person()['name'] ? person()['name'] : 'N/A'"></td>
+                            <td data-bind="text: person()['birthYear'] !== '    ' ? person()['birthYear'] : 'N/A'"></td>
+                            <td data-bind="text: person()['deathYear'] !== '    ' ? person()['deathYear'] : 'N/A'"></td>
+                            <td data-bind="text: person()['rating'] ? person()['rating'] : 'N/A'"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

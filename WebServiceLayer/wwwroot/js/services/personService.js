@@ -14,6 +14,6 @@ define([], () => {
     };
 
     return {
-        getPersons,
+        getPersons
     }
 });

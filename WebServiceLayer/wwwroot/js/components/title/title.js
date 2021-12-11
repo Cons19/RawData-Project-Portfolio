@@ -36,8 +36,7 @@ define(["knockout", "titleService", "postman"], function (ko, ts, postman) {
                 next = json.next;
             }, next)
         }
-
-
+        
         let details = (data) => {
             data.currentPage = cur;
             postman.publish("changeView", "title-details", data);
