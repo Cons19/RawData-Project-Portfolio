@@ -14,10 +14,9 @@
         ratingHistoryService: "services/ratingHistoryService",
         userService: "services/userService",
         functionService: "services/functionService",
+        bookmarkService: "services/bookmarkService",
 
         loginComponent: "components/login/login",
-        bookmarkService: "services/bookmarkService",
-        
         titleComponent: "components/title/title",
         tileDetailsComponent: "components/title/details/details",
         personComponent: "components/person/person",
@@ -30,9 +29,9 @@
         popularActorsComponent: "components/popular-actors/popular-actors",
         bestMatchComponent: "components/best-match/best-match",
         exactMatchComponent: "components/best-match/exact-match",
-        ratingHistoryComponent: "components/rating-history/rating-history"
+        ratingHistoryComponent: "components/rating-history/rating-history",
         bookmarkTitleComponent: "components/bookmark-title/bookmark-title",
-        bookmarkPersonComponent: "components/bookmark-person/bookmark-person",
+        bookmarkPersonComponent: "components/bookmark-person/bookmark-person"
     }
 });
 
