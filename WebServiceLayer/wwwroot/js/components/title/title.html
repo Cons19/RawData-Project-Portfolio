@@ -25,46 +25,86 @@
                             <td>
                                 <div class="container">
                                     <div class="reviewStars">
-                                            <span data-rating="1">
-                                                <!-- ko if: (rating >= 1)-->
-                                                <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
-                                                <!-- /ko -->
-                                                <!-- ko if: !(rating >= 1)-->
-                                                <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
-                                                <!-- /ko -->
-                                            </span>
-                                            <span data-rating="2">
-                                                <!-- ko if: (rating >= 2)-->
-                                                <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
-                                                <!-- /ko -->
-                                                <!-- ko if: !(rating >= 2)-->
-                                                <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
-                                                <!-- /ko -->
-                                            </span>
-                                            <span data-rating="3">
-                                                <!-- ko if: (rating >= 3)-->
-                                                <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
-                                                <!-- /ko -->
-                                                <!-- ko if: !(rating >= 3)-->
-                                                <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
-                                                <!-- /ko -->
-                                            </span>
-                                            <span data-rating="4">
-                                                <!-- ko if: (rating >= 4)-->
-                                                <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
-                                                <!-- /ko -->
-                                                <!-- ko if: !(rating >= 4)-->
-                                                <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
-                                                <!-- /ko -->
-                                            </span>
-                                            <span data-rating="5">
-                                                <!-- ko if: (rating >= 5)-->
-                                                <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
-                                                <!-- /ko -->
-                                                <!-- ko if: !(rating >= 5)-->
-                                                <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
-                                                <!-- /ko -->
-                                            </span>
+                                        <span data-rating="1">
+                                            <!-- ko if: (rating >= 1)-->
+                                            <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                            <!-- ko if: !(rating >= 1)-->
+                                            <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                        </span>
+                                        <span data-rating="2">
+                                            <!-- ko if: (rating >= 2)-->
+                                            <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                            <!-- ko if: !(rating >= 2)-->
+                                            <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                        </span>
+                                        <span data-rating="3">
+                                            <!-- ko if: (rating >= 3)-->
+                                            <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                            <!-- ko if: !(rating >= 3)-->
+                                            <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                        </span>
+                                        <span data-rating="4">
+                                            <!-- ko if: (rating >= 4)-->
+                                            <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                            <!-- ko if: !(rating >= 4)-->
+                                            <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                        </span>
+                                        <span data-rating="5">
+                                            <!-- ko if: (rating >= 5)-->
+                                            <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                            <!-- ko if: !(rating >= 5)-->
+                                            <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                        </span>
+                                        <span data-rating="6">
+                                            <!-- ko if: (rating >= 6)-->
+                                            <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                            <!-- ko if: !(rating >= 6)-->
+                                            <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                        </span>
+                                        <span data-rating="7">
+                                            <!-- ko if: (rating >= 7)-->
+                                            <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                            <!-- ko if: !(rating >= 7)-->
+                                            <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                        </span>
+                                        <span data-rating="8">
+                                            <!-- ko if: (rating >= 8)-->
+                                            <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                            <!-- ko if: !(rating >= 8)-->
+                                            <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                        </span>
+                                        <span data-rating="9">
+                                            <!-- ko if: (rating >= 9)-->
+                                            <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                            <!-- ko if: !(rating >= 9)-->
+                                            <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                        </span>
+                                        <span data-rating="10">
+                                            <!-- ko if: (rating >= 10)-->
+                                            <i class="fas fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'yellow'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                            <!-- ko if: !(rating >= 10)-->
+                                            <i class="far fa-star" data-bind="click: $parent.updateRate, style:{'cursor': 'pointer', 'color': 'black'}, event: { mouseover: mouseOverRate, mouseout: mouseOutRate}"></i>
+                                            <!-- /ko -->
+                                        </span>
                                     </div>
                                 </div>
                             </td>
@@ -75,7 +115,7 @@
                                     </svg>
                                 </div>
 
-                                <div data-bind="visible: bookmarked === true" style="cursor:pointer">
+                                <div data-bind="visible: bookmarked === true" style="cursor: pointer; color: red">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16" data-bind="click: $parent.unbookmark">
                                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                                     </svg>

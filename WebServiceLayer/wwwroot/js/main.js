@@ -31,7 +31,8 @@
         exactMatchComponent: "components/best-match/exact-match",
         ratingHistoryComponent: "components/rating-history/rating-history",
         bookmarkTitleComponent: "components/bookmark-title/bookmark-title",
-        bookmarkPersonComponent: "components/bookmark-person/bookmark-person"
+        bookmarkPersonComponent: "components/bookmark-person/bookmark-person",
+        findPersonByProfessionComponent: "components/find-person-by-profession/find-person-by-profession",
     }
 });
 
@@ -100,6 +101,10 @@ require(['knockout'], (ko) => {
     ko.components.register("bookmark-person", {
         viewModel: { require: "components/bookmark-person/bookmark-person" },
         template: { require: "text!components/bookmark-person/bookmark-person.html" }
+    });
+    ko.components.register("find-person-by-profession", {
+        viewModel: { require: "components/find-person-by-profession/find-person-by-profession" },
+        template: { require: "text!components/find-person-by-profession/find-person-by-profession.html" }
     });
 });
 
