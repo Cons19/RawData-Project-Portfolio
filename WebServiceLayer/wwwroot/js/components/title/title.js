@@ -27,7 +27,7 @@ define(["knockout", "titleService", "ratingHistoryService", "postman"], function
                 cur = json.cur;
                 next = json.next;
             }, prev)
-        }
+        };
 
         let nextPageButton = () => {
             ts.getTitles((json) => {
@@ -36,12 +36,12 @@ define(["knockout", "titleService", "ratingHistoryService", "postman"], function
                 cur = json.cur;
                 next = json.next;
             }, next)
-        }
-
+        };
+        
         let details = (data) => {
             data.currentPage = cur;
             postman.publish("changeView", "title-details", data);
-        }
+        };
 
 		updateRate = (data, event) => {
             payload = {

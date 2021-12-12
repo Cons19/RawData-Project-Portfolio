@@ -11,6 +11,7 @@ namespace DataAccessLayer.Repository
         IEnumerable<RatingHistory> GetRatingHistoryByUserId(int userId, QueryString queryString);
         void CreateRatingHistory(RatingHistory ratingHistory);
         void UpdateRatingHistory(RatingHistory ratingHistory);
+        bool DeleteRatingHistory(int userId);
         void Save();
     }
 }

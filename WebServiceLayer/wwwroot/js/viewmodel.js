@@ -1,9 +1,9 @@
-﻿define(["knockout", "postman", "searchService"], function (ko, postman, ss) {
+define(["knockout", "postman", "searchService", "userService"], function (ko, postman, ss, us) {
     let isTokenExpired = true;
-    const jwt = localStorage.getItem("jwt")
+    const jwt = localStorage.getItem("jwt");
 
     if (jwt) {
-        isTokenExpired = !(JSON.parse(atob(jwt.split('.')[1])).exp < Date.now())
+        isTokenExpired = !(JSON.parse(atob(jwt.split('.')[1])).exp < Date.now());
     }
 
     let currentView;
@@ -14,13 +14,16 @@
     } else {
         document.getElementsByTagName("nav")[0].style.display = "none";
         currentView = ko.observable("login-user");
-        localStorage.removeItem("jwt")
+        localStorage.removeItem("jwt");
     }
 
     let menuItems = [
         { title: "Dashboard", component: "dashboard" },
         { title: "Title", component: "title" },
         { title: "Person", component: "person" },
+        { title: "Structured Search", component: "structured-search" },
+        { title: "Popular Actors", component: "popular-actors" },
+        { title: "Best Match", component: "best-match" }
     ];
 
     let userItems = [
@@ -36,10 +39,21 @@
 
     let changeUserContent = menuItem => {
         if (menuItem.title == "Logout") {
-            logout()
-            return
+            logout();
+            return;
         }
-        postman.publish("changeView", menuItem.component);
+        if (menuItem.title == "Profile")
+        {
+            let userId = JSON.parse(atob(localStorage.getItem("jwt").split('.')[1])).id;
+            let url = "api/users/" + userId;
+            us.getUserById(json => {
+                if (json !== undefined) {
+                    postman.publish("changeView", "user-details", json);
+                }
+            }, url);
+        } else {
+            postman.publish("changeView", menuItem.component);
+        }
     };
 
     let logout = () => {

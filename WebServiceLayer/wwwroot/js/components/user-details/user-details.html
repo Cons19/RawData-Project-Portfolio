@@ -4,7 +4,6 @@
             <div class="card-header">
                 <h5 class="d-flex justify-content-between align-items-center">
                     <span style="color: #fff;">User Details</span>
-                    <button class="btn btn-secondary float-right" data-bind="click: back">Back</button>
                 </h5>
             </div>
             <div class="card-body">
@@ -18,14 +17,22 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <!--
-                            <td data-bind="text: title()['titleType'] ? title()['titleType'] : 'N/A'"></td>
-                            <td data-bind="text: title()['primaryTitle'] ? title()['primaryTitle'] : 'N/A'"></td>
-                            <td data-bind="text: title()['originalTitle'] ? title()['originalTitle'] : 'N/A'"></td>
-                            -->
+                            <td><input type="text" data-bind="value: name ? name : 'N/A'"></td>
+                            <td><input type="text" data-bind="value: email ? email : 'N/A'"></td>
+                            <td><input disabled type="password" data-bind="value: password ? password : 'N/A'"></td>
                         </tr>
                     </tbody>
                 </table>
+
+                <span id="error-message" class="error text-danger"></span>
+
+                <div class="form-group">
+                    <input type="submit" value="Update" data-bind="click: update" class="btn float-end login_btn">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Delete" data-bind="click: remove" class="btn float-end btn-danger" style="margin-right: 5px;">
+                </div> 
             </div>
         </div>
     </div>

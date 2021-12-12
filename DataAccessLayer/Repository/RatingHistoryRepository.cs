@@ -50,6 +50,17 @@ namespace DataAccessLayer.Repository
             context.Entry(ratingHistory).State = EntityState.Modified;
         }
 
+        public bool DeleteRatingHistory(int userId)
+        {
+            IEnumerable<RatingHistory> ratingHistory = context.RatingHistory.ToArray().Where(x => x.UserId == userId);
+            if (!ratingHistory.Any())
+            {
+                return false;
+            }
+            context.RatingHistory.RemoveRange(ratingHistory);
+            return true;
+        }
+
         public void Save()
         {
             context.SaveChanges();

@@ -109,6 +109,16 @@ namespace WebServiceLayer.Controllers
             return Ok(GetRatingHistoryViewModel(ratingHistory));
         }
 
+        [HttpDelete("user/{userId}")]
+        public IActionResult DeleteRatingHistory(int userId)
+        {
+            var isDeleted = _ratingHistoryRepository.DeleteRatingHistory(userId);
+            _ratingHistoryRepository.Save();
+
+            if (isDeleted) return NoContent();
+            return NotFound();
+        }
+
         private RatingHistoryViewModel GetRatingHistoryViewModel(RatingHistory ratingHistory)
         {
             return new RatingHistoryViewModel
