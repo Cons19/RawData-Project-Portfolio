@@ -22,6 +22,11 @@ namespace DataAccessLayer.Repository
             return context.RatingHistory.Find(id);
         }
 
+        public RatingHistory GetRatingHistoryByUserIdAndTitleId(int userId, string titleId)
+        {
+            return context.RatingHistory.Where(x => x.UserId == userId && x.TitleId == titleId).FirstOrDefault();
+        }
+
         public IEnumerable<RatingHistory> GetRatingHistoryByUserId(int userId, QueryString? queryString)
         {
             if (queryString != null)

@@ -11,7 +11,8 @@
         personService: "services/personService",
         searchHistoryService: "services/searchHistory",
         searchService: "services/searchResult",
-        
+        ratingHistoryService: "services/ratingHistory",
+
         dashboard: "components/dashboard/dashboard",
         loginComponent: "components/login/login",
         titleComponent: "components/title/title",

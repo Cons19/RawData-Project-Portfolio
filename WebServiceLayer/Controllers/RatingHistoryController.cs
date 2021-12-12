@@ -84,18 +84,26 @@ namespace WebServiceLayer.Controllers
             return Created("", GetRatingHistoryViewModel(ratingHistory));
         }
 
-        [HttpPut("{id}", Name = nameof(UpdateRatingHistory))]
-        public IActionResult UpdateRatingHistory(int id, RatingHistoryViewModel model)
+        [HttpPut(Name = nameof(UpdateRatingHistory))]
+        public IActionResult UpdateRatingHistory(RatingHistoryViewModel model)
         {
-            var ratingHistory = _ratingHistoryRepository.GetRatingHistory(id);
+            var ratingHistory = _ratingHistoryRepository.GetRatingHistoryByUserIdAndTitleId(model.UserId, model.TitleId);
 
             if (ratingHistory == null)
             {
-                return NotFound();
+                var newRatingHistory = new RatingHistory
+                {
+                    UserId = model.UserId,
+                    TitleId = model.TitleId,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                    Rate = model.Rate
+                };
+                _ratingHistoryRepository.CreateRatingHistory(newRatingHistory);
+                _ratingHistoryRepository.Save();
+                return Ok(GetRatingHistoryViewModel(newRatingHistory));
             }
-
             ratingHistory.Rate = model.Rate;
-
             _ratingHistoryRepository.UpdateRatingHistory(ratingHistory);
             _ratingHistoryRepository.Save();
             return Ok(GetRatingHistoryViewModel(ratingHistory));
