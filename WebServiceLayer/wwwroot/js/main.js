@@ -15,6 +15,7 @@
         userService: "services/userService",
         functionService: "services/functionService",
         bookmarkService: "services/bookmarkService",
+        wordService: "services/wordService",
 
         loginComponent: "components/login/login",
         titleComponent: "components/title/title",
@@ -33,6 +34,7 @@
         bookmarkTitleComponent: "components/bookmark-title/bookmark-title",
         bookmarkPersonComponent: "components/bookmark-person/bookmark-person",
         findPersonByProfessionComponent: "components/find-person-by-profession/find-person-by-profession",
+        wordToWordsComponent: "components/word-to-words/word-to-words",
     }
 });
 
@@ -105,6 +107,10 @@ require(['knockout'], (ko) => {
     ko.components.register("find-person-by-profession", {
         viewModel: { require: "components/find-person-by-profession/find-person-by-profession" },
         template: { require: "text!components/find-person-by-profession/find-person-by-profession.html" }
+    });
+    ko.components.register("word-to-words", {
+        viewModel: { require: "components/word-to-words/word-to-words" },
+        template: { require: "text!components/word-to-words/word-to-words.html" }
     });
 });
 

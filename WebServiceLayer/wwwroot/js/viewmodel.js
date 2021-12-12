@@ -23,8 +23,9 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
         { title: "Structured Search", component: "structured-search" },
         { title: "Popular Actors", component: "popular-actors" },
         { title: "Best Match", component: "best-match" },
-        { title: "Find Person by Profession", component: "find-person-by-profession"},
-        { title: "Exact Match", component: "exact-match" }
+        { title: "Find Person by Profession", component: "find-person-by-profession" },
+        { title: "Exact Match", component: "exact-match" },
+        { title: "Word to words", component: "word-to-words" }
     ];
 
     let userItems = [
