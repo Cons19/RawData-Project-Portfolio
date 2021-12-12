@@ -9,13 +9,11 @@
         loginService: "services/loginService",
         titleService: "services/titleService",
         personService: "services/personService",
-        searchHistoryService: "services/searchHistory",
-        searchService: "services/searchResult",
-        ratingHistoryService: "services/ratingHistory",
-
+        searchHistoryService: "services/searchHistoryService",
+        searchService: "services/searchResultService",
+        ratingHistoryService: "services/ratingHistoryService",
         userService: "services/userService",
         functionService: "services/functionService",
-        ratingHistoryService: "services/ratingHistoryService",
 
         dashboard: "components/dashboard/dashboard",
         loginComponent: "components/login/login",
