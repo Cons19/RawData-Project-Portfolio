@@ -10,7 +10,7 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
     let currentViewParams = ko.observable();
 
     if (!isTokenExpired) {
-        currentView = ko.observable("dashboard");
+        currentView = ko.observable("title");
     } else {
         document.getElementsByTagName("nav")[0].style.display = "none";
         currentView = ko.observable("login-user");
@@ -18,7 +18,6 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
     }
 
     let menuItems = [
-        { title: "Dashboard", component: "dashboard" },
         { title: "Title", component: "title" },
         { title: "Person", component: "person" },
         { title: "Structured Search", component: "structured-search" },

@@ -15,7 +15,6 @@
         userService: "services/userService",
         functionService: "services/functionService",
 
-        dashboard: "components/dashboard/dashboard",
         loginComponent: "components/login/login",
         titleComponent: "components/title/title",
         tileDetailsComponent: "components/title/details/details",
@@ -34,10 +33,6 @@
 
 // component registration
 require(['knockout'], (ko) => {
-    ko.components.register("dashboard", {
-        viewModel: { require: "components/dashboard/dashboard" },
-        template: { require: "text!components/dashboard/dashboard.html" }
-    });
     ko.components.register("login-user", {
         viewModel: { require: "components/login/login" },
         template: { require: "text!components/login/login.html" }

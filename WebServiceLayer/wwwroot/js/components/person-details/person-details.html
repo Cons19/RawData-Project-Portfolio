@@ -30,3 +30,35 @@
         </div>
     </div>
 </div>
+
+<!-- ko if: coActors-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 card text-dark bg-secondary mb-3 mt-3" style="width: 100%; height: 100%;">
+            <div class="card-header">
+                <h5 class="d-flex justify-content-between align-items-center">
+                    <span style="color: #fff;">Co Actors</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Person Id</th>
+                            <th>Name</th>
+                            <th>Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: coActors">
+                        <tr>
+                            <td data-bind="text: personId"></td>
+                            <td data-bind="text: name"></td>
+                            <td data-bind="text: frequency"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->

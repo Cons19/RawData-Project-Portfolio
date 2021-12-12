@@ -8,7 +8,7 @@
             let userCredentials = { email: email(), password: password() };
             ls.loginUser(userCredentials, user => {
                 document.getElementsByTagName("nav")[0].style.display = "block";
-                postman.publish("changeView", "dashboard");
+                postman.publish("changeView", "title");
             });
             email("");
             password("");
