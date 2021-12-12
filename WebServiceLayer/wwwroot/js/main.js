@@ -27,6 +27,7 @@
         structuredSearchComponent: "components/structured-search/structured-search",
         popularActorsComponent: "components/popular-actors/popular-actors",
         bestMatchComponent: "components/best-match/best-match",
+        exactMatchComponent: "components/best-match/exact-match",
         ratingHistoryComponent: "components/rating-history/rating-history"
     }
 });
@@ -78,6 +79,10 @@ require(['knockout'], (ko) => {
         template: { require: "text!components/popular-actors/popular-actors.html" }
     });
     ko.components.register("best-match", {
+        viewModel: { require: "components/best-match/best-match" },
+        template: { require: "text!components/best-match/best-match.html" }
+    });
+    ko.components.register("exact-match", {
         viewModel: { require: "components/best-match/best-match" },
         template: { require: "text!components/best-match/best-match.html" }
     });
