@@ -1,11 +1,11 @@
 define(["knockout", "searchHistoryService", "postman"], function (ko, shs, postman) {
     return function (params) {
-        const jwt = atob(localStorage.getItem("jwt").split('.')[1])
-        const url = "api/search-history/user/" + JSON.parse(jwt).id
+        const jwt = atob(localStorage.getItem("jwt").split('.')[1]);
+        const url = "api/search-history/user/" + JSON.parse(jwt).id;
 
         let searchHistory = ko.observableArray([]);
 
-        let deleteRow = () => {
+        let deleteSearchHistory = () => {
             shs.deleteSearchHistory(() => { }, url);
 
             location.reload();
@@ -20,7 +20,7 @@ define(["knockout", "searchHistoryService", "postman"], function (ko, shs, postm
         
         return {
             searchHistory,
-            deleteRow
+            deleteSearchHistory
         }
     };
 });

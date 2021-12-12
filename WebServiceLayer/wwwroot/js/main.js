@@ -13,6 +13,7 @@
         searchService: "services/searchResult",
         userService: "services/userService",
         functionService: "services/functionService",
+        ratingHistoryService: "services/ratingHistoryService",
         
         dashboard: "components/dashboard/dashboard",
         loginComponent: "components/login/login",
@@ -26,7 +27,8 @@
         userDetailsComponent: "components/user-details/user-details",
         structuredSearchComponent: "components/structured-search/structured-search",
         popularActorsComponent: "components/popular-actors/popular-actors",
-        bestMatchComponent: "components/best-match/best-match"
+        bestMatchComponent: "components/best-match/best-match",
+        ratingHistoryComponent: "components/rating-history/rating-history"
     }
 });
 
@@ -83,6 +85,10 @@ require(['knockout'], (ko) => {
     ko.components.register("best-match", {
         viewModel: { require: "components/best-match/best-match" },
         template: { require: "text!components/best-match/best-match.html" }
+    });
+    ko.components.register("rating-history", {
+        viewModel: { require: "components/rating-history/rating-history" },
+        template: { require: "text!components/rating-history/rating-history.html" }
     });
 });
 
