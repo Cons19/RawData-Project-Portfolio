@@ -1,19 +1,5 @@
 define([], () => {
-
-    let getPersons = (callback, url) => {
-        fetch(url, {
-            method: 'GET',
-            headers: new Headers({
-                'Authorization': 'Bearer ' + localStorage.getItem("jwt")
-            })
-        })
-        .then(response => response.json())
-            .then(json => {
-                callback(json);
-            });
-    };
-
-    let popularActors = (callback, url) => {
+    let getRatingHistory = (callback, url) => {
         fetch(url, {
             method: 'GET',
             headers: new Headers({
@@ -26,10 +12,25 @@ define([], () => {
             });
     };
 
-    let coActors = (callback, url) => {
+    let deleteRatingHistory = (callback, url) => {
         fetch(url, {
-            method: 'GET',
+            method: 'DELETE',
             headers: new Headers({
+                'Authorization': 'Bearer ' + localStorage.getItem("jwt")
+            })
+        })
+            .then(response => response.json())
+            .then(json => {
+                callback(json);
+            });
+    };
+
+    let updateRatingHistory = (callback, url, payload) => {
+        fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(payload),
+            headers: new Headers({
+                'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem("jwt")
             })
         })
@@ -40,8 +41,8 @@ define([], () => {
     };
 
     return {
-        getPersons,
-        popularActors,
-        coActors
+        getRatingHistory,
+        updateRatingHistory,
+        deleteRatingHistory
     }
 });

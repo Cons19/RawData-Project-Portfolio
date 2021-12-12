@@ -22,6 +22,11 @@ namespace DataAccessLayer.Repository
             return context.RatingHistory.Find(id);
         }
 
+        public RatingHistory GetRatingHistoryByUserIdAndTitleId(int userId, string titleId)
+        {
+            return context.RatingHistory.Where(x => x.UserId == userId && x.TitleId == titleId).FirstOrDefault();
+        }
+
         public IEnumerable<RatingHistory> GetRatingHistoryByUserId(int userId, QueryString? queryString)
         {
             if (queryString != null)
@@ -43,6 +48,17 @@ namespace DataAccessLayer.Repository
         public void UpdateRatingHistory(RatingHistory ratingHistory)
         {
             context.Entry(ratingHistory).State = EntityState.Modified;
+        }
+
+        public bool DeleteRatingHistory(int userId)
+        {
+            IEnumerable<RatingHistory> ratingHistory = context.RatingHistory.ToArray().Where(x => x.UserId == userId);
+            if (!ratingHistory.Any())
+            {
+                return false;
+            }
+            context.RatingHistory.RemoveRange(ratingHistory);
+            return true;
         }
 
         public void Save()

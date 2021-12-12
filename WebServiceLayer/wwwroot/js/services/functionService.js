@@ -1,19 +1,5 @@
 define([], () => {
-
-    let getPersons = (callback, url) => {
-        fetch(url, {
-            method: 'GET',
-            headers: new Headers({
-                'Authorization': 'Bearer ' + localStorage.getItem("jwt")
-            })
-        })
-        .then(response => response.json())
-            .then(json => {
-                callback(json);
-            });
-    };
-
-    let popularActors = (callback, url) => {
+    let structuredSearch = (callback, url) => {
         fetch(url, {
             method: 'GET',
             headers: new Headers({
@@ -26,7 +12,7 @@ define([], () => {
             });
     };
 
-    let coActors = (callback, url) => {
+    let bestMatch = (callback, url) => {
         fetch(url, {
             method: 'GET',
             headers: new Headers({
@@ -38,10 +24,9 @@ define([], () => {
                 callback(json);
             });
     };
-
+    
     return {
-        getPersons,
-        popularActors,
-        coActors
+        structuredSearch,
+        bestMatch
     }
 });

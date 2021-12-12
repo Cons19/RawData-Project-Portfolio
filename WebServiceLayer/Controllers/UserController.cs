@@ -38,7 +38,6 @@ namespace WebServiceLayer.Controllers
         [HttpGet("{id}", Name = nameof(GetUser))]
         public IActionResult GetUser(int id)
         {
-            Console.WriteLine(id);
             var user = _userRepository.GetUser(id);
 
             if (user == null)
@@ -74,17 +73,29 @@ namespace WebServiceLayer.Controllers
         public IActionResult UpdateUser(int id, CreateUpdateUserViewModel model)
         {
             var user = _userRepository.GetUser(id);
+            var passChanged = false;
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            user.Name = model.Name;
-            user.Email = model.Email;
-            user.Password = model.Password;
+            if (model.Name is not null) {
+                user.Name = model.Name;
+            }
+                
+            if (model.Email is not null) {
+                user.Email = model.Email;
+            }
+            
+            if (model.Password is not null) {
+                if (!model.Password.Equals(user.Password)) {
+                    passChanged = true;
+                    user.Password = model.Password;
+                }
+            }            
 
-            _userRepository.UpdateUser(user);
+            _userRepository.UpdateUser(user, passChanged);
             _userRepository.Save();
             return Ok(user);
         }
@@ -96,7 +107,10 @@ namespace WebServiceLayer.Controllers
             var isDeleted = _userRepository.DeleteUser(id);
             _userRepository.Save();
 
-            if (isDeleted) return NoContent();
+            if (isDeleted) 
+            {
+                return NoContent();
+            }
             return NotFound();
         }
 

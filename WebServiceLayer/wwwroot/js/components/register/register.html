@@ -1,0 +1,33 @@
+<div class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="card">
+        <div class="card-header">
+            <h3>Register</h3>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="input-group mb-3">
+                    <span class="input-group-icon input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control" data-bind="value: name" placeholder="Name">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-icon input-group-text"><i class="fa fa-envelope"></i></span>
+                    <input type="text" class="form-control" data-bind="value: email" placeholder="Email">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-icon input-group-text"><i class="fas fa-key"></i></span>
+                    <input type="password" class="form-control" data-bind="value: password" placeholder="Password">
+                </div>
+
+                <span id="error-message" class="error text-danger"></span>
+
+                <div class="form-group">
+                    <input type="submit" value="Register" data-bind="click: register" class="btn float-end login_btn">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Cancel" data-bind="click: cancel" class="btn float-start btn-danger">
+                </div>       
+            </form>
+        </div>
+    </div>
+</div>

@@ -112,7 +112,7 @@ namespace Testing
 
             Assert.Equal("em24@email.com", result.Email);
         }
-        
+
         [Fact]
         public void GetUser_InvalidUserEmail_ReturnsNull()
         {
@@ -237,7 +237,7 @@ namespace Testing
 
             Assert.IsType<PostgresException>(result);
         }
-        
+
         [Fact]
         public void StructuredStringSearch_ValidIdValidPlotValidCharacter_TitleRepositoryStructuredStringSearchMustReturnListOfStructuredStringSearch()
         {
@@ -273,8 +273,7 @@ namespace Testing
         [Fact]
         public void CoActor_ValidPersonId_PersonRepositoryCoActorMustReturnListOfCoActor()
         {
-            var result = _personRepository.CoActor("John Cleese", new DataAccessLayer.QueryString()); 
-            Console.WriteLine(result);
+            var result = _personRepository.CoActor("John Cleese", new DataAccessLayer.QueryString());
             Assert.IsType<List<CoActor>>(result);
 
         }
@@ -283,7 +282,6 @@ namespace Testing
         public void CoActor_InvalidPersonId_PersonRepositoryCoActorMustReturnEmptyList()
         {
             var result = _personRepository.CoActor("zzzzzzzzzzzzzz", new DataAccessLayer.QueryString());
-            Console.WriteLine(result);
             Assert.Empty(result);
         }
 

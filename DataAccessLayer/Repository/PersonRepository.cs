@@ -48,9 +48,9 @@ namespace DataAccessLayer.Repository
         }
 
 
-        public IEnumerable<CoActor> CoActor(string personId, QueryString queryString)
+        public IEnumerable<CoActor> CoActor(string personName, QueryString queryString)
         {
-            return context.CoActor.FromSqlInterpolated($"SELECT * FROM find_actors({personId})")
+            return context.CoActor.FromSqlInterpolated($"SELECT * FROM find_actors({personName})")
                     .Skip(queryString.Page * queryString.PageSize)
                     .Take(queryString.PageSize)
                     .ToList();

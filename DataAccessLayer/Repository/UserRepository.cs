@@ -36,12 +36,14 @@ namespace DataAccessLayer.Repository
             return context.User.Where(x => x.Email == email).FirstOrDefault();
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(User user, bool passChanged)
         {
-            string salt = getSalt();
-            string hash = getHash(user.Password + salt);
-            user.Password = hash;
-            user.Salt = salt;
+            if (passChanged) {
+                string salt = getSalt();
+                string hash = getHash(user.Password + salt);
+                user.Password = hash;
+                user.Salt = salt;
+            }
             context.Entry(user).State = EntityState.Modified;
         }
 

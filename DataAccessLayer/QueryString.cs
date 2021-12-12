@@ -13,6 +13,7 @@ namespace DataAccessLayer
         public const int MaxPageSize = 25;
 
         public int Page { get; set; } = 0;
+        public int UserId { get; set; } = 0;
 
         public int PageSize
         {

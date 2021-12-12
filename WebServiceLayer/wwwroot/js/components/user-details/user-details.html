@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 card text-dark bg-secondary mb-3 mt-3" style="width: 100%; height: 100%;">
+            <div class="card-header">
+                <h5 class="d-flex justify-content-between align-items-center">
+                    <span style="color: #fff;">User Details</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" data-bind="value: name ? name : 'N/A'"></td>
+                            <td><input type="text" data-bind="value: email ? email : 'N/A'"></td>
+                            <td><input disabled type="password" data-bind="value: password ? password : 'N/A'"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <span id="error-message" class="error text-danger"></span>
+
+                <div class="form-group">
+                    <input type="submit" value="Update" data-bind="click: update" class="btn float-end login_btn">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Delete" data-bind="click: remove" class="btn float-end btn-danger" style="margin-right: 5px;">
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>

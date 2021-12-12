@@ -13,6 +13,7 @@ using DataAccessLayer.Domain.Functions;
 using DataAccessLayer.Repository;
 using DataAccessLayer.Repository.Interfaces;
 
+
 namespace WebServiceLayer.Controllers
 {
     [Authorization]
@@ -24,23 +25,26 @@ namespace WebServiceLayer.Controllers
         LinkGenerator _linkGenerator;
         IUserRepository _userRepository;
         IUpdatePersonsRatingRepository _updatePersonsRatingRepository;
+        IRatingHistoryRepository _ratingHistoryRepository;
 
-        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository, IUpdatePersonsRatingRepository updatePersonsRatingRepository)
+        public TitleController(ITitleRepository titleRepository, LinkGenerator linkGenerator, IUserRepository userRepository, IUpdatePersonsRatingRepository updatePersonsRatingRepository, IRatingHistoryRepository ratingHistoryRepository)
         {
             _titleRepository = titleRepository;
             _linkGenerator = linkGenerator;
             _userRepository = userRepository;
+            _ratingHistoryRepository = ratingHistoryRepository;
             _updatePersonsRatingRepository = updatePersonsRatingRepository;
         }
 
         [HttpGet(Name = nameof(GetTitles))]
         public IActionResult GetTitles([FromQuery] QueryString queryString)
         {
+            var userId = queryString.UserId;
             var titles = _titleRepository.GetTitles(queryString);
+            var items = titles.Select(GetTitleViewModel).ToList();
 
-            var items = titles.Select(GetTitleViewModel);
-
-            var result = CreateResultModel(queryString, _titleRepository.NumberOfTitles(), items);
+            var ratingHistory = _ratingHistoryRepository.GetRatingHistoryByUserId(userId, null).ToList();
+            var result = CreateResultModel(queryString, _titleRepository.NumberOfTitles(), items, ratingHistory);
 
             return Ok(result);
         }
@@ -205,8 +209,19 @@ namespace WebServiceLayer.Controllers
             };
         }
 
-        private object CreateResultModel(QueryString queryString, int total, IEnumerable<TitleViewModel> model)
+        private object CreateResultModel(QueryString queryString, int total, IList<TitleViewModel> model, IList<RatingHistory> ratingHistory)
         {
+            foreach (TitleViewModel element in model)
+            {
+                foreach (RatingHistory rating in ratingHistory)
+                {
+                    if (rating.TitleId == element.Id)
+                    {
+                        element.Rating = rating.Rate;
+                    }
+                }
+            }
+
             return new
             {
                 total,
@@ -233,25 +248,25 @@ namespace WebServiceLayer.Controllers
         private string CreateNextPageLink(QueryString queryString, int total)
         {
             var lastPage = GetLastPage(queryString.PageSize, total);
-            return queryString.Page >= lastPage ? null : GetTitlesUrl(queryString.Page + 1, queryString.PageSize);
+            return queryString.Page >= lastPage ? null : GetTitlesUrl(queryString.UserId, queryString.Page + 1, queryString.PageSize);
         }
 
         private string CreateCurrentPageLink(QueryString queryString)
         {
-            return GetTitlesUrl(queryString.Page, queryString.PageSize);
+            return GetTitlesUrl(queryString.UserId, queryString.Page, queryString.PageSize);
         }
 
         private string CreateNextPageLink(QueryString queryString)
         {
-            return queryString.Page <= 0 ? null : GetTitlesUrl(queryString.Page - 1, queryString.PageSize);
+            return queryString.Page <= 0 ? null : GetTitlesUrl(queryString.UserId, queryString.Page - 1, queryString.PageSize);
         }
 
-        private string GetTitlesUrl(int page, int pageSize)
+        private string GetTitlesUrl(int userId, int page, int pageSize)
         {
             return _linkGenerator.GetUriByName(
                 HttpContext,
                 nameof(GetTitles),
-                new { page, pageSize });
+                new { userId, page, pageSize });
         }
         private static int GetLastPage(int pageSize, int total)
         {

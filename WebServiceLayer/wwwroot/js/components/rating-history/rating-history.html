@@ -3,20 +3,21 @@
         <div class="col-sm-12 card text-dark bg-secondary mb-3 mt-3" style="width: 100%; height: 100%;">
             <div class="card-header">
                 <h5 class="d-flex justify-content-between align-items-center">
-                    <span style="color: #fff;">Search History</span>
-                    <button class="btn btn-danger btn-sm float-right" type="button "data-bind="click: deleteSearchHistory">Delete Search History</button>
+                    <span style="color: #fff;">Rating History</span>
+                    <button class="btn btn-danger btn-sm float-right" type="button "data-bind="click: deleteRatingHistory">Delete Rating History</button>
                 </h5>
             </div>
 
             <div class="card-body">
                 <table class="table">
                     <thead>
-                        <tr><th>Search Text</th><th>Date</th></tr>
+                        <tr><th>Title Id</th><th>Date</th><th>Rate</th></tr>
                     </thead>
-                    <tbody data-bind="foreach: searchHistory">
+                    <tbody data-bind="foreach: ratingHistory">
                         <tr>
-                            <td data-bind="text: searchText"></td>
+                            <td data-bind="text: titleId"></td>
                             <td data-bind="text: createdAt"></td>
+                            <td data-bind="text: rate"></td>
                         </tr>
                     </tbody>
                 </table>
