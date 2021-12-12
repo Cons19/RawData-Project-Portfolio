@@ -181,6 +181,7 @@ namespace WebServiceLayer.Controllers
             {
                 // Some IDs have a space encoded as %20. Here we remove the encoding from the URL
                 Url = (_linkGenerator.GetUriByName(HttpContext, nameof(GetTitle), new { title.Id })).Replace("%20", ""),
+                Id = title.Id,
                 TitleType = title.TitleType,
                 PrimaryTitle = title.PrimaryTitle,
                 OriginalTitle = title.OriginalTitle,

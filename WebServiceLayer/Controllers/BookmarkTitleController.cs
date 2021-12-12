@@ -123,6 +123,7 @@ namespace WebServiceLayer.Controllers
             return new BookmarkTitleViewModel
             {
                 Url = _linkGenerator.GetUriByName(HttpContext, nameof(GetBookmarkTitle), new { bookmarkTitle.Id }),
+                Id = bookmarkTitle.Id,
                 UserId = bookmarkTitle.UserId,
                 TitleId = bookmarkTitle.TitleId
             };

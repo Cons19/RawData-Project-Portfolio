@@ -15,6 +15,7 @@ require.config({
         personService: "services/personService",
         searchHistoryService: "services/searchHistory",
         searchService: "services/searchResult",
+        bookmarkService: "services/bookmarkService",
         
         dashboard: "components/dashboard/dashboard",
         loginComponent: "components/user/login",
@@ -25,6 +26,8 @@ require.config({
         searchHistoryComponent: "components/search-history/search-history",
         searchResultComponent: "components/search-result/search-result",
         personDetailsComponent: "components/person-details/person-details",
+        bookmarkTitleComponent: "components/bookmark-title/bookmark-title",
+        bookmarkPersonComponent: "components/bookmark-person/bookmark-person",
     }
 });
 
@@ -61,6 +64,14 @@ require(['knockout'], (ko) => {
     ko.components.register("person-details", {
         viewModel: { require: "components/person-details/person-details" },
         template: { require: "text!components/person-details/person-details.html" }
+    });
+    ko.components.register("bookmark-title", {
+        viewModel: { require: "components/bookmark-title/bookmark-title" },
+        template: { require: "text!components/bookmark-title/bookmark-title.html" }
+    });
+    ko.components.register("bookmark-person", {
+        viewModel: { require: "components/bookmark-person/bookmark-person" },
+        template: { require: "text!components/bookmark-person/bookmark-person.html" }
     });
 });
 

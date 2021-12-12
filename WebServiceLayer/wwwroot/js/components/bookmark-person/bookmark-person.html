@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="card text-dark bg-secondary mb-3 mt-3" style="color: #fff; width: 100%; height: 100%;">
+            <div class="card-header">Person list</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr><th>Id</th><th>Person</th></tr>
+                    </thead>
+                    <tbody data-bind="foreach: bookmarkPersons">
+                        <tr>
+                            <td data-bind="text: personId"></td>
+                            <!--<td data-bind="text: personName"></td>-->
+                            <td>
+                                <button class="btn btn-danger btn-sm float-right" type="button" data-bind="click: $parent.deleteRow">Remove Bookmark</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

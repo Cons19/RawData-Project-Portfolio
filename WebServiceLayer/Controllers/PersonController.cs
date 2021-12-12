@@ -99,6 +99,7 @@ namespace WebServiceLayer.Controllers
             return new PersonViewModel
             {
                 Url = (_linkGenerator.GetUriByName(HttpContext, nameof(GetPerson), new { person.Id })).Replace("%20", ""),
+                Id = person.Id,
                 Name = person.Name,
                 BirthYear = person.BirthYear,
                 DeathYear = person.DeathYear,

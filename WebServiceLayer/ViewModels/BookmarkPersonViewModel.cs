@@ -8,6 +8,7 @@ namespace WebServiceLayer.ViewModels
     public class BookmarkPersonViewModel
     {
         public string Url { get; set; }
+        public int Id { get; set; }
         public int UserId { get; set; }
         public string PersonId { get; set; }
 

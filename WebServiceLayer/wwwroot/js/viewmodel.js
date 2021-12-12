@@ -29,6 +29,8 @@
         { title: "Profile", component: "#" },
         { title: "Search History", component: "search-history" },
         { title: "Rating History", component: "rating-history" },
+        { title: "Bookmark Titles", component: "bookmark-title" },
+        { title: "Bookmark Persons", component: "bookmark-person" },
         { title: "Logout"}
     ];
 
