@@ -12,7 +12,7 @@
                     <thead>
                         <tr>
                             <th>Title Type</th>
-                            <th>Primary Type</th>
+                            <th>Primary Title</th>
                             <th>Original Title</th>
                             <th>Is Adult</th>
                             <th>Start Year</th>
@@ -31,8 +31,30 @@
                             <td data-bind="text: title()['startYear'] !== '    ' ? title()['startYear'] : 'N/A'"></td>
                             <td data-bind="text: title()['endYear'] !== '    ' ? title()['endYear'] : 'N/A'"></td>
                             <td data-bind="text: title()['runTimeMinutes'] ? title()['runTimeMinutes'] : 'N/A'"></td>
-                            <td> <img width="100px" data-bind="attr: title()['poster'] ? {src: title()['poster']} : {src: 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png'}"/></td>
+                            <td> <img width="100px" data-bind="attr: title()['poster'] ? {src: title()['poster']} : {src: 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png'}" /></td>
                             <td data-bind="text: title()['awards'] ? title()['awards'] : 'N/A'"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5 class="d-flex justify-content-between align-items-center">
+                    <span style="color: #fff;">Similar Titles</span>
+                </h5>
+                <div>
+                    <span id="error-message" class="error text-warning alert-link"></span>
+                </div>
+                <table class="table" id="similarTitles">
+                    <thead>
+                        <tr>
+                            <th>Primary Title</th>
+                            <th>Start Year</th>
+                            <th>Genre</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: similarTitles">
+                        <tr>
+                            <td data-bind="text: name ? name : 'N/A'"></td>
+                            <td data-bind="text: startYear !== '    ' ? startYear : 'N/A'"></td>
+                            <td data-bind="text: genre ? genre : 'N/A'"></td>
                         </tr>
                     </tbody>
                 </table>
