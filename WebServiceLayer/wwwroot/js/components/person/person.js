@@ -55,17 +55,22 @@ define(["knockout", "personService", "bookmarkService", "postman"], function (ko
 
         function setBookmarkPersonHearts(json) {
             bs.getBookmarkPerson((bookmarkPersons) => {
-                json.items.forEach((person) => {
-                    bookmarkPersons.forEach(bookmarkPerson => {
-                        if (person.id === bookmarkPerson.personId) {
-                            person.bookmarked = true;
-                            person.bookmarkPersonId = bookmarkPerson.id;
-                        } else if (person.id !== bookmarkPerson.userId && person.bookmarked !== true) {
-                            person.bookmarked = false;
-                        }
+                if (bookmarkPersons.status !== 404) {
+                    json.items.forEach((person) => {
+                        bookmarkPersons.forEach(bookmarkPerson => {
+                            if (person.id === bookmarkPerson.personId) {
+                                person.bookmarked = true;
+                                person.bookmarkPersonId = bookmarkPerson.id;
+                            } else if (person.id !== bookmarkPerson.userId && person.bookmarked !== true) {
+                                person.bookmarked = false;
+                            }
+                        });
                     });
-                });
-
+                } else {
+                    json.items.forEach((person) => {
+                        person.bookmarked = false;
+                    });
+                }
                 persons(json.items);
                 prev = json.prev;
                 cur = json.cur;

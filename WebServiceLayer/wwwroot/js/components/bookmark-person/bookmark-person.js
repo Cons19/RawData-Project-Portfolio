@@ -5,12 +5,12 @@ define(["knockout", "bookmarkService", "personService", "postman"], function (ko
 
         let bookmarkPersons = ko.observableArray([]);
         bs.getBookmarkPerson(json => {
-            //json.forEach((bookmark) => {
-            //    let getPersonByIdURL = "api/persons/" + bookmark.personId.trim()
-            //    ps.getPersons(person => {
-            //        bookmark.personName = person.name;
-            //    }, getPersonByIdURL);
-            //});
+            json.forEach((bookmark) => {
+                let getPersonByIdURL = "api/persons/" + bookmark.personId.trim()
+                ps.getPersons(person => {
+                    bookmark.personName = person.name;
+                }, getPersonByIdURL);
+            });
             bookmarkPersons(json);
         }, url);
 

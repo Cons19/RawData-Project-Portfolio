@@ -103,17 +103,22 @@ define(["knockout", "titleService", "ratingHistoryService", "bookmarkService", "
 
         function setBookmarkTitleHearts(json) {
             bs.getBookmarkTitle((bookmarkTitles) => {
-                json.items.forEach((title) => {
-                    bookmarkTitles.forEach(bookmarkTitle => {
-                        if (title.id === bookmarkTitle.titleId) {
-                            title.bookmarked = true;
-                            title.bookmarkTitleId = bookmarkTitle.id;
-                        } else if (title.id !== bookmarkTitle.titleId && title.bookmarked !== true) {
-                            title.bookmarked = false;
-                        }
+                if (bookmarkTitles.status !== 404) {
+                    json.items.forEach((title) => {
+                        bookmarkTitles.forEach(bookmarkTitle => {
+                            if (title.id === bookmarkTitle.titleId) {
+                                title.bookmarked = true;
+                                title.bookmarkTitleId = bookmarkTitle.id;
+                            } else if (title.id !== bookmarkTitle.titleId && title.bookmarked !== true) {
+                                title.bookmarked = false;
+                            }
+                        });
                     });
-                });
-
+                } else {
+                    json.items.forEach((title) => {
+                        title.bookmarked = false;
+                    });
+                }
                 titles(json.items);
                 prev = json.prev;
                 cur = json.cur;
