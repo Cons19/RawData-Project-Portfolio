@@ -1,4 +1,4 @@
-define(["knockout", "postman", "wordService"], function (ko, postman, ws) {
+define(["knockout", "postman", "wordService", "wordcloud"], function (ko, postman, ws, wc) {
     return function (params) {
         let word1 = ko.observable();
         let word2 = ko.observable();
@@ -39,6 +39,13 @@ define(["knockout", "postman", "wordService"], function (ko, postman, ws) {
                     document.getElementById("wordsTable").style.display = "block";
                     console.log(json);
                     words(json);
+                    console.log(WordCloud.isSupported)
+                    let list = [];
+                    json.forEach(element => {
+                        list.push([element.word, element.counter])
+                    })
+                    console.log(list);
+                    wc(document.getElementById('keywords'), { list });
                 }
 
 

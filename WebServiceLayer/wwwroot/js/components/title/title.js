@@ -84,6 +84,33 @@ define(["knockout", "titleService", "ratingHistoryService", "bookmarkService", "
             }
         }
 
+        mouseOverBookmark = (data, event) => {
+            const icon = event.target;
+
+            if (icon.classList.contains("fas")) {
+                icon.classList.remove("fas")
+                icon.classList.add("far")
+                icon.style.color = "black"
+            }
+
+
+            if (icon.classList.contains("far")) {
+                icon.classList.remove("far")
+                icon.classList.add("fas")
+                icon.style.color = "red"
+            }
+        }
+
+        mouseOutBookmark = (data, event) => {
+            const icon = event.target;
+
+            if (icon.classList.contains("fas")) {
+                icon.classList.remove("fas")
+                icon.classList.add("far")
+                icon.style.color = "black"
+            }
+        }
+
         let bookmark = (data) => {
             let bookmarkTitleBody = { userId: userId, titleId: data.id.trim() };
             bs.createBookmarkTitle(bookmarkTitleBody, bookmarkTitle => {

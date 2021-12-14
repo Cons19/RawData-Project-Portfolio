@@ -34,14 +34,14 @@ namespace DataAccessLayer.Repository
 
         public object[] SearchText(int id, string searchText, QueryString queryString)
         {
-            var items = context.SearchTitle.FromSqlInterpolated($"SELECT * FROM search_string({id},{searchText})")
-                    .Skip(queryString.Page * queryString.PageSize)
-                    .Take(queryString.PageSize)
-                    .ToList();
-
+            var items = context.SearchTitle.FromSqlInterpolated($"SELECT * FROM search_string({id},{searchText})");
             var total = items.Count();
+        
+            var searchedItems = items.Skip(queryString.Page * queryString.PageSize)
+                                .Take(queryString.PageSize)
+                                .ToList();
 
-            return new object[] { items, total };
+            return new object[] { searchedItems, total };
         }
         public int GetSearchTextCount(int id, string searchText)
         {
