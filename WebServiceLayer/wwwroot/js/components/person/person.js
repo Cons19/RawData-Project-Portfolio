@@ -78,13 +78,42 @@ define(["knockout", "personService", "bookmarkService", "postman"], function (ko
             }, `api/bookmark-persons/user/${JSON.parse(jwt).id}`);
         }
 
+        mouseOverBookmark = (data, event) => {
+            const icon = event.target;
+
+            if (icon.classList.contains("fas")) {
+                icon.classList.remove("fas")
+                icon.classList.add("far")
+                icon.style.color = "black"
+            }
+
+
+            if (icon.classList.contains("far")) {
+                icon.classList.remove("far")
+                icon.classList.add("fas")
+                icon.style.color = "red"
+            }
+        }
+
+        mouseOutBookmark = (data, event) => {
+            const icon = event.target;
+
+            if (icon.classList.contains("fas")) {
+                icon.classList.remove("fas")
+                icon.classList.add("far")
+                icon.style.color = "black"
+            }
+        }
+
         return {
             persons,
             nextPageButton,
             previousPageButton,
             details,
             bookmark,
-            unbookmark
+            unbookmark,
+            mouseOutBookmark,
+            mouseOverBookmark
         }
     };
 });
