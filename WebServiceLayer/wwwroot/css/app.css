@@ -77,3 +77,7 @@ nav {
 .dropdown .dropdown-menu .dropdown-item:focus {
     background-color: #FFC312;
 }
+
+#search-bar-nav-bar {
+    padding-left: 0px;
+}

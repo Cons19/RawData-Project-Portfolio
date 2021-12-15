@@ -20,12 +20,15 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
     let menuItems = [
         { title: "Title", component: "title" },
         { title: "Person", component: "person" },
-        { title: "Structured Search", component: "structured-search" },
+        { title: "Word to words", component: "word-to-words" }
+    ];
+
+    let menuItemsSearch = [
         { title: "Popular Actors", component: "popular-actors" },
+        { title: "Structured Search", component: "structured-search" },
         { title: "Best Match", component: "best-match" },
         { title: "Find Person by Profession", component: "find-person-by-profession" },
         { title: "Exact Match", component: "exact-match" },
-        { title: "Word to words", component: "word-to-words" }
     ];
 
     let userItems = [
@@ -90,6 +93,7 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
     return {
         menuItems,
         userItems,
+        menuItemsSearch,
         changeContent,
         changeUserContent,
         isActive,
