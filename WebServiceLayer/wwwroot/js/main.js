@@ -30,7 +30,7 @@
         structuredSearchComponent: "components/structured-search/structured-search",
         popularActorsComponent: "components/popular-actors/popular-actors",
         bestMatchComponent: "components/best-match/best-match",
-        exactMatchComponent: "components/best-match/exact-match",
+        exactMatchComponent: "components/exact-match/exact-match",
         ratingHistoryComponent: "components/rating-history/rating-history",
         bookmarkTitleComponent: "components/bookmark-title/bookmark-title",
         bookmarkPersonComponent: "components/bookmark-person/bookmark-person",
@@ -90,8 +90,8 @@ require(['knockout'], (ko) => {
         template: { require: "text!components/best-match/best-match.html" }
     });
     ko.components.register("exact-match", {
-        viewModel: { require: "components/best-match/best-match" },
-        template: { require: "text!components/best-match/best-match.html" }
+        viewModel: { require: "components/exact-match/exact-match" },
+        template: { require: "text!components/exact-match/exact-match.html" }
     });
     ko.components.register("rating-history", {
         viewModel: { require: "components/rating-history/rating-history" },
