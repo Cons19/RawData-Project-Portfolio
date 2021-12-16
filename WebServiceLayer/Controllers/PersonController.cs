@@ -125,7 +125,6 @@ namespace WebServiceLayer.Controllers
             return queryString.Page >= lastPage ? null : GetPersonsUrl(queryString.Page + 1, queryString.PageSize);
         }
 
-
         private string CreateCurrentPageLink(QueryString queryString)
         {
             return GetPersonsUrl(queryString.Page, queryString.PageSize);

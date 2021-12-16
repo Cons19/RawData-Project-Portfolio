@@ -4,6 +4,7 @@
         text: "lib/requirejs/text",
         jquery: "lib/jquery/dist/jquery.min",
         knockout: "lib/knockout/build/output/knockout-latest.debug",
+        wordcloud: "lib/wordcloud/src/wordcloud2",
 
         postman: "services/postman",
         loginService: "services/loginService",

@@ -36,6 +36,16 @@
       "provider": "unpkg",
       "library": "base64js@1.0.1",
       "destination": "wwwroot/js/lib/base64js/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jqcloud2@2.0.3",
+      "destination": "wwwroot/js/lib/jqcloud2/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "wordcloud@1.2.2",
+      "destination": "wwwroot/js/lib/wordcloud/"
     }
   ]
 }
