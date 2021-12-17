@@ -51,22 +51,24 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table" id="similarTitles">
-                    <thead>
-                        <tr>
-                            <th>Primary Title</th>
-                            <th>Start Year</th>
-                            <th>Genre</th>
-                        </tr>
-                    </thead>
-                    <tbody data-bind="foreach: similarTitles">
-                        <tr>
-                            <td data-bind="text: name ? name : 'N/A'"></td>
-                            <td data-bind="text: startYear !== '    ' ? startYear : 'N/A'"></td>
-                            <td data-bind="text: genre ? genre : 'N/A'"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table" id="similarTitles">
+                        <thead>
+                            <tr>
+                                <th>Primary Title</th>
+                                <th>Start Year</th>
+                                <th>Genre</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: similarTitles">
+                            <tr>
+                                <td data-bind="text: name ? name : 'N/A'"></td>
+                                <td data-bind="text: startYear !== '    ' ? startYear : 'N/A'"></td>
+                                <td data-bind="text: genre ? genre : 'N/A'"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
