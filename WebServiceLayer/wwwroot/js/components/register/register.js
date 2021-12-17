@@ -6,13 +6,17 @@ define(["knockout", "loginService", "postman"], function (ko, ls, postman) {
 
         let register = () => {
             let userCredentials = { name: name(), email: email(), password: password() };
-            ls.registerUser(userCredentials, user => {
-                document.getElementsByTagName("nav")[0].style.display = "block";
-                postman.publish("changeView", "title");
-            });
-            name("");
-            email("");
-            password("");
+            let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+            if (typeof name() !== "undefined" && name().match('[=!@#$%^*?":{}|<>;]')) {
+                alert("The name can't contain invalid characters!");
+            } else if (typeof email() !== "undefined" && !regex.test(email())) {
+                alert("You must write a valid email!");
+            } else {
+                ls.registerUser(userCredentials, user => {
+                    document.getElementsByTagName("nav")[0].style.display = "block";
+                    postman.publish("changeView", "title");
+                });
+            }
         }
 
         let cancel = () => {

@@ -22,28 +22,35 @@ define(["knockout", "postman", "functionService"], function (ko, postman, fs) {
             {
                 url = url + "word3=" + thirdWord() + "&";
             }
-    
-            fs.bestMatch(json => {
-                if (json.status !== 404) 
-                {
-                    let temporaryArray = [];
-                    json.forEach(element => {
-                        let title = { id : element.id, rank: element.rank, title: element.title };
-                        temporaryArray.push(title);
-                    });
-                    errorMessage.textContent =  "";
-                    titles(temporaryArray);
-                } else {
-                    errorMessage.textContent =  "No titles were found for this search.";
-                    titles("");
-                }
 
-                url = "api/titles/best-match?";
-                firstWord("");
-                secondWord("");
-                thirdWord("");
-                temporaryArray = [];
-            }, url);
+            if (typeof firstWord() !== "undefined" && firstWord().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The firstWord can't contain invalid characters!");
+            } else if (typeof secondWord() !== "undefined" && secondWord().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The secondWord can't contain invalid characters!");
+            } else if (typeof thirdWord() !== "undefined" && thirdWord().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The thirdWord can't contain invalid characters!");
+            } else {
+                fs.bestMatch(json => {
+                    if (json.status !== 404) {
+                        let temporaryArray = [];
+                        json.forEach(element => {
+                            let title = { id: element.id, rank: element.rank, title: element.title };
+                            temporaryArray.push(title);
+                        });
+                        errorMessage.textContent = "";
+                        titles(temporaryArray);
+                    } else {
+                        errorMessage.textContent = "No titles were found for this search.";
+                        titles("");
+                    }
+
+                    url = "api/titles/best-match?";
+                    firstWord("");
+                    secondWord("");
+                    thirdWord("");
+                    temporaryArray = [];
+                }, url);
+            }
         }
 
         return {

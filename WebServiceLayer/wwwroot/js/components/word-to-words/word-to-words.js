@@ -8,6 +8,7 @@ define(["knockout", "postman", "wordService", "wordcloud"], function (ko, postma
         let words = ko.observableArray();
         let url = "api/words?";
         let errorMessage = document.getElementById("error-message");
+        document.getElementById("wordsCloud").style.display = "none";
 
         let search = () => {
             if (typeof word1() !== "undefined") {
@@ -30,26 +31,60 @@ define(["knockout", "postman", "wordService", "wordcloud"], function (ko, postma
                 url = url + "words=" + word5();
             }
 
-            ws.wordToWordsQuerying(json => {
-                if (json.status === 404) {
-                    errorMessage.textContent = "No word to words were found to display for the searched words.";
-                    document.getElementById("wordsTable").style.display = "none";
-                } else {
-                    errorMessage.textContent = "";
-                    document.getElementById("wordsTable").style.display = "block";
-                    console.log(json);
-                    words(json);
-                    console.log(WordCloud.isSupported)
-                    let list = [];
-                    json.forEach(element => {
-                        list.push([element.word, element.counter])
-                    })
-                    console.log(list);
-                    wc(document.getElementById('keywords'), { list });
-                }
+            if (typeof word1() !== "undefined" && word1().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The word1 can't contain invalid characters!");
+            } else if (typeof word2() !== "undefined" && word2().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The word2 can't contain invalid characters!");
+            } else if (typeof word3() !== "undefined" && word3().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The word3 can't contain invalid characters!");
+            } else if (typeof word4() !== "undefined" && word4().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The word4 can't contain invalid characters!");
+            } else if (typeof word5() !== "undefined" && word5().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The word5 can't contain invalid characters!");
+            } else {
+                ws.wordToWordsQuerying(json => {
+                    if (json.status === 404) {
+                        errorMessage.textContent = "No word to words were found to display for the searched words.";
+                        document.getElementById("wordsTable").style.display = "none";
+                        document.getElementById("wordsCloud").style.display = "none";
+                    } else {
+                        let temporaryArray = [];
+                        errorMessage.textContent = "";
+                        document.getElementById("wordsTable").style.display = "block";
+                        document.getElementById("wordsCloud").style.display = "block";
+                        let list = [];
+                        json.forEach(element => {
+                            temporaryArray.push(element);
+                            list.push([element.word, element.counter])
+                        })
+                        words(temporaryArray);
 
+                        wc(document.getElementById('keywords'), { list });
 
-            }, url);
+                    }
+                    temporaryArray = [];
+                    url = "api/words?";
+                    if (typeof word1() !== "undefined") {
+                        word1(undefined);
+                    }
+
+                    if (typeof word2() !== "undefined") {
+                        word2(undefined);
+                    }
+
+                    if (typeof word3() !== "undefined") {
+                        word3(undefined);
+                    }
+
+                    if (typeof word4() !== "undefined") {
+                        word4(undefined);
+                    }
+
+                    if (typeof word5() !== "undefined") {
+                        word5(undefined);
+                    }
+                }, url);
+            }
         }
 
         return {

@@ -1,6 +1,7 @@
 define(["knockout", "postman", "searchService", "userService"], function (ko, postman, ss, us) {
     let isTokenExpired = true;
     const jwt = localStorage.getItem("jwt");
+    let url = `api/titles/search/`;
 
     if (jwt) {
         isTokenExpired = !(JSON.parse(atob(jwt.split('.')[1])).exp < Date.now());
@@ -19,8 +20,7 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
 
     let menuItems = [
         { title: "Title", component: "title" },
-        { title: "Person", component: "person" },
-        { title: "Word to words", component: "word-to-words" }
+        { title: "Person", component: "person" }
     ];
 
     let menuItemsSearch = [
@@ -29,6 +29,7 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
         { title: "Best Match", component: "best-match" },
         { title: "Find Person by Profession", component: "find-person-by-profession" },
         { title: "Exact Match", component: "exact-match" },
+        { title: "Word to words", component: "word-to-words" }
     ];
 
     let userItems = [
@@ -74,11 +75,23 @@ define(["knockout", "postman", "searchService", "userService"], function (ko, po
     let searchText = () => {
         let text = this.searchTextValue();
         const userId = JSON.parse(atob(localStorage.getItem("jwt").split('.')[1])).id;
-        const url = `api/titles/search/${text}/user/${userId}`;
 
-        ss.getSearchString((json) => {
-            postman.publish("changeView", "search-result", json);
-        }, url);
+        if (typeof text !== "undefined" && text !== "") {
+            url = url + text + "/user/" + userId;
+        }
+
+        if (typeof text !== "undefined" && text !== "" && text.match('[=!@#$%^*?"{}|<>;]')) {
+            alert("The search text can't contain invalid characters!");
+        } else {
+            ss.getSearchString((json) => {
+                if (json.status !== 404) {
+                    postman.publish("changeView", "search-result", json);
+                } else {
+                    alert("This search result does not exist!");
+                }
+            }, url);
+            url = `api/titles/search/`;
+        }
     }
 
     let isActive = menuItem => {

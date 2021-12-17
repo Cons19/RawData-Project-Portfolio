@@ -9,16 +9,27 @@ define(["knockout", "postman", "personService"], function (ko, postman, ps) {
                 url = url + profession();
             }
 
-            ps.findPersonByProfession(json => {
-                console.log(json);
-                if (json.status !== 404) {
-                    errorMessage.textContent = "";
-                    persons(json);
-                } else {
-                    errorMessage.textContent = "No persons were found for this search.";
-                    persons("");
-                }
-            }, url);
+            if (typeof profession() !== "undefined" && profession().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The profession can't contain invalid characters!");
+            } else {
+                ps.findPersonByProfession(json => {
+                    console.log(json);
+                    if (json.status !== 404) {
+                        let temporaryArray = [];
+                        errorMessage.textContent = "";
+                        json.forEach(person => {
+                            temporaryArray.push(person);
+                        });
+                        persons(temporaryArray);
+                    } else {
+                        errorMessage.textContent = "No persons were found for this search.";
+                        persons("");
+                    }
+                    temporaryArray = [];
+                    url = "api/persons/profession/";
+                    profession("");
+                }, url);
+            }
         }
 
         return {

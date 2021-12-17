@@ -30,30 +30,38 @@ define(["knockout", "postman", "functionService"], function (ko, postman, fs) {
                 url = url + "personName=" + actor() + "&";
             }
 
-            url = url + "userId=" + userId;
+            if (typeof title() !== "undefined" && title().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The title can't contain invalid characters!");
+            } else if (typeof plot() !== "undefined" && plot().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The plot can't contain invalid characters!");
+            } else if (typeof character() !== "undefined" && character().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The character can't contain invalid characters!");
+            } else if (typeof actor() !== "undefined" && actor().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The actor can't contain invalid characters!");
+            } else {
+                url = url + "userId=" + userId;
+                fs.structuredSearch(json => {
+                    if (json.status !== 404) {
+                        let temporaryArray = [];
+                        json.forEach(element => {
+                            let title = { titleId: element.id, primaryTitle: element.primaryTitle, description: element.description };
+                            temporaryArray.push(title);
+                        });
+                        errorMessage.textContent = "";
+                        titles(temporaryArray);
+                    } else {
+                        errorMessage.textContent = "No titles were found for this search.";
+                        titles("");
+                    }
 
-            fs.structuredSearch(json => {
-                if (json.status !== 404) 
-                {
-                    let temporaryArray = [];
-                    json.forEach(element => {
-                        let title = { titleId : element.id, primaryTitle: element.primaryTitle, description: element.description };
-                        temporaryArray.push(title);
-                    });
-                    errorMessage.textContent =  "";
-                    titles(temporaryArray);
-                } else {
-                    errorMessage.textContent =  "No titles were found for this search.";
-                    titles("");
-                }
-
-                url = "api/titles/structured-search?";
-                title("");
-                plot("");
-                character("");
-                actor("");
-                temporaryArray = [];
-            }, url);
+                    url = "api/titles/structured-search?";
+                    title("");
+                    plot("");
+                    character("");
+                    actor("");
+                    temporaryArray = [];
+                }, url);
+            }
         }
 
         return {

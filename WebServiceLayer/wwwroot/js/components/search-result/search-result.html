@@ -1,12 +1,16 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 card text-dark bg-secondary mb-3 mt-3" style="width: 100%; height: 100%;">
+            
             <div class="card-header" style="color: #fff">Results</div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr><th>Title ID</th><th>Primary Title</th></tr>
                     </thead>
+                    <div>
+                        <span id="error-message" class="error text-warning alert-link"></span>
+                    </div>
                     <tbody data-bind="foreach: results">
                         <tr>
                             <td data-bind="text: id"></td>

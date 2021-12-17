@@ -11,25 +11,28 @@ define(["knockout", "postman", "personService"], function (ko, postman, ps) {
                 url = url + title();
             }
     
-            ps.popularActors(json => {
-                if (json.status !== 404) 
-                {
-                    let temporaryArray = [];
-                    json.forEach(element => {
-                        let title = { name : element.name, rating: element.rating };
-                        temporaryArray.push(title);
-                    });
-                    errorMessage.textContent =  "";
-                    titles(temporaryArray);
-                } else {
-                    errorMessage.textContent =  "No titles were found for this search.";
-                    titles("");
-                }
+            if (typeof title() !== "undefined" && title().match('[=!@#$%^*?"{}|<>;]')) {
+                alert("The title can't contain invalid characters!");
+            } else {
+                ps.popularActors(json => {
+                    if (json.status !== 404) {
+                        let temporaryArray = [];
+                        json.forEach(element => {
+                            let title = { name: element.name, rating: element.rating };
+                            temporaryArray.push(title);
+                        });
+                        errorMessage.textContent = "";
+                        titles(temporaryArray);
+                    } else {
+                        errorMessage.textContent = "No titles were found for this search.";
+                        titles("");
+                    }
 
-                url = "api/persons/popular-actors/";
-                title("");
-                temporaryArray = [];
-            }, url);
+                    url = "api/persons/popular-actors/";
+                    title("");
+                    temporaryArray = [];
+                }, url);
+            }
         }
 
         return {

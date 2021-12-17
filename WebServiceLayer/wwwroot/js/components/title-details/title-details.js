@@ -19,7 +19,6 @@
             } else {
                 errorMessage.textContent = "";
                 document.getElementById("similarTitles").style.display = "block";
-                console.log(json);
                 similarTitles(json);
             }
         }, url);
