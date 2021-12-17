@@ -8,34 +8,36 @@
                 </h5>
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Title Type</th>
-                            <th>Primary Title</th>
-                            <th>Original Title</th>
-                            <th>Is Adult</th>
-                            <th>Start Year</th>
-                            <th>End Year</th>
-                            <th>Run Time Minutes</th>
-                            <th>Poster</th>
-                            <th>Awards</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-bind="text: title()['titleType'] ? title()['titleType'] : 'N/A'"></td>
-                            <td data-bind="text: title()['primaryTitle'] ? title()['primaryTitle'] : 'N/A'"></td>
-                            <td data-bind="text: title()['originalTitle'] ? title()['originalTitle'] : 'N/A'"></td>
-                            <td data-bind="text: title()['isAdult'] ? title()['isAdult'] : 'N/A'"></td>
-                            <td data-bind="text: title()['startYear'] !== '    ' ? title()['startYear'] : 'N/A'"></td>
-                            <td data-bind="text: title()['endYear'] !== '    ' ? title()['endYear'] : 'N/A'"></td>
-                            <td data-bind="text: title()['runTimeMinutes'] ? title()['runTimeMinutes'] : 'N/A'"></td>
-                            <td> <img width="100px" data-bind="attr: title()['poster'] ? {src: title()['poster']} : {src: 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png'}" /></td>
-                            <td data-bind="text: title()['awards'] ? title()['awards'] : 'N/A'"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title Type</th>
+                                <th>Primary Title</th>
+                                <th>Original Title</th>
+                                <th>Is Adult</th>
+                                <th>Start Year</th>
+                                <th>End Year</th>
+                                <th>Run Time Minutes</th>
+                                <th>Poster</th>
+                                <th>Awards</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-bind="text: title()['titleType'] ? title()['titleType'] : 'N/A'"></td>
+                                <td data-bind="text: title()['primaryTitle'] ? title()['primaryTitle'] : 'N/A'"></td>
+                                <td data-bind="text: title()['originalTitle'] ? title()['originalTitle'] : 'N/A'"></td>
+                                <td data-bind="text: title()['isAdult'] ? title()['isAdult'] : 'N/A'"></td>
+                                <td data-bind="text: title()['startYear'] !== '    ' ? title()['startYear'] : 'N/A'"></td>
+                                <td data-bind="text: title()['endYear'] !== '    ' ? title()['endYear'] : 'N/A'"></td>
+                                <td data-bind="text: title()['runTimeMinutes'] ? title()['runTimeMinutes'] : 'N/A'"></td>
+                                <td> <img width="100px" data-bind="attr: title()['poster'] ? {src: title()['poster']} : {src: 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png'}" /></td>
+                                <td data-bind="text: title()['awards'] ? title()['awards'] : 'N/A'"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
