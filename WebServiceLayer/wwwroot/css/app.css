@@ -81,3 +81,7 @@ nav {
 #search-bar-nav-bar {
     padding-left: 0px;
 }
+
+@media screen and (max-width: 600px) {
+	canvas.words{display: none;  }
+}
