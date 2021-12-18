@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using DataAccessLayer.Domain;
 using DataAccessLayer.Repository;
@@ -14,7 +11,6 @@ using Moq;
 using WebServiceLayer.Controllers;
 using WebServiceLayer.ViewModels;
 using Xunit;
-using DataAccessLayer.Repository.Interfaces;
 using DataAccessLayer.Domain.Functions;
 using Npgsql;
 
@@ -23,8 +19,6 @@ namespace Testing
     public class UserControllerTest
     {
         private readonly Mock<IUserRepository> _userRepositoryMock;
-        private readonly Mock<IPersonRepository> _personRepositoryMock;
-        private readonly Mock<ITitleRepository> _titleRepositoryMock;
         private readonly Mock<LinkGenerator> _linkGeneratorMock;
         private readonly Mock<IConfiguration> _configurationMock;
 
@@ -39,10 +33,8 @@ namespace Testing
         public UserControllerTest()
         {
             _userRepositoryMock = new Mock<IUserRepository>();
-            _titleRepositoryMock = new Mock<ITitleRepository>();
             _linkGeneratorMock = new Mock<LinkGenerator>();
             _configurationMock = new Mock<IConfiguration>();
-            _personRepositoryMock = new Mock<IPersonRepository>();
 
             _imdbContext = new ImdbContext();
             _userRepository = new UserRepository(_imdbContext);
@@ -134,7 +126,7 @@ namespace Testing
 
             ctrl.UpdateUser(1, new CreateUpdateUserViewModel { Name = "Dragos", Email = "something@ruc.dk", Password = "pass" });
 
-            _userRepositoryMock.Verify(x => x.UpdateUser(It.IsAny<User>()), Times.Once);
+            _userRepositoryMock.Verify(x => x.UpdateUser(It.IsAny<User>(), true), Times.Once);
         }
 
         [Fact]
@@ -182,8 +174,9 @@ namespace Testing
 
             _userRepositoryMock.Verify(x => x.LoginUser(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
+
         [Fact]
-        public void LoginUser_ValidEmailValidPassword_DataServiceLoginUserMustReturnBadRequestStatus()
+        public void LoginUser_InvalidEmailInvalidPassword_DataServiceLoginUserMustReturnUnauthorizedStatus()
         {
             var ctrl = new UserController(_userRepositoryMock.Object, _linkGeneratorMock.Object, _configurationMock.Object);
 
@@ -193,7 +186,21 @@ namespace Testing
 
             var result = ctrl.LoginUser(new LoginUserViewModel { Email = "asd@ruc.dk", Password = "asd" });
 
-            Assert.IsType<BadRequestResult>(result);
+            Assert.IsType<UnauthorizedResult>(result);
+        }
+
+        [Fact]
+        public void LoginUser_ValidEmailValidPassword_DataServiceLoginUserMustReturnOkStatus()
+        {
+            var ctrl = new UserController(_userRepositoryMock.Object, _linkGeneratorMock.Object, _configurationMock.Object);
+
+            ctrl.ControllerContext = new ControllerContext();
+
+            ctrl.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            var result = ctrl.LoginUser(new LoginUserViewModel { Email = "em@email.com", Password = "pass123" });
+
+            Assert.IsType<OkResult>(result);
         }
 
 
@@ -203,7 +210,7 @@ namespace Testing
         {
             var result = _titleRepository.SearchText(1, "apple", new DataAccessLayer.QueryString());
 
-            Assert.IsType<List<SearchTitle>>(result);
+            Assert.IsType<Object[]>(result);
         }
 
         [Fact]
@@ -211,7 +218,8 @@ namespace Testing
         {
             var result = _titleRepository.SearchText(1, "zzzzzzzzzzzzzzz", new DataAccessLayer.QueryString());
 
-            Assert.Empty(result);
+            Assert.Equal(new object[] { new List<SearchTitle>(), 0 }, result);
+            Assert.IsType<Object[]>(result);
         }
 
         [Fact]
