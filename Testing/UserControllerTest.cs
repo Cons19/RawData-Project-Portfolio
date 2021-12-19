@@ -189,21 +189,6 @@ namespace Testing
             Assert.IsType<UnauthorizedResult>(result);
         }
 
-        [Fact]
-        public void LoginUser_ValidEmailValidPassword_DataServiceLoginUserMustReturnOkStatus()
-        {
-            var ctrl = new UserController(_userRepositoryMock.Object, _linkGeneratorMock.Object, _configurationMock.Object);
-
-            ctrl.ControllerContext = new ControllerContext();
-
-            ctrl.ControllerContext.HttpContext = new DefaultHttpContext();
-
-            var result = ctrl.LoginUser(new LoginUserViewModel { Email = "em@email.com", Password = "pass123" });
-
-            Assert.IsType<OkResult>(result);
-        }
-
-
         // Functions
         [Fact]
         public void SearchText_ValidUserIdValidString_TitleRepositorySearchTextMustReturnListOfSearchTitle()
